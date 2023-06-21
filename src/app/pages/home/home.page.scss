@@ -1,0 +1,94 @@
+ion-content {
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
+  // --background: white;
+}
+
+.row1 {
+  padding: 10px 0;
+
+  ion-col {
+    // div{
+    //   width: 90%;
+    //   height: 50px;
+    //   background: green;
+    //   border-radius: 20px;
+    //   margin: auto;
+    //   text-align: center;
+    //   display: inline-block;
+    //   p{
+    //     padding: 0;
+    //     margin: 0;
+    //     color: white;
+    //   }
+    // }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.categories {
+  .title {
+    font-weight: 500;
+    margin: 10px 10px;
+    font-size: 15px;
+  }
+}
+
+.categories-item {
+  text-align: center;
+  padding-top: 20px;
+
+  ion-col {
+    margin: 10px auto;
+  }
+
+  img {
+    width: 55px;
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.last-txn-row {
+  margin-top: 20px;
+
+  .last-txn-container {
+    width: 100%;
+    background: #13133a;
+    color: white;
+    margin: 0 25px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+}
+
+.last-txn-left {
+  float: left;
+  border-right: 1px solid white;
+  padding-right: 25px;
+}
+
+.last-txn-right {
+  // float: right;
+  text-align: center;
+}
+
+.circle {
+  .outer {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 5px solid #676060;
+  }
+}
+
+.month {
+  font-size: 12px;
+}

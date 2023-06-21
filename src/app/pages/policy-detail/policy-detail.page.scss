@@ -1,0 +1,166 @@
+ion-content{
+  --background: #ececec;
+}
+.green-box{
+  margin-top: 50px;
+  border-radius: 0 20px 20px 0;
+  background-image: linear-gradient(to right, #14585e, #489e5e);
+  padding: 20px 30px;
+  color: white;
+}
+
+.title-container{
+  display: flex;
+  margin-bottom: 15px;
+  .logo{
+    img{
+      width: 165px;
+    }
+  }
+  .policy-name {
+    text-align: center;
+    padding-left: 15px;
+    font-weight: bold;
+  }
+}
+
+.body{
+  padding: 25px 15px;
+}
+.table {
+  text-align: center;
+  font-size: 10px;
+  .row1 {
+    margin-bottom: 10px;
+  }
+  ion-col{
+    padding: 0;
+  }
+}
+
+.data-col{
+  ion-col{
+    margin-top: 5px;
+  }
+}
+
+.cards {
+  display: flex;
+  margin-bottom: 15px;
+  .card1,.card2,.card3{
+    background: white;
+    border-radius: 15px;
+    padding: 15px 10px;
+    width: 100%;
+    .data-icon{
+      display: flex;
+      height: 45%;
+      .data{
+        font-weight: bold;
+        .data1{
+          font-size: 9px;
+          max-width: 60px;
+          height: 30px;
+        }
+        .data2{
+          font-size:14px;
+          text-align: center;
+        }
+      }
+      .icon{
+        img{
+          width: 50px;
+        }
+      }
+    }
+    .sub-title{
+      font-size: 10px;
+      margin-top: 10px;
+    }
+    .divider{
+      border: 0.5px solid;
+      margin: 10px 0;
+    }
+    .footer{
+      text-align: center;
+      display: flex;
+      span{
+        font-size: 10px;
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+        color: #1b1b8d;
+      }
+      ion-icon{
+        float: right;
+      }
+    }
+  }
+  .card1,.card2{
+    margin-right: 15px;
+  }
+}
+
+.glance{
+  margin-bottom: 25px;
+  .quick{
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  .future{
+    margin: 20px 0;
+    text-align: center;
+    span{
+      display: block;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    span:nth-child(2){
+      color: #0b7bd4;
+    }
+  }
+  .quiz{
+    display: flex;
+    padding: 0 15px;
+    .box{
+      width: 50%;
+      background: #43b443;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .box:first-child{
+      margin-right: 10px;
+    }
+  }
+}
+
+.divider{
+  border: 0.5px solid;
+  margin-bottom: 20px;
+}
+
+.file-claim{
+    text-align: center;
+    .btn-container{
+      background-image: linear-gradient(to right, #14585e, #489e5e);
+      width: 50%;
+      position: relative;
+      font-size: 25px;
+      margin: auto;
+      height: 50px;
+      padding: 10px;
+      color: white;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      .btn{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+    }
+}

@@ -1,0 +1,22 @@
+<div class="card-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Date</th>
+        <th *ngIf="data.link">Payment gateway</th>
+        <th *ngIf="data.amount">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{data.status}}</td>
+        <td>{{data.date}}</td>
+        <td *ngIf="data.link">
+          <button (click)="payNow(data.link)">Pay now</button>
+        </td>
+        <td *ngIf="data.amount">{{data.amount}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

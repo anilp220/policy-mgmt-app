@@ -1,0 +1,124 @@
+<ion-content>
+  <div class="green-box">
+    <div class="title-container">
+      <div class="logo">
+        <img src="../../../assets/icon/reminders.png" alt="">
+      </div>
+      <div class="policy-name">
+        {{item.company + ' '+ item.planFeature}}
+      </div>
+    </div>
+    <div class="table">
+      <div class="row1">
+        <ion-row>
+          <ion-col>Cover Amount</ion-col>
+          <ion-col>Premium</ion-col>
+          <ion-col>Valid till</ion-col>
+        </ion-row>
+        <ion-row class="data-col">
+          <ion-col>{{item.sumAssured}}</ion-col>
+          <ion-col>{{item.annualPremium}}</ion-col>
+          <ion-col>{{item.lastPremiumPayYear}}</ion-col>
+        </ion-row>
+      </div>
+      <div class="row2">
+        <ion-row>
+          <ion-col>Members</ion-col>
+          <ion-col>Policy Number</ion-col>
+          <ion-col>Download Policy</ion-col>
+        </ion-row>
+        <ion-row class="data-col">
+          <ion-col>You and your wife</ion-col>
+          <ion-col>{{item.policyNo}}</ion-col>
+          <ion-col>Documents</ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="cards">
+      <div class="card1">
+        <div class="data-icon">
+          <div class="data">
+            <div class="data1">Cashless hospitals</div>
+            <div class="data2">56</div>
+          </div>
+          <div class="icon">
+            <img src="../../../assets/icon/favicon.png" alt="">
+          </div>
+        </div>
+        <div class="sub-title">In Bhopal</div>
+        <div class="divider"></div>
+        <div class="footer">
+          <span>View</span>
+          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="card2">
+        <div class="data-icon">
+          <div class="data">
+            <div class="data1">Payment history</div>
+            <div class="data2">1/12</div>
+          </div>
+          <div class="icon">
+            <img src="../../../assets/icon/favicon.png" alt="">
+          </div>
+        </div>
+        <div class="sub-title">Due on 10 Oct</div>
+        <div class="divider"></div>
+        <div class="footer">
+          <span>Setup Autopay</span>
+          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="card3">
+        <div class="data-icon">
+          <div class="data">
+            <div class="data1">Reminders</div>
+            <div class="data2">03</div>
+          </div>
+          <div class="icon">
+            <img src="../../../assets/icon/favicon.png" alt="">
+          </div>
+        </div>
+        <div class="sub-title">Currently Active</div>
+        <div class="divider"></div>
+        <div class="footer">
+          <span>Add</span>
+          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="glance">
+      <span class="quick">Quick Glance</span>
+      <div class="future">
+        <span class="black">Make Your</span>
+        <span class="blue">Future Better</span>
+      </div>
+      <div class="quiz">
+        <div class="box">
+          <div class="desc">
+            Know your policy? Take a Quiz
+          </div>
+        </div>
+        <div class="box">
+          <div class="desc">
+            Policy Need a correction
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="file-claim">
+      <div class="btn-container" (click)="fileAClaim()">
+        <div class="btn">
+          <ion-icon name="flag"></ion-icon>
+          File a claim
+        </div>
+      </div>
+      <div class="help">Need Help?</div>
+    </div>
+  </div>
+
+
+</ion-content>

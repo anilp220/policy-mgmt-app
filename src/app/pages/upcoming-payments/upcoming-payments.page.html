@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-header class="app-header">
+    <ion-toolbar>
+      <ion-buttons class="menu-btn">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-searchbar></ion-searchbar>
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+      </ion-avatar>
+    </ion-toolbar>
+  </ion-header>
+  <div class="title">
+    {{title}}
+  </div>
+  <ion-row *ngFor="let item of items">
+    <ion-col>
+      <app-payment-card [data]="item"></app-payment-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-content>
+  <!-- <div *ngIf="!getStarted" class="get-started">
+    <div class="container">
+      <img src="assets/icon/logo.png" alt="">
+      <div class="text-content">
+        <div>
+          <span class="green">Our</span>
+          <span>Secretary</span>
+        </div>
+        <button (click)="getStarted=true">
+          Get Started
+        </button>
+      </div>
+    </div>
+
+  </div> -->
+  <ion-slides pager="true" (ionSlideWillChange)="ionSlideTouchEnd()" [options]="slideOpts">
+    <!-- Intro Screen 1 -->
+    <ion-slide>
+      <!-- <div class="info">
+        <h2>
+          <span>Scan </span>Documents
+        </h2>
+        <p>Content on Scan Documents. Two Lines content</p>
+      </div> -->
+      <!-- <app-intro1></app-intro1> -->
+      <div class="skip" (click)="finish()">SKIP</div>
+      <img src="assets/images/intro1.png" alt="">
+    </ion-slide>
+    <!-- Intro Screen 2 -->
+    <ion-slide>
+      <!-- <div class="info">
+        <h2>
+          <span>Save </span>Documents
+        </h2>
+        <p>Content on Save Documents. Two Lines content</p>
+      </div> -->
+      <img src="assets/images/intro2.png" alt="">
+      <!-- <app-intro2></app-intro2> -->
+    </ion-slide>
+    <!-- Intro Screen 3 -->
+    <ion-slide>
+      <!-- <div class="info">
+        <h2>
+          <span>Store </span>Documents
+        </h2>
+        <p>Content on Save Documents. Two Lines content</p>
+      </div> -->
+      <img src="assets/images/intro3.png" alt="">
+      <!-- <app-intro3></app-intro3> -->
+      <!-- <img src="assets/images/intro3.png" alt=""> -->
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-fab *ngIf="isLastSlide" slot="fixed" vertical="top" horizontal="end">
+  <ion-fab-button color="light" (click)="finish()">
+    <ion-icon name="arrow-forward"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

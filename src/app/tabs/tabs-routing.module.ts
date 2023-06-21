@@ -8,32 +8,41 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
-      },
-      {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-      },
-      {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'home',
+        loadChildren: () => import('../pages/home/home.module').then(m => m.HomePageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/home',
         pathMatch: 'full'
-      }
+      },
+      {
+        path: 'sum-assured',
+        loadChildren: () => import('../pages/sum-assured/sum-assured.module').then(m => m.SumAssuredPageModule)
+      },
+      {
+        path: 'transactions',
+        loadChildren: () => import('../pages/transactions/transactions.module').then(m => m.TransactionsPageModule)
+      },
+      {
+        path: 'upcoming/:type',
+        loadChildren: () => import('../pages/upcoming-payments/upcoming-payments.module').then(m => m.UpcomingPaymentsPageModule)
+      },
+      {
+        path: 'portfolio-investments/:page',
+        loadChildren: () => import('../pages/portfolio-investments/portfolio-investments.module')
+          .then(m => m.PortfolioInvestmentsPageModule)
+      },
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

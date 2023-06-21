@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="header">
+    <span class="title">
+      {{title}}
+    </span>
+    <!-- <span class="current-nav">Ex-flexicap | Current Nav {{item.currentNav}}</span> -->
+  </div>
+  <div class="content">
+    <table>
+      <tbody *ngIf="page==='Life Insurance'">
+        <tr>
+          <td>Cover Amount</td>
+          <td>Premiums</td>
+          <td>Valid till</td>
+          <td>Policy Number</td>
+        </tr>
+        <tr>
+          <td>{{item.sumAssured}}</td>
+          <td>{{item.annualPremium}}</td>
+          <td>{{item.dateOfMaturity}}</td>
+          <td>{{item.policyNo}}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="page==='Medicare'">
+        <tr>
+          <td>Investments</td>
+          <td>Units</td>
+          <td>Valuations</td>
+          <td class="cagr">CAGR</td>
+        </tr>
+        <tr>
+          <td>{{item.amountInvested}}</td>
+          <td>{{item.currentUnits}}</td>
+          <td>{{item.valuation}}</td>
+          <td class="cagr">{{item.cagr}}%</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="page==='Mutual Fund'">
+        <tr>
+          <td>Investments</td>
+          <td>Units</td>
+          <td>Valuations</td>
+          <td class="cagr">CAGR</td>
+        </tr>
+        <tr>
+          <td>{{item.amountInvested}}</td>
+          <td>{{item.currentUnits}}</td>
+          <td>{{item.valuation}}</td>
+          <td class="cagr">{{item.cagr}}%</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="page==='Vehicle Insurance'">
+        <tr>
+          <td>Investments</td>
+          <td>Units</td>
+          <td>Valuations</td>
+          <td class="cagr">CAGR</td>
+        </tr>
+        <tr>
+          <td>{{item.amountInvested}}</td>
+          <td>{{item.currentUnits}}</td>
+          <td>{{item.valuation}}</td>
+          <td class="cagr">{{item.cagr}}%</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="page==='Equity'">
+        <tr>
+          <td>Investments</td>
+          <td>Units</td>
+          <td>Valuations</td>
+          <td class="cagr">CAGR</td>
+        </tr>
+        <tr>
+          <td>{{item.amountInvested}}</td>
+          <td>{{item.currentUnits}}</td>
+          <td>{{item.valuation}}</td>
+          <td class="cagr">{{item.cagr}}%</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="page==='Bond Debenture'">
+        <tr>
+          <td>Investments</td>
+          <td>Units</td>
+          <td>Valuations</td>
+          <td class="cagr">CAGR</td>
+        </tr>
+        <tr>
+          <td>{{item.amountInvested}}</td>
+          <td>{{item.currentUnits}}</td>
+          <td>{{item.valuation}}</td>
+          <td class="cagr">{{item.cagr}}%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bar">
+    <div class="bar-outer" [id]="'outer'+page.split(' ').join('') + cardIndex">
+      <div class="bar-inner" [id]="'inner'+page.split(' ').join('') + cardIndex"></div>
+    </div>
+  </div>
+</div>
