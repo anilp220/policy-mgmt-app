@@ -1,0 +1,106 @@
+<ion-header class="app-header">
+  <ion-toolbar>
+    <ion-buttons class="menu-btn">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar></ion-searchbar>
+    <ion-avatar>
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="row1">
+    <ion-col>
+      <div>
+        <img src="../../../assets/icon/claim.png" alt="">
+        <!-- <p>
+          How to get claim Assistance
+        </p> -->
+      </div>
+    </ion-col>
+    <ion-col>
+      <div>
+        <img (click)="redirectTo('/tabs/upcoming/Up-coming Renewals')" src="../../../assets/icon/reminders.png" alt="">
+        <!-- <p>
+          Reminders
+        </p> -->
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="categories">
+    <div class="title">
+      Categories
+    </div>
+  </ion-row>
+  <ion-row class="categories-item">
+    <ion-col>
+      <a routerLink="/tabs/portfolio-investments/portfolio">
+        <img src="../../../assets/icon/portfolio.png" alt="">
+        <p>Portfolio</p>
+      </a>
+    </ion-col>
+    <ion-col>
+      <a routerLink="/tabs/sum-assured">
+        <img src="../../../assets/icon/sum_assured.png" alt="">
+        <p>Sum Assured</p>
+      </a>
+    </ion-col>
+    <ion-col>
+      <a routerLink="/tabs/upcoming/Up-coming Renewals">
+        <img src="../../../assets/icon/renewals.png" alt="">
+        <p>Upcoming Renewals</p>
+      </a>
+    </ion-col>
+  </ion-row>
+  <ion-row class="categories-item">
+    <ion-col>
+      <a routerLink="/tabs/upcoming/Up-coming Maturities">
+        <img src="../../../assets/icon/maturities.png" alt="">
+        <p>Upcoming Maturities</p>
+      </a>
+    </ion-col>
+    <ion-col>
+      <a routerLink="/tabs/portfolio-investments/investments">
+        <img src="../../../assets/icon/investements.png" alt="">
+        <p>Investments</p>
+      </a>
+    </ion-col>
+    <ion-col>
+      <a routerLink="/tabs/upcoming/Transactions">
+        <img src="../../../assets/icon/transactions.png" alt="">
+        <p>Transactions</p>
+      </a>
+    </ion-col>
+  </ion-row>
+  <ion-row class="last-txn-row">
+    <div class="last-txn-container">
+      <div class="last-txn-left">
+        <div class="circle">
+          <round-progress [current]="60" [max]="100" [color]="'#4a7ecb'" [background]="'#535455'" [radius]="18"
+            [stroke]="6" [semicircle]="false" [rounded]="true" [clockwise]="true" [responsive]="false" [duration]="800"
+            [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+          <!-- <div class="outer">
+            <div class="inner"></div>
+          </div> -->
+        </div>
+        <div class="txt">Last Transaction</div>
+      </div>
+      <div class="last-txn-right">
+        <div class="amt">
+          $123,12.22
+        </div>
+        <div class="month">
+          <span style="color: green;">37%</span>
+          <span>vs last month</span>
+        </div>
+      </div>
+    </div>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col>
+      <google-chart [data]="pieChart"></google-chart>
+    </ion-col>
+  </ion-row> -->
+</ion-content>
