@@ -1,13 +1,15 @@
-ion-content{
+ion-content {
   --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
   text-align: center;
-  .app-header{
+
+  .app-header {
     position: fixed;
   }
-  .title{
+
+  .title {
     font-weight: 400;
     font-size: 25px;
     padding: 15px;
-    margin-top: 80px;
+    // margin-top: 80px;
   }
 }

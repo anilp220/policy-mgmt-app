@@ -1,41 +1,47 @@
-.card{
+.card {
   background: #ffffff;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  color: black;
 }
 
-.header{
-  .title{
+.header {
+  .title {
     font-size: 15px;
     font-weight: bold;
     display: block;
   }
-  .current-nav{
+
+  .current-nav {
     font-size: 10px;
   }
 }
 
-.content{
-  table{
+.content {
+  table {
     text-align: center;
     width: 100%;
     margin: 10px 0;
-    td{
+    color: black;
+
+    td {
       font-size: 12px;
     }
-    .cagr{
+
+    .cagr {
       color: green;
     }
   }
 }
 
-.bar{
-  .bar-outer{
+.bar {
+  .bar-outer {
     height: 10px;
     // background: #a6a6ea;
     border-radius: 10px;
   }
+
   .bar-inner {
     height: 10px;
     // background: #6b6be2;

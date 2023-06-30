@@ -1,7 +1,7 @@
 <ion-app>
   <ion-split-pane when="true" contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
+      <ion-content *ngIf="appService.isLoggedIn">
         <ion-list id="inbox-list">
           <ion-item class="profile">
             <ion-title>
@@ -9,7 +9,7 @@
               <p class="title">Mrs.Arora</p>
             </ion-title>
           </ion-item>
-          <ion-list>
+          <!-- <ion-list>
             <ion-title>Information</ion-title>
             <div>
               <p>Mrs Arora</p>
@@ -24,7 +24,7 @@
               <p>Switch Account</p>
               <p>Logout</p>
             </div>
-          </ion-list>
+          </ion-list> -->
           <!-- <ion-item>
             <ion-title>Information</ion-title>
 
@@ -41,7 +41,7 @@
               </ion-item>
             </ion-menu-toggle>
           </ion-item> -->
-          <!-- <ion-menu-toggle auto-hide="false">
+          <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="forward" routerLink="/transactions" lines="none" detail="false"
               [class.selected]="selectedIndex === 1">
               <ion-icon class="txn-icon" src="/assets/icon/transaction.svg"></ion-icon>
@@ -54,7 +54,7 @@
               <ion-icon class="txn-icon" name="log-out"></ion-icon>
               <ion-label>Logout</ion-label>
             </ion-item>
-          </ion-menu-toggle> -->
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

@@ -1,39 +1,54 @@
-.app-header{
-  .menu-btn{
+.app-header {
+  .menu-btn {
     display: inline-block;
     float: left;
     margin: 6px 0px 0 -4px;
   }
-  ion-toolbar{
-    height: 80px;
+
+  .notify-btn {
+    display: inline-block;
+    float: right;
+    margin: 6px 0px 0 -4px;
+
+    ion-icon {
+      font-size: 30px;
+    }
+  }
+
+  ion-toolbar {
+    // height: 80px;
     /* background: green; */
     --background: green;
     border-radius: 0 0 20px 20px;
-    ion-searchbar{
+
+    ion-searchbar {
       width: 70%;
       display: inline-block;
       margin: auto;
       padding: 5px;
       --background: white;
     }
-    ion-avatar{
+
+    ion-avatar {
       float: right;
     }
   }
 }
 
-ion-toolbar.ios.in-toolbar.hydrated.toolbar-searchbar{
+ion-toolbar.ios.in-toolbar.hydrated.toolbar-searchbar {
   padding: 15px 0;
-text-align: center;
+  text-align: center;
 }
-.home-button{
+
+.home-button {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   background: #262679;
   font-size: 35px;
   margin: auto;
-  ion-icon{
+
+  ion-icon {
     color: white;
   }
 }

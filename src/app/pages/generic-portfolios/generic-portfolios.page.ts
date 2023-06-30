@@ -10,48 +10,58 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./generic-portfolios.page.scss'],
 })
 export class GenericPortfoliosPage implements OnInit {
-  page;
+  policyType;
   pageIndex;
   pageTitle;
   items = [];
   error;
-  portfoliosInvestments = {
-    portfolio: [
+  portfolios = {
+    'life-insurance': [
       {
-        name: 'Life Insurance',
+        name: 'Term',
       },
       {
-        name: 'Medicare',
+        name: 'Return of Premium - Term',
       },
       {
-        name: 'Mutual Fund',
+        name: 'Unit Linked',
       },
       {
-        name: 'Vehicle Insurance',
+        name: 'Traditional Participating',
       },
       {
-        name: 'Equity',
-      },
-      {
-        name: 'Bond Debenture',
+        name: 'Non Participating',
       }
     ],
-    investments: [
-      {
-        name: 'Annual Investments',
-      },
-      {
-        name: 'Single Pay Investments',
-      },
-      {
-        name: 'Premium Paid By Self',
-      },
-      {
-        name: 'Premium Paid By Spouse',
-      },
-      {
-        name: 'Premium Paid By Child',
-      }
+    mediclaim: [
+      { name: 'Mediclaim Base Plan' },
+      { name: 'Top-Up Plan' },
+      { name: 'Accidental Plan' },
+      { name: 'Critical Illness Plan' },
+      { name: 'Cancer Plan' },
+    ],
+    'vehicle-insurance': [
+      { name: 'Private' },
+      { name: 'Commercial' }
+    ],
+    'corporate-insurance': [
+      { name: 'Workman Compensation' },
+      { name: 'Group Mediclaim' },
+      { name: 'Contractor All Risk Policy' },
+      { name: 'Merchants Cover Policy' },
+      { name: 'Shop Insurance' },
+      { name: 'Marine Open Inland Declaration Policy' },
+      { name: 'Contractors Plant & Machinery Insurance Policy' },
+      { name: 'Building Insurance' }
+    ],
+    others: [
+      { name: 'Government Bonds' },
+      { name: 'Private Bonds' },
+      { name: 'Gold Bonds' },
+      { name: 'Government Scheme' },
+      { name: 'Post Office' },
+      { name: 'Bank Fixed Deposit' },
+      { name: 'Private Fixed  Deposit' },
     ]
   };
   constructor(private activatedRoute: ActivatedRoute,
@@ -62,25 +72,25 @@ export class GenericPortfoliosPage implements OnInit {
   }
 
   next() {
-    const index = this.portfoliosInvestments[this.pageTitle].findIndex(port => port.name === this.page);
+    const index = this.portfolios[this.pageTitle].findIndex(port => port.name === this.policyType);
     // eslint-disable-next-line max-len
-    this.navCtrl.navigateForward('/generic-portfolios/' + this.pageTitle + '/' + this.portfoliosInvestments[this.pageTitle][index + 1].name + '/' + (index + 1));
+    this.navCtrl.navigateForward('/generic-portfolios/' + this.pageTitle + '/' + this.portfolios[this.pageTitle][index + 1].name + '/' + (index + 1));
   }
 
-  getData(collection) {
-    console.log(collection);
-    this.userService.getDocument(collection, 'asdasd')
-      .then((res) => {
-        console.log(res);
-        if (res.empty) {
-          this.error = 'No Data Found';
-        }
-        res.docs.forEach(result => {
-          console.log('data', result.data());
-          this.items.push(result.data());
-        });
-      });
-  }
+  // getData(collection) {
+  //   console.log(collection);
+  //   this.userService.getDocument(collection, 'asdasd')
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.empty) {
+  //         this.error = 'No Data Found';
+  //       }
+  //       res.docs.forEach(result => {
+  //         console.log('data', result.data());
+  //         this.items.push(result.data());
+  //       });
+  //     });
+  // }
 
   ionViewWillEnter() {
 
@@ -88,12 +98,15 @@ export class GenericPortfoliosPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(res => {
-      this.page = res.page;
+      this.policyType = res.page;
       this.pageIndex = res.index;
       this.pageTitle = res.title;
-      this.items = [];
-      this.getData(this.page.split(' ').join('-').toLowerCase());
-      console.log(res);
+      this.items = this.appService.getPolicies(this.policyType);
+      // this.getData(this.page.split(' ').join('-').toLowerCase());
+      console.log(this.policyType);
+      console.log(this.pageIndex);
+      console.log(this.pageTitle);
+      console.log(this.items);
     });
     // this.items = [
     //   {
@@ -123,8 +136,8 @@ export class GenericPortfoliosPage implements OnInit {
 
   gotoDetail(item) {
     console.log(item);
-    console.log(this.page);
+    console.log(this.policyType);
     this.appService.setData(item);
-    this.navCtrl.navigateForward('/policy-detail/' + this.page);
+    this.navCtrl.navigateRoot('/tabs/policy-detail/' + this.policyType);
   }
 }

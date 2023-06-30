@@ -1,0 +1,46 @@
+<table scrollY="true">
+  <tbody>
+    <ng-container *ngFor="let item of dataKeys">
+      <tr>
+        <td>{{ appService.camelCaseToNormal(item) }}</td>
+        <td>
+          <ng-container *ngIf="isObject(data[item])">
+            <app-nested-table [data]="data[item]"></app-nested-table>
+          </ng-container>
+          <ng-container *ngIf="isArray(data[item])">
+            <table>
+              <!-- <tr>
+                  <th>Index</th>
+                  <th>Value</th>
+                </tr> -->
+              <tr *ngFor="let arrayItem of data[item]; let i = index">
+                <!-- <td>{{ i }}</td> -->
+                <td>
+                  <ng-container *ngIf="isObject(arrayItem)">
+                    <app-nested-table [data]="arrayItem"></app-nested-table>
+                  </ng-container>
+                  <ng-container *ngIf="isArray(arrayItem)">
+                    <app-nested-table [data]="arrayItem"></app-nested-table>
+                  </ng-container>
+                  <div *ngIf="isPrimitive(arrayItem)">
+                    <span *ngIf="!appService.isURL(arrayItem);else url1">{{arrayItem}}</span>
+                    <ng-template #url1>
+                      <a [href]="arrayItem">Open</a>
+                    </ng-template>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </ng-container>
+          <!-- <span *ngIf="isPrimitive(data[item])">{{ data[item] }}</span> -->
+          <div *ngIf="isPrimitive(data[item])">
+            <span *ngIf="!appService.isURL(data[item]);else url1">{{data[item]}}</span>
+            <ng-template #url1>
+              <a [href]="data[item]">Open</a>
+            </ng-template>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

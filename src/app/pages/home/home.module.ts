@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 import { HomePage } from './home.page';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { HomePage } from './home.page';
     HomePageRoutingModule,
     // Ng2GoogleChartsModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, HeaderComponent]
 })
 export class HomePageModule { }

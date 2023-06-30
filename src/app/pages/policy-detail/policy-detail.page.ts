@@ -14,7 +14,7 @@ export class PolicyDetailPage implements OnInit {
 
   ngOnInit() {
     this.item = this.appService.getData();
-    console.log(this.item);
+    console.log(JSON.stringify(this.item));
   }
 
   fileAClaim() {

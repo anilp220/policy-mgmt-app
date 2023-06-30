@@ -1,22 +1,17 @@
-<ion-header class="app-header">
-  <ion-toolbar>
-    <ion-buttons class="menu-btn">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-searchbar></ion-searchbar>
-    <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
-    </ion-avatar>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
-  <div class="title">
-    {{page}}
+  <div>
+    <span class="title">
+      {{pageTitle.toUpperCase()}}
+    </span>
+    <span class="sub-title">
+      {{policyType}}
+    </span>
   </div>
   <div class="card-container" *ngIf="items.length">
     <app-generic-portfolio-card *ngFor="let item of items;let i = index" (click)="gotoDetail(item)" [cardIndex]="i"
-      [item]="item" [page]="page">
+      [item]="item" [policyType]="policyType" [pageTitle]="pageTitle">
     </app-generic-portfolio-card>
   </div>
   <div class="noData" *ngIf="error">
@@ -26,8 +21,8 @@
 
 <ion-footer>
   <!-- [routerLink]="'/generic-portfolios/' + portfolios[1].name+'/'+pageIndex+1" -->
-  <a (click)="next()" *ngIf="pageIndex<portfoliosInvestments[pageTitle].length-1">>>>></a>
-  <div class="home-button" *ngIf="pageIndex==portfoliosInvestments[pageTitle].length-1"
+  <a (click)="next()" *ngIf="pageIndex<portfolios[pageTitle].length-1">>>>></a>
+  <div class="home-button" *ngIf="pageIndex===portfolios[pageTitle].length-1"
     (click)="navCtrl.navigateRoot('/tabs/home')">
     <ion-icon name="home"></ion-icon>
   </div>

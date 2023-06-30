@@ -10,7 +10,7 @@ export class UserService {
   token: any;
   user = {
     uid: '',
-    userInfo: {}
+    userInfo: null
   };
   genericData;
   constructor(private firebaseAuth: AngularFireAuth,
@@ -21,13 +21,13 @@ export class UserService {
     console.log(currentUser);
     if (currentUser) {
       this.user.uid = currentUser.uid;
-      return this.firestore.collection('users').doc(this.user.uid).get();
+      return (await this.firestore.collection('users').doc(this.user.uid).get().toPromise()).data();
     }
     return;
   }
 
-  getDocument(col, clientId) {
-    return this.firestore.collection(col).ref.get();
+  getDocument(col: any, clientId: any) {
+    return this.firestore.collection(col).ref.where('clientId', '==', clientId).get();
   }
 
 }

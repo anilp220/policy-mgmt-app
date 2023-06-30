@@ -33,6 +33,19 @@ const routes: Routes = [
         loadChildren: () => import('../pages/portfolio-investments/portfolio-investments.module')
           .then(m => m.PortfolioInvestmentsPageModule)
       },
+      {
+        path: 'type-of-policy/:typeOfPolicy',
+        loadChildren: () => import('../pages/type-of-policy/type-of-policy.module')
+          .then(m => m.TypeOfPolicyPageModule)
+      },
+      {
+        path: 'view-policy',
+        loadChildren: () => import('../pages/view-policy/view-policy.module').then(m => m.ViewPolicyPageModule)
+      },
+      {
+        path: 'policy-detail/:policy',
+        loadChildren: () => import('../pages/policy-detail/policy-detail.module').then(m => m.PolicyDetailPageModule)
+      },
     ]
   },
   {

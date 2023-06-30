@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PortfolioInvestmentsPageRoutingModule } from './portfolio-investments-routing.module';
+import { TypeOfPolicyPageRoutingModule } from './type-of-policy-routing.module';
 
-import { PortfolioInvestmentsPage } from './portfolio-investments.page';
+import { TypeOfPolicyPage } from './type-of-policy.page';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
@@ -14,8 +14,8 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    PortfolioInvestmentsPageRoutingModule
+    TypeOfPolicyPageRoutingModule
   ],
-  declarations: [PortfolioInvestmentsPage, HeaderComponent]
+  declarations: [TypeOfPolicyPage, HeaderComponent]
 })
-export class PortfolioInvestmentsPageModule { }
+export class TypeOfPolicyPageModule { }

@@ -7,8 +7,49 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  constructor(private navCtrl: NavController) { }
+  portfolio: any = [
+    {
+      name: 'Life Insurance',
+      collection: 'life-insurance',
+      path: '/tabs/type-of-policy/'
+    },
+    {
+      name: 'Mediclaim',
+      collection: 'mediclaim',
+      path: '/tabs/type-of-policy/'
+    },
+    {
+      name: 'Mutual Fund',
+      collection: 'mutual-fund',
+      path: '/generic-portfolios/'
+    },
+    {
+      name: 'Vehicle Insurance',
+      collection: 'vehicle-insurance',
+      path: '/tabs/type-of-policy/'
+    },
+    {
+      name: 'Corporate Insurance',
+      collection: 'corporate-insurance',
+      path: '/tabs/type-of-policy/'
+    },
+    {
+      name: 'Equities',
+      collection: 'equities',
+      path: '/generic-portfolios/'
+    },
+    {
+      name: 'Others',
+      collection: 'others',
+      path: '/tabs/portfolio-investments/'
+    }
+  ];
+  constructor(private navCtrl: NavController) {
+    this.portfolio.map(port => {
+      port.path += port.collection + '/';
+    });
+    console.log(this.portfolio);
+  }
 
   ngOnInit() {
   }

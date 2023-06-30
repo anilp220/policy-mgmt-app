@@ -4,6 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    // redirectTo: 'home',
+    // pathMatch: 'full',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
@@ -27,13 +29,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/generic-portfolios/generic-portfolios.module').then(m => m.GenericPortfoliosPageModule)
   },
   {
-    path: 'policy-detail/:policy',
-    loadChildren: () => import('./pages/policy-detail/policy-detail.module').then(m => m.PolicyDetailPageModule)
+    path: 'home',
+    // loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
-  // }
 ];
 @NgModule({
   imports: [

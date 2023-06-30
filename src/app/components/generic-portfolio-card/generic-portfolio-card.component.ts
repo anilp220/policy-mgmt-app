@@ -8,13 +8,16 @@ import { ConstantsService } from 'src/app/services/constants.service';
 })
 export class GenericPortfolioCardComponent implements OnInit, AfterViewInit {
   @Input() item;
-  @Input() page;
+  @Input() policyType;
+  @Input() pageTitle;
   @Input() cardIndex;
   title = '';
   constructor(private constService: ConstantsService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log('item', this.item);
+    console.log('page', this.policyType);
+    console.log('page', this.pageTitle);
   }
 
   ngAfterViewInit() {
@@ -26,8 +29,8 @@ export class GenericPortfolioCardComponent implements OnInit, AfterViewInit {
   }
 
   setBarColor() {
-    const outerBar = document.getElementById('outer' + this.page.split(' ').join('') + this.cardIndex);
-    const innerBar = document.getElementById('inner' + this.page.split(' ').join('') + this.cardIndex);
+    const outerBar = document.getElementById('outer' + this.policyType.split(' ').join('') + this.cardIndex);
+    const innerBar = document.getElementById('inner' + this.policyType.split(' ').join('') + this.cardIndex);
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     const outerColor = randomColor + '70';
     innerBar.style.background = '#' + randomColor;
@@ -37,7 +40,7 @@ export class GenericPortfolioCardComponent implements OnInit, AfterViewInit {
   };
 
   setbarWidth(innerBar) {
-    switch (this.page) {
+    switch (this.policyType) {
       case this.constService.pages.LifeInsurance:
         innerBar.style.width = this.percentage(this.item.totalInvestment, this.item.sumAssured) + '%';
         this.title = this.item.company;

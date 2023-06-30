@@ -21,8 +21,12 @@ export class AuthService {
     }).catch(error);
   }
 
-  getCurrentUser(successCallback, errorCallBack) {
-    this.firebaseAuth.authState.subscribe(successCallback, errorCallBack);
+  getCurrentUser() {
+    return this.firebaseAuth.currentUser;
+  }
+
+  getAuthState() {
+    return this.firebaseAuth.authState;
   }
 
   login(loginData, success, error) {

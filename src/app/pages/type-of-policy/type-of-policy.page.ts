@@ -4,11 +4,11 @@ import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-portfolio-investments',
-  templateUrl: './portfolio-investments.page.html',
-  styleUrls: ['./portfolio-investments.page.scss'],
+  selector: 'app-type-of-policy',
+  templateUrl: './type-of-policy.page.html',
+  styleUrls: ['./type-of-policy.page.scss'],
 })
-export class PortfolioInvestmentsPage implements OnInit {
+export class TypeOfPolicyPage implements OnInit {
   page;
   portfolios = {
     'life-insurance': [
@@ -63,7 +63,7 @@ export class PortfolioInvestmentsPage implements OnInit {
   items = [];
   constructor(private activatedRoute: ActivatedRoute, private appService: AppService, private userService: UserService) {
     this.activatedRoute.params.subscribe(param => {
-      this.page = param.page;
+      this.page = param.typeOfPolicy;
       this.getData(this.page);
     });
   }

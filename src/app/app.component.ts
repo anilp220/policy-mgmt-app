@@ -16,7 +16,6 @@ declare let firebase;
 export class AppComponent {
   user;
   selectedIndex = 1;
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -27,8 +26,11 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
-  logout() {
-    // this.authService.logout();
+
+  async logout() {
+    this.appService.isLoggedIn = false;
+    await this.authService.logout();
+    this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
   async initializeApp() {
@@ -44,24 +46,33 @@ export class AppComponent {
       // }
       if (await this.appService.getDataFromLocal('introComplete')) {
         console.log('introComplete');
-        // const token = await this.authService.getToken();
+        const subscription = this.authService.getAuthState().subscribe(async (res) => {
+          console.log('current user', res);
+          if (res) {
+            this.userService.user.userInfo = await this.userService.currentUserDetailRef();
+            console.log(this.userService.user);
+          } else {
+            this.router.navigateByUrl('/login', { replaceUrl: true });
+          }
+          subscription.unsubscribe();
+        });
         // if (token) {
-        //   // console.log("User token available ", token);
-        //   // this.userService.token = token;
-        //   // this.userService.GET('details').subscribe((user: any) => {
-        //   //   console.log("Get user details success ", user)
-        //   //   if (user) {
-        //   //     console.log("Goto Home page")
-        //   //     this.userService.user = user.data
-        //   //     this.appService.navigateRoot("home")
-        //   //   } else {
-        //   //     console.log("Goto Logout and signin")
-        //   //     this.authService.logout()
-        //   //   }
-        //   // })
+        //   console.log('User token available ', token);
+        //   this.userService.token = token;
+        //   this.userService.GET('details').subscribe((user: any) => {
+        //     console.log('Get user details success ', user);
+        //     if (user) {
+        //       console.log('Goto Home page');
+        //       this.userService.user = user.data;
+        //       this.appService.navigateRoot('home');
+        //     } else {
+        //       console.log('Goto Logout and signin');
+        //       this.authService.logout();
+        //     }
+        //   });
         // } else {
-        //   console.log("User token not available ")
-        //   this.authService.logout()
+        //   console.log('User token not available ');
+        //   this.authService.logout();
         // }
       }
       else {

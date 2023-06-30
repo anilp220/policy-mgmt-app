@@ -9,6 +9,7 @@ import { GenericPortfoliosPageRoutingModule } from './generic-portfolios-routing
 import { GenericPortfoliosPage } from './generic-portfolios.page';
 
 import { GenericPortfolioCardComponent } from '../../components/generic-portfolio-card/generic-portfolio-card.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,6 @@ import { GenericPortfolioCardComponent } from '../../components/generic-portfoli
     IonicModule,
     GenericPortfoliosPageRoutingModule
   ],
-  declarations: [GenericPortfoliosPage, GenericPortfolioCardComponent]
+  declarations: [GenericPortfoliosPage, GenericPortfolioCardComponent, HeaderComponent]
 })
 export class GenericPortfoliosPageModule { }

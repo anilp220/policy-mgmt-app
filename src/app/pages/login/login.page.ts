@@ -26,25 +26,26 @@ export class LoginPage implements OnInit {
   onSubmit(formData: NgForm) {
     console.log(formData);
     this.appService.presentLoading();
-    setTimeout(() => {
-      if (formData.value.email === 'admin@mailinator.com') {
-        this.appService.isLoggedIn = true;
-        this.router.navigateByUrl('tabs/home');
-        this.appService.hideLoading();
-        return;
-      }
-    }, 3000);
-    return;
+    // setTimeout(() => {
+    //   if (formData.value.email === 'admin@mailinator.com') {
+    //     this.appService.isLoggedIn = true;
+    //     this.router.navigateByUrl('tabs/home');
+    //     this.appService.hideLoading();
+    //     return;
+    //   }
+    // }, 3000);
+    // return;
     this.authService.login(formData.value, async (success) => {
       console.log('success', success);
       this.appService.isLoggedIn = true;
-      (await this.userService.currentUserDetailRef()).subscribe(currentUserDetail => {
-        const user: any = currentUserDetail.data();
+      this.userService.currentUserDetailRef().then(currentUserDetail => {
+        const user: any = currentUserDetail;
         console.log(user);
-        // if (user && user.role === 'client' && user.isActive) {
-        this.appService.hideLoading();
-        // this.router.navigateByUrl('home');
-        // }
+        if (user && user.role === 'client' && user.isActive) {
+          // this.appService.setDataToLocal('token');
+          this.appService.hideLoading();
+          this.router.navigateByUrl('tabs/home', { replaceUrl: true });
+        }
       });
     }, (err) => {
       console.log(err);
