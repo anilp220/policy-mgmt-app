@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class AppService {
   policies = [];
   constructor(
     private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private localStorage: Storage
   ) { }
 
   setData(data) {
@@ -32,12 +34,12 @@ export class AppService {
     return this.policies.filter(policy => policy.typeOfPolicy === policyType);
   }
 
-  getDataFromLocal(param) {
-    return JSON.parse(localStorage.getItem(param));
+  async getDataFromLocal(param) {
+    return JSON.parse(await this.localStorage.get(param));
   }
 
   setDataToLocal(key, value) {
-    return localStorage.setItem(key, JSON.stringify(value));
+    return this.localStorage.set(key, JSON.stringify(value));
   }
 
   async showToast(msg: string, duration?: number) {
