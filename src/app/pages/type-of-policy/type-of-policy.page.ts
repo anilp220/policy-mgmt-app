@@ -70,18 +70,31 @@ export class TypeOfPolicyPage implements OnInit {
 
   getData(collection) {
     console.log(collection);
-    this.items = [];
-    this.userService.getDocument(collection, this.userService.user.userInfo.clientId)
-      .then((res) => {
-        if (res.empty) {
-          this.error = 'No Data Found';
-        }
-        res.docs.forEach(result => {
-          this.items.push(result.data());
-        });
-        console.log(this.items);
-        this.appService.setPolicies(this.items);
-      });
+    this.items = [...this.userService.allCollections[collection]];
+    console.log(this.items)
+    this.appService.setPolicies(this.items);
+    if (!this.items.length) {
+      this.error = 'No Data Found';
+    }
+    // this.userService.getDocument(collection, this.userService.user.userInfo.clientId)
+    //   .then((res) => {
+    //     if (res.empty) {
+    //       this.error = 'No Data Found';
+    //     }
+    //     res.docs.forEach(result => {
+    //       this.items.push(result.data());
+    //     });
+    //     console.log(this.items);
+    //   });
+  }
+
+  countItem(typeOfPolicy, count) {
+    this.items.forEach(item => {
+      if (item.typeOfPolicy == typeOfPolicy) {
+        count++;
+      }
+    });
+    return count;
   }
 
   ngOnInit() {

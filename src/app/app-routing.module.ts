@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouteResolver } from './services/resolver';
 
 const routes: Routes = [
   {
     path: '',
     // redirectTo: 'home',
     // pathMatch: 'full',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    // resolve: {
+    //   routeResolver: RouteResolver
+    // }
   },
   {
     path: 'login',
@@ -18,15 +22,12 @@ const routes: Routes = [
   },
   {
     path: 'intro',
-    loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    // loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
   },
   {
     path: 'login-signup',
     loadChildren: () => import('./pages/login-signup/login-signup.module').then(m => m.LoginSignupPageModule)
-  },
-  {
-    path: 'generic-portfolios/:title/:page/:index',
-    loadChildren: () => import('./pages/generic-portfolios/generic-portfolios.module').then(m => m.GenericPortfoliosPageModule)
   },
   {
     path: 'home',
@@ -38,6 +39,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RouteResolver]
 })
 export class AppRoutingModule { }

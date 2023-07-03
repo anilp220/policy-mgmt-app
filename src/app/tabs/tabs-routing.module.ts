@@ -54,6 +54,10 @@ const routes: Routes = [
         path: 'user-account',
         loadChildren: () => import('../pages/user-account/user-account.module').then(m => m.UserAccountPageModule)
       },
+      {
+        path: 'generic-portfolios/:title/:page/:index',
+        loadChildren: () => import('../pages/generic-portfolios/generic-portfolios.module').then(m => m.GenericPortfoliosPageModule)
+      },
     ]
   },
   {

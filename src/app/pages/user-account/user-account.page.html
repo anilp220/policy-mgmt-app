@@ -1,9 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user-account</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Account'"></app-header>
 
 <ion-content>
-
+  <ion-row class="header-margin">
+    <ion-col>
+      <ion-button (click)="logout()" expand="block" fill="clear">
+        Logout
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

@@ -34,6 +34,7 @@ export class AppComponent {
   }
 
   async initializeApp() {
+    this.appService.presentLoading()
     this.userService.token = await this.appService.getDataFromLocal('token');
     console.log('this.userService.token', this.userService.token);
     this.platform.ready().then(async () => {
@@ -47,16 +48,26 @@ export class AppComponent {
       if (await this.appService.getDataFromLocal('introComplete')) {
         console.log('introComplete');
         const subscription = this.authService.getAuthState().subscribe(async (res) => {
-          console.log('current user', res);
-          if (res) {
-            this.userService.user.userInfo = await this.userService.currentUserDetailRef();
-            // this.userService.getAllCollection()
-            //   .then((result) => {
-            //     console.log(result);
-            //     result.forEach(async (element) => {
-            //       console.log(await element);
-            //     });
-            //   });
+          console.log('current user', res.uid);
+          if (res && res.uid) {
+            this.userService.user.uid = res.uid;
+            const data = await this.userService.getUserDetail(res.uid);
+            this.userService.user.userInfo = data.data();
+            this.userService.getAllCollection()
+              .then((result) => {
+                if (result.length) {
+                  result.forEach(cols => {
+                    if (!cols.empty) {
+                      cols.docs.forEach(doc => {
+                        const path = doc.ref.path.split('/');
+                        const collectionName = path[0];
+                        this.userService.allCollections[collectionName].push(doc.data())
+                        this.appService.hideLoading();
+                      });
+                    }
+                  });
+                }
+              });
             console.log(this.userService.user);
           } else {
             this.router.navigateByUrl('/login', { replaceUrl: true });

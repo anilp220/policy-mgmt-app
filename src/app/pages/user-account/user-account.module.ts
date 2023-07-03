@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UserAccountPageRoutingModule } from './user-account-routing.module';
 
 import { UserAccountPage } from './user-account.page';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { UserAccountPage } from './user-account.page';
     IonicModule,
     UserAccountPageRoutingModule
   ],
-  declarations: [UserAccountPage]
+  declarations: [UserAccountPage,HeaderComponent]
 })
 export class UserAccountPageModule {}

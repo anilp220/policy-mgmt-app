@@ -13,6 +13,15 @@ export class UserService {
     userInfo: null
   };
   genericData;
+  allCollections = {
+    'life-insurance': [],
+    'mediclaim': [],
+    'mutual-fund': [],
+    'equities': [],
+    'vehicle-insurance': [],
+    'corporate-insurance': [],
+    'others': [],
+  }
   constructor(private firebaseAuth: AngularFireAuth,
     private firestore: AngularFirestore) { }
 
@@ -26,8 +35,12 @@ export class UserService {
     return;
   }
 
+  getUserDetail(uid) {
+    return this.firestore.collection('users').doc(uid).get().toPromise();
+  }
+
   getDocument(col: any, clientId: any) {
-    return this.firestore.collection(col).ref.where('clientId', '==', clientId).get();
+    return this.firestore.collection(col).ref.where('clientId', '==', clientId).get()
   }
 
   getAllCollection(): Promise<any> {

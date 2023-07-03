@@ -16,7 +16,7 @@ ion-content {
 
   ion-row {
     ion-col {
-      div {
+      .tab-name {
         height: 70px;
         // background: green;
         padding: 10px;
@@ -24,6 +24,7 @@ ion-content {
         padding: 10px;
         width: 80%;
         margin: 5px auto;
+        position: relative;
 
         a {
           color: white;
@@ -36,6 +37,27 @@ ion-content {
           // width: 91%;
           left: 50%;
           transform: translate(-50%, -50%);
+        }
+
+        .badge {
+          position: absolute;
+          right: 10px;
+          background: #ffffff63;
+          width: 15px;
+          height: 15px;
+          color: black;
+          border-radius: 50%;
+          top: 5px;
+
+          span {
+            font-size: 10px;
+            color: white;
+            top: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
         }
       }
 

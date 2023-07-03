@@ -6,8 +6,13 @@
     </div> -->
     <ion-row *ngFor="let portfolio of portfolios[page];let i =index">
       <ion-col>
-        <div [ngClass]="i %2 ===0 ?'even-tab' : 'odd-tab'">
-          <a [routerLink]="'/generic-portfolios/'+page+'/' + portfolio.name+'/'+i">{{portfolio.name}}</a>
+        <div class="tab-name" [ngClass]="i %2 ===0 ?'even-tab' : 'odd-tab'">
+          <a [routerLink]="'/tabs/generic-portfolios/'+page+'/' + portfolio.name+'/'+i">{{portfolio.name}}</a>
+          <div class="badge">
+            <span>
+              {{countItem(portfolio.name,0)}}
+            </span>
+          </div>
         </div>
       </ion-col>
     </ion-row>

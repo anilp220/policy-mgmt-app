@@ -107,7 +107,8 @@ ion-content {
 
   .cirFullBlue {
     width: 100%;
-    --background: green;
+    --background: #3F51B5;
+    // background: linear-gradient(0deg, #2196F3 0%, #3F51B5 100%) !important;
   }
 
   .formStyle1 {
@@ -161,7 +162,7 @@ ion-content {
       margin: 25px 0 100px 0;
       text-align: center;
       width: 100%;
-      color: white;
+      // color: white;
       font-weight: bold;
       display: inline-block;
     }
