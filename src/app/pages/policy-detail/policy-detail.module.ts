@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PolicyDetailPageRoutingModule } from './policy-detail-routing.module';
 
 import { PolicyDetailPage } from './policy-detail.page';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PolicyDetailPage } from './policy-detail.page';
     IonicModule,
     PolicyDetailPageRoutingModule
   ],
-  declarations: [PolicyDetailPage]
+  declarations: [PolicyDetailPage, HeaderComponent]
 })
-export class PolicyDetailPageModule {}
+export class PolicyDetailPageModule { }

@@ -8,6 +8,7 @@ import { ViewPolicyPageRoutingModule } from './view-policy-routing.module';
 
 import { ViewPolicyPage } from './view-policy.page';
 import { NestedTableComponent } from 'src/app/components/nested-table/nested-table.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { NestedTableComponent } from 'src/app/components/nested-table/nested-tab
     IonicModule,
     ViewPolicyPageRoutingModule,
   ],
-  declarations: [ViewPolicyPage, NestedTableComponent],
+  declarations: [ViewPolicyPage, NestedTableComponent, HeaderComponent],
 })
 export class ViewPolicyPageModule { }

@@ -1,5 +1,7 @@
 ion-content {
-  --background: #f4f4f4;
+  // --background: #f4f4f4;
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
+  background-color: #fffffffc;
   padding: 10px;
 
   ion-row {

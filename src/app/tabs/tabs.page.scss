@@ -1,7 +1,28 @@
-ion-tab-bar{
+ion-tab-bar {
   border: 0;
   background: white;
 }
-ion-tab-button#tab-button-home{
+
+ion-tab-button {
   background: white;
+}
+
+ion-fab-button {
+  --background: linear-gradient(0deg, #2196F3 0%, #3F51B5 100%) !important;
+}
+
+.home-button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 30px;
+  margin: auto;
+  // background-image: linear-gradient(0deg, #2196F3 0%, #3F51B5 100%) !important;
+
+  ion-icon {
+    vertical-align: middle;
+    font-size: 40px;
+    color: #278eec;
+    // color: white;
+  }
 }

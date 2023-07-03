@@ -46,6 +46,14 @@ const routes: Routes = [
         path: 'policy-detail/:policy',
         loadChildren: () => import('../pages/policy-detail/policy-detail.module').then(m => m.PolicyDetailPageModule)
       },
+      {
+        path: 'notification',
+        loadChildren: () => import('../pages/notification/notification.module').then(m => m.NotificationPageModule)
+      },
+      {
+        path: 'user-account',
+        loadChildren: () => import('../pages/user-account/user-account.module').then(m => m.UserAccountPageModule)
+      },
     ]
   },
   {

@@ -15,7 +15,8 @@
 }
 
 ion-content {
-  --background: #f8f8f8;
+  background-color: #f8f8f8;
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
 }
 
 ion-footer {

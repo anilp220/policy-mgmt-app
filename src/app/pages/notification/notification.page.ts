@@ -9,14 +9,11 @@ import { NavController } from '@ionic/angular';
 export class NotificationPage implements OnInit {
 
   constructor(private navCtrl: NavController) {
-    console.log(navCtrl.consumeTransition().direction);
   }
 
   ngOnInit() {
   }
 
-  goBack() {
-    this.navCtrl.navigateBack('');
-  }
+
 
 }

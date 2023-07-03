@@ -1,13 +1,15 @@
-<app-header></app-header>
 <ion-content>
-  <div class="title">
-    {{page.toUpperCase()}}
+  <app-header [title]="page"></app-header>
+  <div class="header-margin">
+    <!-- <div class="title">
+      {{page.toUpperCase()}}
+    </div> -->
+    <ion-row *ngFor="let portfolio of portfolios[page];let i =index">
+      <ion-col>
+        <div [ngClass]="i %2 ===0 ?'even-tab' : 'odd-tab'">
+          <a [routerLink]="'/generic-portfolios/'+page+'/' + portfolio.name+'/'+i">{{portfolio.name}}</a>
+        </div>
+      </ion-col>
+    </ion-row>
   </div>
-  <ion-row *ngFor="let portfolio of portfolios[page];let i =index">
-    <ion-col>
-      <div>
-        <a [routerLink]="'/generic-portfolios/'+page+'/' + portfolio.name+'/'+i">{{portfolio.name}}</a>
-      </div>
-    </ion-col>
-  </ion-row>
 </ion-content>

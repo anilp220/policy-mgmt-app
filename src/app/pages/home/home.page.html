@@ -1,11 +1,16 @@
-<app-header></app-header>
-
 <ion-content>
-  <ion-row class="categories-item">
-    <ion-col size="4" *ngFor="let port of portfolio;let i = index">
+  <app-header [title]="'welcome'"></app-header>
+  <ion-row class="header-margin">
+    <div>
+      <img src="../../../assets//images/banner1.png" alt="">
+    </div>
+  </ion-row>
+  <ion-row class="categories-item ">
+    <!-- [size]="i===0 ? 11 : 5" -->
+    <ion-col *ngFor="let port of portfolio;let i = index" size="5">
       <!-- <a [routerLink]="'/generic-portfolios/portfolio/' + port.name+'/'+i"> -->
       <a [routerLink]="port.path">
-        <img src="../../../assets/icon/portfolio.png" alt="">
+        <img [src]="'../../../assets/icon/'+port.collection+'.png'" alt="">
         <p>{{port.name}}</p>
       </a>
     </ion-col>

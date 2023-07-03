@@ -107,31 +107,10 @@ export class GenericPortfoliosPage implements OnInit {
       console.log(this.pageIndex);
       console.log(this.pageTitle);
       console.log(this.items);
+      if (!this.items.length) {
+        this.error = 'No Data Found';
+      }
     });
-    // this.items = [
-    //   {
-    //     title: 'Axis Mutual fund',
-    //     currentNav: 3.4,
-    //     investment: 34525,
-    //     units: 234234,
-    //     valuation: 3524,
-    //     cagr: 5.4
-    //   }, {
-    //     title: 'Kotak Low duration',
-    //     currentNav: 4.2,
-    //     investment: 5235,
-    //     units: 434,
-    //     valuation: 1246,
-    //     cagr: 1.3
-    //   }, {
-    //     title: 'Nippon flexi cap',
-    //     currentNav: 3.4,
-    //     investment: 6742,
-    //     units: 4903,
-    //     valuation: 2351,
-    //     cagr: 3.5
-    //   },
-    // ];
   }
 
   gotoDetail(item) {

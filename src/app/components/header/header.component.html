@@ -1,13 +1,19 @@
 <ion-header class="app-header">
   <ion-toolbar>
-    <ion-title>Policy Management</ion-title>
-    <ion-buttons class="menu-btn">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons class="notify-btn">
-      <ion-button (click)="gotoNotification()">
-        <ion-icon name="notifications-circle-outline"></ion-icon>
+    <ion-buttons class="notify-btn" style="float: left;" *ngIf="!isHome">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
+    </ion-buttons>
+    <ion-title>{{title.toUpperCase()}} <br>
+      <span *ngIf="userService?.user?.userInfo?.firstName" style="font-size: 1rem;">{{userName}}</span>
+    </ion-title>
+    <ion-buttons class="notify-btn">
+      <ion-icon *ngIf="!userService?.user?.userInfo?.previewUrl" name="person-circle-outline"></ion-icon>
+      <img *ngIf="userService?.user?.userInfo?.previewUrl" [src]="userService?.user?.userInfo?.previewUrl" alt="">
+      <!-- <ion-button (click)="gotoNotification()">
+        <ion-icon name="notifications-circle-outline"></ion-icon>
+      </ion-button> -->
     </ion-buttons>
     <!-- <ion-searchbar></ion-searchbar> -->
     <!-- <ion-avatar>

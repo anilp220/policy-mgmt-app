@@ -1,4 +1,6 @@
 .app-header {
+  position: fixed;
+
   .menu-btn {
     display: inline-block;
     float: left;
@@ -26,8 +28,12 @@
   ion-toolbar {
     // height: 80px;
     /* background: green; */
-    --background: green;
-    border-radius: 0 0 20px 20px;
+    // --background: green;
+    // border-radius: 0 0 20px 20px;
+    --border-width: 0 !important;
+    --background: linear-gradient(90deg, #420e9b, #02b6fd);
+    /* background: linear-gradient(90deg, #420e9b,#02b6fd); */
+    padding: 15px 15px 15px !important;
 
     ion-searchbar {
       width: 70%;
@@ -43,20 +49,37 @@
   }
 }
 
+p,
+ion-title,
+a,
+span,
+td {
+  font-family: 'Montserrat';
+}
+
+ion-title {
+  font-size: 1.3rem;
+}
+
+// ion-title{
+//   font-family: 'Montserrat';
+// }
+
+.header-margin {
+  padding-top: 90px;
+}
+
+.noData {
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  color: black;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
 ion-toolbar.ios.in-toolbar.hydrated.toolbar-searchbar {
   padding: 15px 0;
   text-align: center;
-}
-
-.home-button {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #262679;
-  font-size: 35px;
-  margin: auto;
-
-  ion-icon {
-    color: white;
-  }
 }

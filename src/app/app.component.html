@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane when="true" contentId="main-content">
+  <!-- <ion-split-pane when="true" contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content *ngIf="appService.isLoggedIn">
         <ion-list id="inbox-list">
@@ -9,38 +9,6 @@
               <p class="title">Mrs.Arora</p>
             </ion-title>
           </ion-item>
-          <!-- <ion-list>
-            <ion-title>Information</ion-title>
-            <div>
-              <p>Mrs Arora</p>
-              <p>abc@gmail.com</p>
-              <p>Password</p>
-            </div>
-          </ion-list>
-          <ion-list>
-            <ion-title>Account</ion-title>
-            <div>
-              <p>Add Account</p>
-              <p>Switch Account</p>
-              <p>Logout</p>
-            </div>
-          </ion-list> -->
-          <!-- <ion-item>
-            <ion-title>Information</ion-title>
-
-          </ion-item> -->
-          <!-- <ion-item>
-            <ion-title>Account</ion-title>
-            <p>Add Account</p>
-            <p>Switch Account</p>
-            <ion-menu-toggle auto-hide="false">
-              <ion-item routerDirection="forward" (click)="logout()" lines=" none" detail="false"
-                [class.selected]="selectedIndex === 2">
-                <ion-icon class="txn-icon" name="log-out"></ion-icon>
-                <ion-label>Logout</ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          </ion-item> -->
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="forward" routerLink="/transactions" lines="none" detail="false"
               [class.selected]="selectedIndex === 1">
@@ -58,7 +26,7 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
 
-  </ion-split-pane>
+  </ion-split-pane> -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

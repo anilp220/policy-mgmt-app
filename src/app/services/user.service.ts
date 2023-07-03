@@ -30,4 +30,24 @@ export class UserService {
     return this.firestore.collection(col).ref.where('clientId', '==', clientId).get();
   }
 
+  getAllCollection(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      try {
+        const collection = ['life-insurance',
+          'mediclaim',
+          'mutual-fund',
+          'equities',
+          'vehicle-insurance',
+          'corporate-insurance',
+          'others'];
+        const promiseArr = [];
+        collection.forEach((col) => {
+          promiseArr.push(this.getDocument(col, this.user?.userInfo?.clientId));
+        });
+        return resolve(Promise.all(promiseArr));
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
 }

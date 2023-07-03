@@ -50,6 +50,10 @@ export class AppComponent {
           console.log('current user', res);
           if (res) {
             this.userService.user.userInfo = await this.userService.currentUserDetailRef();
+            this.userService.getAllCollection()
+              .then((result => {
+                console.log(result)
+              }))
             console.log(this.userService.user);
           } else {
             this.router.navigateByUrl('/login', { replaceUrl: true });

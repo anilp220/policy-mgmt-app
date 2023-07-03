@@ -1,11 +1,25 @@
 <ion-tabs>
-
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
+    <ion-tab-button tab="user-account" layout="icon-top">
+      <div class="home-button">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+    </ion-tab-button>
+    <ion-tab-button></ion-tab-button>
+    <!-- <ion-tab-button tab="home" layout="icon-top">
       <div class="home-button">
         <ion-icon name="home"></ion-icon>
       </div>
+    </ion-tab-button> -->
+    <ion-tab-button tab="notification" layout="icon-top">
+      <div class="home-button">
+        <ion-icon name="notifications-circle-outline"></ion-icon>
+      </div>
     </ion-tab-button>
   </ion-tab-bar>
-
 </ion-tabs>
+<ion-fab vertical="bottom" tab="home" horizontal="center" slot="fixed">
+  <ion-fab-button (click)="gotoHome()">
+    <ion-icon name="home"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,22 +1,24 @@
-<app-header></app-header>
-
 <ion-content>
-  <div>
-    <span class="title">
-      {{pageTitle.toUpperCase()}}
-    </span>
-    <span class="sub-title">
-      {{policyType}}
-    </span>
+  <app-header [title]="pageTitle"></app-header>
+  <div class="header-margin">
+    <div>
+      <!-- <span class="title">
+        {{pageTitle.toUpperCase()}}
+      </span> -->
+      <span class="sub-title">
+        {{policyType}}
+      </span>
+    </div>
+    <div class="card-container" *ngIf="items.length">
+      <app-generic-portfolio-card *ngFor="let item of items;let i = index" (click)="gotoDetail(item)" [cardIndex]="i"
+        [item]="item" [policyType]="policyType" [pageTitle]="pageTitle">
+      </app-generic-portfolio-card>
+    </div>
+    <div class="noData" *ngIf="error">
+      No Data Found
+    </div>
   </div>
-  <div class="card-container" *ngIf="items.length">
-    <app-generic-portfolio-card *ngFor="let item of items;let i = index" (click)="gotoDetail(item)" [cardIndex]="i"
-      [item]="item" [policyType]="policyType" [pageTitle]="pageTitle">
-    </app-generic-portfolio-card>
-  </div>
-  <div class="noData" *ngIf="error">
-    No Data Found
-  </div>
+
 </ion-content>
 
 <ion-footer>

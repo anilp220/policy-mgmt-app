@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,21 @@ export class HomePage implements OnInit {
     {
       name: 'Life Insurance',
       collection: 'life-insurance',
-      path: '/tabs/type-of-policy/'
+      path: '/tabs/type-of-policy/',
     },
     {
       name: 'Mediclaim',
       collection: 'mediclaim',
-      path: '/tabs/type-of-policy/'
+      path: '/tabs/type-of-policy/',
     },
     {
       name: 'Mutual Fund',
       collection: 'mutual-fund',
+      path: '/generic-portfolios/',
+    },
+    {
+      name: 'Equities',
+      collection: 'equities',
       path: '/generic-portfolios/'
     },
     {
@@ -34,17 +40,12 @@ export class HomePage implements OnInit {
       path: '/tabs/type-of-policy/'
     },
     {
-      name: 'Equities',
-      collection: 'equities',
-      path: '/generic-portfolios/'
-    },
-    {
       name: 'Others',
       collection: 'others',
-      path: '/tabs/portfolio-investments/'
+      path: '/tabs/type-of-policy/'
     }
   ];
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController, public userService: UserService) {
     this.portfolio.map(port => {
       port.path += port.collection + '/';
     });
@@ -53,6 +54,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
+
   ionViewDidEnter() {
     // this.loadSimplePieChart();
   }

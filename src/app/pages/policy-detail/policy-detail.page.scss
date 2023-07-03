@@ -1,13 +1,16 @@
 ion-content {
-  --background: #ececec;
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
+  background-color: #fffffffc;
 }
 
 .green-box {
-  margin-top: 50px;
+  margin-top: 90px;
   border-radius: 0 20px;
-  background-image: linear-gradient(to right, #14585e, #489e5e);
+  // background-image: linear-gradient(to right, #14585e, #489e5e);
+  // background-image: linear-gradient(90deg, rgb(255, 170, 87) 0%, rgb(254, 92, 118) 100%) !important;
   padding: 20px 30px;
-  color: white;
+  color: black;
+  font-family: 'Montserrat';
 }
 
 .title-container {
@@ -23,18 +26,22 @@ ion-content {
   .policy-name {
     text-align: center;
     // padding-left: 15px;
-    font-size: 25px;
+    font-size: 1.3rem;
     font-weight: bold;
   }
 }
 
 .body {
-  padding: 25px 15px;
+  padding: 0 15px;
 }
 
 .table {
   text-align: center;
   font-size: 10px;
+  background: rgb(255 255 255 / 23%);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 8px 15px -5px #3F51B5;
 
   .row1 {
     margin-bottom: 10px;
@@ -42,7 +49,7 @@ ion-content {
 
   ion-col {
     padding: 0;
-    font-size: 15px;
+    font-size: 0.8rem;
   }
 }
 
@@ -181,7 +188,7 @@ ion-content {
   // transform: translate(0, 50%);
 
   .btn-container {
-    background-image: linear-gradient(to right, #14585e, #489e5e);
+    background-image: linear-gradient(90deg, #420e9b, #02b6fd);
     width: 50%;
     position: relative;
     font-size: 25px;
@@ -198,6 +205,7 @@ ion-content {
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
+      font-family: "Montserrat";
     }
   }
 }
