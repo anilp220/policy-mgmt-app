@@ -15,10 +15,16 @@ export class LoginPage implements OnInit {
   email;
   password;
   showPassword = false;
+  forgotPassword = false;
   constructor(private authService: AuthService,
     private appService: AppService,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService) {
+    // const data = this.appService.getDataFromLocal()
+    this.authService.getAuthState().subscribe((result) => {
+      console.log(result);
+    })
+  }
 
   ngOnInit() {
   }
@@ -40,11 +46,18 @@ export class LoginPage implements OnInit {
       this.appService.isLoggedIn = true;
       this.userService.currentUserDetailRef().then(currentUserDetail => {
         const user: any = currentUserDetail;
+        this.userService.user.userInfo = currentUserDetail;
         console.log(user);
         if (user && user.role === 'client' && user.isActive) {
-          // this.appService.setDataToLocal('token');
-          this.appService.hideLoading();
-          this.router.navigateByUrl('tabs/home', { replaceUrl: true });
+          this.appService.setDataToLocal('userInfo', user).then(async () => {
+            await this.userService.getAllCollection();
+            this.appService.hideLoading();
+            this.router.navigateByUrl('tabs/home', { replaceUrl: true });
+          })
+            .catch(err => {
+              this.appService.hideLoading();
+              console.log(err);
+            });
         }
       });
     }, (err) => {
@@ -55,8 +68,18 @@ export class LoginPage implements OnInit {
     });
   }
 
-  GotoForgot() {
-
+  async resetPassword() {
+    try {
+      this.appService.presentLoading();
+      const result = await this.authService.forgetPassword(this.email);
+      this.forgotPassword = !this.forgotPassword;
+      this.appService.hideLoading()
+      this.appService.showToast('Link to reset the password has been sent to your email.');
+    } catch (error) {
+      console.log(error.message);
+      this.appService.hideLoading();
+      this.appService.showToast('Incorrect email address!');
+    }
   }
 
   toggleShow() {

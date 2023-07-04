@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { TypeOfPolicyPageRoutingModule } from './type-of-policy-routing.module';
 
 import { TypeOfPolicyPage } from './type-of-policy.page';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModuleModule,
     TypeOfPolicyPageRoutingModule
   ],
-  declarations: [TypeOfPolicyPage, HeaderComponent]
+  declarations: [TypeOfPolicyPage]
 })
 export class TypeOfPolicyPageModule { }

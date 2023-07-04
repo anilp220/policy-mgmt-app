@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { UserAccountPageRoutingModule } from './user-account-routing.module';
 
 import { UserAccountPage } from './user-account.page';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    SharedModuleModule,
     IonicModule,
     UserAccountPageRoutingModule
   ],
-  declarations: [UserAccountPage,HeaderComponent]
+  declarations: [UserAccountPage]
 })
-export class UserAccountPageModule {}
+export class UserAccountPageModule { }

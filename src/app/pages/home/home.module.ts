@@ -9,7 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 import { HomePage } from './home.page';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
   imports: [
@@ -19,7 +19,8 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
     IonicModule,
     HomePageRoutingModule,
     // Ng2GoogleChartsModule
+    SharedModuleModule
   ],
-  declarations: [HomePage, HeaderComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule { }

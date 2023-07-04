@@ -43,7 +43,7 @@ const routes: Routes = [
         loadChildren: () => import('../pages/view-policy/view-policy.module').then(m => m.ViewPolicyPageModule)
       },
       {
-        path: 'policy-detail/:policy',
+        path: 'policy-detail/:policy/:pageTitle',
         loadChildren: () => import('../pages/policy-detail/policy-detail.module').then(m => m.PolicyDetailPageModule)
       },
       {

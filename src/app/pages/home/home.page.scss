@@ -19,19 +19,20 @@ ion-col {
   position: relative;
 }
 
-.badge{
+.badge {
   position: absolute;
   right: 5px;
   background: #ffffff63;
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   color: black;
   border-radius: 50%;
   top: 5px;
-  span{
-    font-size: 10px;
+
+  span {
+    font-size: 15px;
     color: white;
-    top: 0;
+    top: 2px;
     position: absolute;
     bottom: 0;
     left: 0;

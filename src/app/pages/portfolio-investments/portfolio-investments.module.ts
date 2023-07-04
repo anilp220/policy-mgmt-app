@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PortfolioInvestmentsPageRoutingModule } from './portfolio-investments-routing.module';
 
 import { PortfolioInvestmentsPage } from './portfolio-investments.page';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModuleModule,
     PortfolioInvestmentsPageRoutingModule
   ],
-  declarations: [PortfolioInvestmentsPage, HeaderComponent]
+  declarations: [PortfolioInvestmentsPage]
 })
 export class PortfolioInvestmentsPageModule { }

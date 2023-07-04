@@ -22,8 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'intro',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
-    // loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
+    loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
   },
   {
     path: 'login-signup',

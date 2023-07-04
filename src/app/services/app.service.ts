@@ -34,12 +34,17 @@ export class AppService {
     return this.policies.filter(policy => policy.typeOfPolicy === policyType);
   }
 
-  async getDataFromLocal(param) {
-    return JSON.parse(await this.localStorage.get(param));
+  getDataFromLocal(param) {
+    console.log('local storage', param);
+    return this.localStorage.get(param);
   }
 
   setDataToLocal(key, value) {
     return this.localStorage.set(key, JSON.stringify(value));
+  }
+
+  removeDataFromLocal(param) {
+    return this.localStorage.remove(param);
   }
 
   async showToast(msg: string, duration?: number) {
@@ -67,7 +72,7 @@ export class AppService {
   }
 
   async hideLoading() {
-    // console.log(this.loading)
+    console.log(this.loading)
     if (this.loading) {
       this.loading.dismiss();
       this.loading = null;

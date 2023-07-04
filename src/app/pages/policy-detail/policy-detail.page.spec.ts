@@ -9,7 +9,7 @@ describe('PolicyDetailPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PolicyDetailPage ],
+      declarations: [PolicyDetailPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

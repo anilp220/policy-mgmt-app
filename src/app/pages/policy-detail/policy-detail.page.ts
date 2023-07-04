@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -10,7 +11,13 @@ import { AppService } from 'src/app/services/app.service';
 export class PolicyDetailPage implements OnInit {
 
   item;
-  constructor(private appService: AppService) { }
+  pageTitle;
+  constructor(private appService: AppService, private activatedRoute: ActivatedRoute) {
+    activatedRoute.params.subscribe(res => {
+      console.log(res);
+      this.pageTitle = res.pageTitle;
+    });
+  }
 
   ngOnInit() {
     this.item = this.appService.getData();

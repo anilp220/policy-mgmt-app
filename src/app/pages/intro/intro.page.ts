@@ -26,10 +26,10 @@ export class IntroPage implements OnInit {
   }
 
   finish() {
-    this.appService.setDataToLocal('introComplete', true);
-    // .then(() => {
-    this.router.navigateByUrl('login-signup');
-    // });
+    this.appService.setDataToLocal('introComplete', true)
+      .then(() => {
+        this.router.navigateByUrl('login', { replaceUrl: true });
+      });
   }
 
   next() {
@@ -48,3 +48,9 @@ export class IntroPage implements OnInit {
     });
   }
 }
+
+// "cordova-plugin-device": "2.0.2",
+// "cordova-plugin-ionic-keyboard": "^2.2.0",
+// "cordova-plugin-ionic-webview": "^5.0.0",
+// "cordova-plugin-splashscreen": "^5.0.2",
+// "cordova-plugin-statusbar": "^2.4.2",

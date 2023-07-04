@@ -33,3 +33,4 @@ npm-debug.log*
 /resources
 .gitignore
 package-lock.json
+/e2e

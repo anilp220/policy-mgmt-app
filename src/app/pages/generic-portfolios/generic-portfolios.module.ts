@@ -9,14 +9,15 @@ import { GenericPortfoliosPageRoutingModule } from './generic-portfolios-routing
 import { GenericPortfoliosPage } from './generic-portfolios.page';
 
 import { GenericPortfolioCardComponent } from '../../components/generic-portfolio-card/generic-portfolio-card.component';
-import { HeaderComponent } from 'src/app/components/header/header.component';
+import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GenericPortfoliosPageRoutingModule
+    GenericPortfoliosPageRoutingModule,
+    SharedModuleModule
   ],
-  declarations: [GenericPortfoliosPage, GenericPortfolioCardComponent, HeaderComponent]
+  declarations: [GenericPortfoliosPage, GenericPortfolioCardComponent]
 })
 export class GenericPortfoliosPageModule { }

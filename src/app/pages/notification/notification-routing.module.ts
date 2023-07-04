@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NotificationPage } from './notification.page';
-import { HeaderComponent } from 'src/app/components/header/header.component';
 
 const routes: Routes = [
   {

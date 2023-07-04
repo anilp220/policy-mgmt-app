@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { AppService } from './services/app.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { UserService } from './services/user.service';
@@ -22,23 +22,24 @@ export class AppComponent {
     public userService: UserService,
     private authService: AuthService,
     public appService: AppService,
-    private router: Router
+    // private router: Router
+    private navCtrl: NavController
   ) {
     this.initializeApp();
   }
 
-  async logout() {
-    this.appService.isLoggedIn = false;
-    await this.authService.logout();
-    this.router.navigateByUrl('/login', { replaceUrl: true });
-  }
+  // async logout() {
+  //   this.appService.isLoggedIn = false;
+  //   await this.authService.logout();
+  //   this.navCtrl.navigateRoot('/login', { replaceUrl: true });
+  // }
 
   async initializeApp() {
-    this.appService.presentLoading()
-    this.userService.token = await this.appService.getDataFromLocal('token');
-    console.log('this.userService.token', this.userService.token);
+    // this.userService.token = JSON.parse(await this.appService.getDataFromLocal('token'));
+    // console.log('this.userService.token', this.userService.token);
     this.platform.ready().then(async () => {
       this.splashScreen.hide();
+      this.appService.presentLoading();
       // if (this.platform.is('android')) {
       //   this.statusBar.backgroundColorByHexString("#33000000")
       // } else {
@@ -48,29 +49,17 @@ export class AppComponent {
       if (await this.appService.getDataFromLocal('introComplete')) {
         console.log('introComplete');
         const subscription = this.authService.getAuthState().subscribe(async (res) => {
-          console.log('current user', res.uid);
           if (res && res.uid) {
+            console.log('current user', res.uid);
             this.userService.user.uid = res.uid;
             const data = await this.userService.getUserDetail(res.uid);
             this.userService.user.userInfo = data.data();
-            this.userService.getAllCollection()
-              .then((result) => {
-                if (result.length) {
-                  result.forEach(cols => {
-                    if (!cols.empty) {
-                      cols.docs.forEach(doc => {
-                        const path = doc.ref.path.split('/');
-                        const collectionName = path[0];
-                        this.userService.allCollections[collectionName].push(doc.data())
-                        this.appService.hideLoading();
-                      });
-                    }
-                  });
-                }
-              });
+            await this.userService.getAllCollection();
+            this.appService.hideLoading();
             console.log(this.userService.user);
           } else {
-            this.router.navigateByUrl('/login', { replaceUrl: true });
+            this.appService.hideLoading();
+            this.navCtrl.navigateRoot('/login', { replaceUrl: true });
           }
           subscription.unsubscribe();
         });
@@ -94,9 +83,14 @@ export class AppComponent {
         // }
       }
       else {
+        this.appService.hideLoading();
         console.log('intro');
-        this.router.navigateByUrl('intro');
+        this.navCtrl.navigateRoot('intro');
       }
-    });
+    })
+      .catch(err => {
+        console.log('error platform', err);
+      });
+
   }
 }

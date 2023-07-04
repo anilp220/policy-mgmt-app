@@ -5,8 +5,10 @@
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{title.toUpperCase()}} <br>
-      <!-- <span *ngIf="userService?.user?.userInfo?.firstName" style="font-size: 1rem;">{{userService?.user?.userInfo?.firstName}}</span> -->
+    <ion-title *ngIf="title">{{title.toUpperCase()}} </ion-title>
+    <ion-title *ngIf="!title">WELCOME <br>
+      <span *ngIf="userService?.user?.userInfo?.firstName"
+        style="font-size: 1rem;">{{userService?.user?.userInfo?.firstName}}</span>
     </ion-title>
     <ion-buttons *ngIf="title!=='Account'" slot="end" class="notify-btn">
       <ion-icon *ngIf="!userService?.user?.userInfo?.previewUrl" name="person-circle-outline"></ion-icon>

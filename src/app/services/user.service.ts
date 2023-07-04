@@ -15,13 +15,13 @@ export class UserService {
   genericData;
   allCollections = {
     'life-insurance': [],
-    'mediclaim': [],
+    mediclaim: [],
     'mutual-fund': [],
-    'equities': [],
+    equities: [],
     'vehicle-insurance': [],
     'corporate-insurance': [],
-    'others': [],
-  }
+    others: [],
+  };
   constructor(private firebaseAuth: AngularFireAuth,
     private firestore: AngularFirestore) { }
 
@@ -40,12 +40,13 @@ export class UserService {
   }
 
   getDocument(col: any, clientId: any) {
-    return this.firestore.collection(col).ref.where('clientId', '==', clientId).get()
+    return this.firestore.collection(col).ref.where('clientId', '==', clientId).get();
   }
 
   getAllCollection(): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
+        this.resetAllCollection();
         const collection = ['life-insurance',
           'mediclaim',
           'mutual-fund',
@@ -57,10 +58,32 @@ export class UserService {
         collection.forEach((col) => {
           promiseArr.push(this.getDocument(col, this.user?.userInfo?.clientId));
         });
+        Promise.all(promiseArr)
+          .then((result) => {
+            if (result.length) {
+              result.forEach(cols => {
+                if (!cols.empty) {
+                  cols.docs.forEach(doc => {
+                    const path = doc.ref.path.split('/');
+                    const collectionName = path[0];
+                    this.allCollections[collectionName].push(doc.data());
+                  });
+                }
+              });
+            }
+          });
         return resolve(Promise.all(promiseArr));
       } catch (error) {
         return reject(error);
       }
     });
+  }
+
+  resetAllCollection() {
+    for (const key in this.allCollections) {
+      if (Object.prototype.hasOwnProperty.call(this.allCollections, key)) {
+        this.allCollections[key] = [];
+      }
+    }
   }
 }

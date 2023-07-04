@@ -24,8 +24,8 @@
         <p>Content on Scan Documents. Two Lines content</p>
       </div> -->
       <!-- <app-intro1></app-intro1> -->
-      <div class="skip" (click)="finish()">SKIP</div>
-      <img src="assets/images/intro1.png" alt="">
+      <p class="skip" (click)="finish()">SKIP</p>
+      <img src="assets/icon/intro1.png" alt="">
     </ion-slide>
     <!-- Intro Screen 2 -->
     <ion-slide>
@@ -35,7 +35,8 @@
         </h2>
         <p>Content on Save Documents. Two Lines content</p>
       </div> -->
-      <img src="assets/images/intro2.png" alt="">
+      <p class="skip" (click)="finish()">SKIP</p>
+      <img src="assets/icon/intro2.png" alt="">
       <!-- <app-intro2></app-intro2> -->
     </ion-slide>
     <!-- Intro Screen 3 -->
@@ -46,14 +47,14 @@
         </h2>
         <p>Content on Save Documents. Two Lines content</p>
       </div> -->
-      <img src="assets/images/intro3.png" alt="">
+      <img src="assets/icon/intro3.png" alt="">
       <!-- <app-intro3></app-intro3> -->
       <!-- <img src="assets/images/intro3.png" alt=""> -->
     </ion-slide>
   </ion-slides>
 </ion-content>
 <ion-fab *ngIf="isLastSlide" slot="fixed" vertical="top" horizontal="end">
-  <ion-fab-button color="light" (click)="finish()">
-    <ion-icon name="arrow-forward"></ion-icon>
+  <ion-fab-button color="transparent" (click)="finish()">
+    <ion-icon style="color: white;" name="arrow-forward"></ion-icon>
   </ion-fab-button>
 </ion-fab>

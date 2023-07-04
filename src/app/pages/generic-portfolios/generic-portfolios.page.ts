@@ -117,6 +117,6 @@ export class GenericPortfoliosPage implements OnInit {
     console.log(item);
     console.log(this.policyType);
     this.appService.setData(item);
-    this.navCtrl.navigateRoot('/tabs/policy-detail/' + this.policyType);
+    this.navCtrl.navigateRoot('/tabs/policy-detail/' + this.policyType + '/' + this.pageTitle);
   }
 }
