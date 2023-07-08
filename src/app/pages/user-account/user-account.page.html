@@ -1,12 +1,53 @@
 <app-header [title]="'Account'"></app-header>
 
 <ion-content>
-  <ion-row class="header-margin">
+  <ion-card>
+
+    <ion-card-content>
+      <ion-avatar>
+        <img [src]="usr.previewUrl || '/assets/images/profile.png'" alt="">
+      </ion-avatar>
+      <ion-card-header>
+        <ion-card-title>{{usr.firstName}}</ion-card-title>
+        <ion-card-subtitle>
+          <p>{{usr.mobile}}</p>
+          <p>{{usr.email}}</p>
+          <p>{{usr.dob | date}}</p>
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list lines="full" mode="ios">
+    <ion-item>
+      <ion-label>About Us
+      </ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Privacy Policy
+      </ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item (click)="logout()">
+      <ion-label>Logout
+      </ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-row>
     <ion-col>
       <ion-button (click)="logout()" expand="block" fill="clear">
         Logout
         <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 </ion-content>

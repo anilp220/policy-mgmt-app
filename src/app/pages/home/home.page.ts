@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -45,7 +46,7 @@ export class HomePage implements OnInit {
       path: '/tabs/type-of-policy/'
     }
   ];
-  constructor(private navCtrl: NavController, public userService: UserService) {
+  constructor(private navCtrl: NavController, private appService: AppService, public userService: UserService) {
     this.portfolio.map(port => {
       port.path += port.collection + '/';
     });
@@ -58,25 +59,14 @@ export class HomePage implements OnInit {
   ionViewDidEnter() {
     // this.loadSimplePieChart();
   }
-  // loadSimplePieChart() {
-  //   this.pieChart = {
-  //     chartType: 'PieChart',
-  //     dataTable: [
-  //       ['Task', 'Hours per Day'],
-  //       ['Work', 11],
-  //       ['Eat', 2],
-  //       ['Commute', 2],
-  //       ['Watch TV', 2],
-  //       ['Sleep', 7]
-  //     ],
-  //     //opt_firstRowIsData: true,
-  //     options: {
-  //       title: 'Tasks',
-  //       height: 600,
-  //       width: '100%'
-  //     },
-  //   };
-  // }
+
+  async doRefresh(event) {
+    console.log('refresh', event);
+    this.appService.presentLoading('Refreshing...');
+    await this.userService.getAllCollection();
+    this.appService.hideLoading();
+    event.target.complete();
+  }
 
   redirectTo(path) {
     this.navCtrl.navigateForward(path);

@@ -1,4 +1,39 @@
 ion-content {
   --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
   background-color: #fffffffc;
+
+  ion-card {
+    margin-top: 90px;
+    background: #ffffff69;
+
+    ion-card-content {
+      display: flex;
+      padding: 0;
+
+      ion-avatar {
+        margin: 15px;
+        width: 20%;
+        height: 20%;
+      }
+
+      ion-card-header {
+        width: 70%;
+        padding: 15px 5px;
+
+        ion-card-title {
+          color: #0000007d;
+        }
+      }
+    }
+  }
+
+  ion-list {
+    background: transparent;
+    padding: 0 15px;
+
+    ion-item {
+      color: black;
+      --background: #ffffff63;
+    }
+  }
 }

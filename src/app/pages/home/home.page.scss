@@ -204,5 +204,14 @@ a {
 }
 
 .header-margin {
-  padding-top: 80px;
+  margin-top: 80px;
+  padding: 0;
+}
+
+ion-refresher {
+  color: black;
+}
+
+.refresher-pulling {
+  color: black !important;
 }

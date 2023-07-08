@@ -67,6 +67,7 @@ export class AppService {
     }
     this.loading = await this.loadingCtrl.create({
       showBackdrop: true,
+      message: message || 'Loading...'
     });
     console.log('loding', this.loading);
     await this.loading.present();
