@@ -23,7 +23,7 @@
                     <app-nested-table [data]="arrayItem"></app-nested-table>
                   </ng-container>
                   <div *ngIf="isPrimitive(arrayItem)">
-                    <span *ngIf="!appService.isURL(arrayItem);else url1">{{arrayItem}}</span>
+                    <span *ngIf="!isURL(arrayItem);else url1">{{arrayItem}}</span>
                     <ng-template #url1>
                       <a [href]="arrayItem">Open</a>
                     </ng-template>
@@ -34,7 +34,7 @@
           </ng-container>
           <!-- <span *ngIf="isPrimitive(data[item])">{{ data[item] }}</span> -->
           <div *ngIf="isPrimitive(data[item])">
-            <span *ngIf="!appService.isURL(data[item]);else url1">{{data[item]}}</span>
+            <span *ngIf="!isURL(data[item]);else url1">{{data[item]}}</span>
             <ng-template #url1>
               <a [href]="data[item]">Open</a>
             </ng-template>

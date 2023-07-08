@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserAccountPage implements OnInit {
 
+  usr = this.userService.user.userInfo;
   constructor(private appService: AppService,
     private userService: UserService,
     private authService: AuthService, private router: Router) { }
@@ -26,4 +27,6 @@ export class UserAccountPage implements OnInit {
     await this.authService.logout();
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
+
+  getPhoto() { }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -57,11 +58,18 @@ export class TypeOfPolicyPage implements OnInit {
       { name: 'Post Office' },
       { name: 'Bank Fixed Deposit' },
       { name: 'Private Fixed  Deposit' },
+    ],
+    'mutual-fund': [
+      { name: 'SIP' },
+      { name: 'Lump Sum' },
+      { name: 'Lump Sum + SIP' },
     ]
   };
   error: string;
   items = [];
-  constructor(private activatedRoute: ActivatedRoute, private appService: AppService, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute,
+    public navCtrl: NavController,
+    private appService: AppService, private userService: UserService) {
     this.activatedRoute.params.subscribe(param => {
       this.page = param.typeOfPolicy;
       this.getData(this.page);
@@ -69,9 +77,8 @@ export class TypeOfPolicyPage implements OnInit {
   }
 
   getData(collection) {
-    console.log(collection);
     this.items = [...this.userService.allCollections[collection]];
-    console.log(this.items)
+    console.log(this.items);
     this.appService.setPolicies(this.items);
     if (!this.items.length) {
       this.error = 'No Data Found';
@@ -90,7 +97,7 @@ export class TypeOfPolicyPage implements OnInit {
 
   countItem(typeOfPolicy, count) {
     this.items.forEach(item => {
-      if (item.typeOfPolicy == typeOfPolicy) {
+      if (item.typeOfPolicy === typeOfPolicy || item.modeOfInvestment === typeOfPolicy) {
         count++;
       }
     });

@@ -4,9 +4,7 @@ import { AppService } from './services/app.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
-
-declare let firebase;
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +14,16 @@ declare let firebase;
 export class AppComponent {
   user;
   selectedIndex = 1;
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     public userService: UserService,
     private authService: AuthService,
     public appService: AppService,
-    // private router: Router
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
@@ -39,15 +39,19 @@ export class AppComponent {
     // console.log('this.userService.token', this.userService.token);
     this.platform.ready().then(async () => {
       this.splashScreen.hide();
-      this.appService.presentLoading();
-      // if (this.platform.is('android')) {
-      //   this.statusBar.backgroundColorByHexString("#33000000")
-      // } else {
-      //   this.statusBar.backgroundColorByHexString("#33000000")
-      //   this.statusBar.styleLightContent();
-      // }
+      if (this.platform.is('android')) {
+        this.statusBar.backgroundColorByHexString('#33000000');
+      } else {
+        this.statusBar.backgroundColorByHexString('#33000000');
+        this.statusBar.styleLightContent();
+      }
+      this.platform.backButton.subscribe((back) => {
+        console.log(back);
+        this.navCtrl.back();
+      });
       if (await this.appService.getDataFromLocal('introComplete')) {
         console.log('introComplete');
+        this.appService.presentLoading();
         const subscription = this.authService.getAuthState().subscribe(async (res) => {
           if (res && res.uid) {
             console.log('current user', res.uid);
@@ -63,27 +67,8 @@ export class AppComponent {
           }
           subscription.unsubscribe();
         });
-        // if (token) {
-        //   console.log('User token available ', token);
-        //   this.userService.token = token;
-        //   this.userService.GET('details').subscribe((user: any) => {
-        //     console.log('Get user details success ', user);
-        //     if (user) {
-        //       console.log('Goto Home page');
-        //       this.userService.user = user.data;
-        //       this.appService.navigateRoot('home');
-        //     } else {
-        //       console.log('Goto Logout and signin');
-        //       this.authService.logout();
-        //     }
-        //   });
-        // } else {
-        //   console.log('User token not available ');
-        //   this.authService.logout();
-        // }
       }
       else {
-        this.appService.hideLoading();
         console.log('intro');
         this.navCtrl.navigateRoot('intro');
       }

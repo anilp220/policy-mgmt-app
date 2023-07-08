@@ -12,7 +12,6 @@ export class ViewPolicyPage implements OnInit {
 
   ngOnInit() {
     this.item = this.appService.getData();
-    console.log(JSON.stringify(this.item));
     delete this.item.clientId;
     delete this.item.clientUid;
     delete this.item.createdBy;
@@ -25,6 +24,9 @@ export class ViewPolicyPage implements OnInit {
     delete this.item.isAssignee;
     delete this.item.isBetterHalf;
     delete this.item.isMoneyBack;
+    delete this.item.editedBy;
+    delete this.item.editedOn;
+    delete this.item.id;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';

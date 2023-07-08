@@ -3,9 +3,6 @@
   <div class="container">
     <div class="green-box header-margin">
       <div class="title-container">
-        <!-- <div class="logo">
-        <img src="../../../assets/icon/reminders.png" alt="">
-      </div> -->
         <div class="policy-name">
           <span *ngIf="pageTitle==='life-insurance'">
             {{item.company}}
@@ -21,6 +18,9 @@
           </span>
           <span *ngIf="pageTitle==='corporate-insurance'">
             {{item.insuranceCompanyName}}
+          </span>
+          <span *ngIf="pageTitle==='mutual-fund'">
+            {{item?.company?.name}}
           </span>
         </div>
       </div>
@@ -155,98 +155,48 @@
             </ion-row>
           </div>
         </div>
+        <div *ngIf="pageTitle==='mutual-fund'">
+          <div class="row1">
+            <ion-row>
+              <ion-col>Bank Details</ion-col>
+              <ion-col>Current Nav</ion-col>
+              <ion-col>Expected Fund Value</ion-col>
+            </ion-row>
+            <ion-row class="data-col">
+              <ion-col>{{item.bankDetails}}</ion-col>
+              <ion-col>{{item.currentNav}}</ion-col>
+              <ion-col>{{item.expectedFundValue}}</ion-col>
+            </ion-row>
+          </div>
+          <div class="row2">
+            <ion-row>
+              <ion-col>Total Investment</ion-col>
+              <ion-col>Term</ion-col>
+              <ion-col>Renewal Date</ion-col>
+            </ion-row>
+            <ion-row class="data-col">
+              <ion-col>{{item.totalInvestment}}</ion-col>
+              <ion-col>{{item.termOfInvestment}}</ion-col>
+              <ion-col>{{item.renewalDate}}</ion-col>
+            </ion-row>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- <div class="file-claim">
-    <div class="btn-container" (click)="fileAClaim()">
-      <div class="btn">
-        <ion-icon name="flag"></ion-icon>
-        View Policy
-      </div>
-    </div>
-  </div> -->
     <div class="body">
-      <!-- <div class="cards">
-      <div class="card1">
-        <div class="data-icon">
-          <div class="data">
-            <div class="data1">Cashless hospitals</div>
-            <div class="data2">56</div>
-          </div>
-          <div class="icon">
-            <img src="../../../assets/icon/favicon.png" alt="">
-          </div>
-        </div>
-        <div class="sub-title">In Bhopal</div>
-        <div class="divider"></div>
-        <div class="footer">
-          <span>View</span>
-          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
-        </div>
-      </div>
-      <div class="card2">
-        <div class="data-icon">
-          <div class="data">
-            <div class="data1">Payment history</div>
-            <div class="data2">1/12</div>
-          </div>
-          <div class="icon">
-            <img src="../../../assets/icon/favicon.png" alt="">
-          </div>
-        </div>
-        <div class="sub-title">Due on 10 Oct</div>
-        <div class="divider"></div>
-        <div class="footer">
-          <span>Setup Autopay</span>
-          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
-        </div>
-      </div>
-      <div class="card3">
-        <div class="data-icon">
-          <div class="data">
-            <div class="data1">Reminders</div>
-            <div class="data2">03</div>
-          </div>
-          <div class="icon">
-            <img src="../../../assets/icon/favicon.png" alt="">
-          </div>
-        </div>
-        <div class="sub-title">Currently Active</div>
-        <div class="divider"></div>
-        <div class="footer">
-          <span>Add</span>
-          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
-        </div>
-      </div>
-    </div> -->
       <div class="glance">
-        <!-- <span class="quick">Quick Glance</span> -->
         <div class="future">
           <span class="black">Make Your</span>
           <span class="blue">Future Better</span>
         </div>
-        <!-- <div class="quiz">
-        <div class="box">
-          <div class="desc">
-            Know your policy? Take a Quiz
-          </div>
-        </div>
-        <div class="box">
-          <div class="desc">
-            Policy Need a correction
-          </div>
-        </div>
-      </div> -->
       </div>
       <div class="divider"></div>
       <div class="file-claim">
         <div class="btn-container">
-          <div class="btn" routerLink="/tabs/view-policy/">
-            <!-- <ion-icon name="flag"></ion-icon> -->
+          <div class="btn" (click)="navCtrl.navigateForward('/tabs/view-policy')">
             View Policy
           </div>
         </div>
-        <!-- <div class="help">Need Help?</div> -->
       </div>
     </div>
   </div>

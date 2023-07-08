@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class PolicyDetailPage implements OnInit {
 
   item;
   pageTitle;
-  constructor(private appService: AppService, private activatedRoute: ActivatedRoute) {
+  constructor(private appService: AppService, public navCtrl: NavController, activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe(res => {
       console.log(res);
       this.pageTitle = res.pageTitle;

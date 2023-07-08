@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
     {
       name: 'Mutual Fund',
       collection: 'mutual-fund',
-      path: '/generic-portfolios/',
+      path: '/tabs/type-of-policy/',
     },
     {
       name: 'Equities',
@@ -79,6 +79,6 @@ export class HomePage implements OnInit {
   // }
 
   redirectTo(path) {
-    this.navCtrl.navigateRoot(path);
+    this.navCtrl.navigateForward(path);
   }
 }

@@ -14,6 +14,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { IonicStorageModule } from '@ionic/storage';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,8 +30,12 @@ import { IonicStorageModule } from '@ionic/storage';
     AngularFirestoreModule,
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
+    },
     SplashScreen,
+    StatusBar
   ],
   bootstrap: [AppComponent],
 })

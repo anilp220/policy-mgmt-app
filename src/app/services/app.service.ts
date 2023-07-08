@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
 })
 export class AppService {
   isLoggedIn = true;
-  loading: any;
+  loading: HTMLIonLoadingElement;
   genericData;
   policies = [];
   constructor(
@@ -31,7 +31,7 @@ export class AppService {
   getPolicies(policyType) {
     console.log('policy', this.policies);
     console.log('policyType', policyType);
-    return this.policies.filter(policy => policy.typeOfPolicy === policyType);
+    return this.policies.filter(policy => (policy.typeOfPolicy === policyType) || (policy.modeOfInvestment === policyType));
   }
 
   getDataFromLocal(param) {
@@ -68,13 +68,14 @@ export class AppService {
     this.loading = await this.loadingCtrl.create({
       showBackdrop: true,
     });
-    this.loading.present();
+    console.log('loding', this.loading);
+    await this.loading.present();
   }
 
   async hideLoading() {
-    console.log(this.loading)
+    console.log(this.loading);
     if (this.loading) {
-      this.loading.dismiss();
+      await this.loading.dismiss();
       this.loading = null;
     }
   }
@@ -93,7 +94,6 @@ export class AppService {
       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // Port and path
       '(\\?[;&a-z\\d%_.~+=-]*)?' + // Query string
       '(\\#[-a-z\\d_]*)?$', 'i'); // Fragment locator
-    console.log(pattern.test(str));
     return pattern.test(str);
   }
 }

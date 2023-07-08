@@ -77,6 +77,20 @@
           <td>{{item.returnOnInvestment}}</td>
         </tr>
       </tbody>
+      <tbody *ngIf="pageTitle==='mutual-fund'">
+        <tr>
+          <td>Amount Invested</td>
+          <td>Current Nav</td>
+          <td>Fund Category</td>
+          <td>Date of Purchase</td>
+        </tr>
+        <tr>
+          <td>{{item.amountInvested}}</td>
+          <td>{{item.currentNav}}</td>
+          <td>{{item.fundCategory}}</td>
+          <td>{{item.dateOfPurchase}}</td>
+        </tr>
+      </tbody>
       <!-- <tbody *ngIf="page==='Life Insurance'">
         <tr>
           <td>Cover Amount</td>

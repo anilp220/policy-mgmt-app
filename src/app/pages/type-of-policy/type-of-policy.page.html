@@ -6,8 +6,10 @@
     </div> -->
     <ion-row *ngFor="let portfolio of portfolios[page];let i =index">
       <ion-col>
-        <div class="tab-name" [ngClass]="i %2 ===0 ?'even-tab' : 'odd-tab'">
-          <a [routerLink]="'/tabs/generic-portfolios/'+page+'/' + portfolio.name+'/'+i">{{portfolio.name}}</a>
+        <div class="ion-activatable tab-name" [ngClass]="i %2 ===0 ?'even-tab' : 'odd-tab'">
+          <ion-ripple-effect></ion-ripple-effect>
+          <a
+            (click)="navCtrl.navigateForward('/tabs/generic-portfolios/'+page+'/' + portfolio.name+'/'+i)">{{portfolio.name}}</a>
           <div class="badge">
             <span>
               {{countItem(portfolio.name,0)}}
