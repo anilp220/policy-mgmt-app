@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { CameraService } from 'src/app/services/camera.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,6 +16,8 @@ export class UserAccountPage implements OnInit {
   usr = this.userService.user.userInfo;
   constructor(private appService: AppService,
     private userService: UserService,
+    private camera: CameraService,
+    private navCtrl: NavController,
     private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -28,5 +32,9 @@ export class UserAccountPage implements OnInit {
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
-  getPhoto() { }
+
+
+  editProfile() {
+    this.navCtrl.navigateForward('/tabs/edit-profile');
+  }
 }

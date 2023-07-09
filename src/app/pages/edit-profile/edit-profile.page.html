@@ -1,0 +1,46 @@
+<app-header [title]="'Edit Profile'"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-avatar>
+        <img [src]="usr.previewUrl || '/assets/images/profile.png'" alt="">
+        <ion-button (click)="selectImg()" fill="clear">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </ion-avatar>
+    </ion-card-content>
+  </ion-card>
+  <form #ngForm (ngSubmit)="submitForm(ngForm)">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input [(ngModel)]="usr.firstName" name="firstName" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input readonly [(ngModel)]="usr.email" name="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mobile</ion-label>
+      <ion-input readonly [(ngModel)]="usr.mobile" name="mobile" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>DOB</ion-label>
+      <ion-input [(ngModel)]="usr.dob" (change)="calcAge()" name="dob" type="date"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Age</ion-label>
+      <ion-input readonly [(ngModel)]="usr.age" name="age" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Address</ion-label>
+      <ion-input readonly [(ngModel)]="usr.address" name="address" type="text"></ion-input>
+    </ion-item>
+    <ion-button class="submit" expand="full" type="submit">Save</ion-button>
+  </form>
+</ion-content>

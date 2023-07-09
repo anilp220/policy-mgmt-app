@@ -2,10 +2,12 @@
 
 <ion-content>
   <ion-card>
-
     <ion-card-content>
       <ion-avatar>
         <img [src]="usr.previewUrl || '/assets/images/profile.png'" alt="">
+        <!-- <ion-button (click)="selectImg()" fill="clear">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button> -->
       </ion-avatar>
       <ion-card-header>
         <ion-card-title>{{usr.firstName}}</ion-card-title>
@@ -19,6 +21,12 @@
   </ion-card>
 
   <ion-list lines="full" mode="ios">
+    <ion-item (click)="editProfile()">
+      <ion-label>Edit Profile</ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
     <ion-item>
       <ion-label>About Us
       </ion-label>
@@ -41,13 +49,4 @@
       </ion-button>
     </ion-item>
   </ion-list>
-
-  <!-- <ion-row>
-    <ion-col>
-      <ion-button (click)="logout()" expand="block" fill="clear">
-        Logout
-        <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row> -->
 </ion-content>

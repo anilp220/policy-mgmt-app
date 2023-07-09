@@ -12,15 +12,6 @@ export class AuthService {
     this.user = firebaseAuth.authState;
   }
 
-  signup(value, success, error) {
-    this.firebaseAuth.createUserWithEmailAndPassword(
-      value.email,
-      value.password
-    ).then((user) => {
-      success(user);
-    }).catch(error);
-  }
-
   getCurrentUser() {
     return this.firebaseAuth.currentUser;
   }

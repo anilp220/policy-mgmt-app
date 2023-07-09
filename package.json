@@ -20,6 +20,9 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@awesome-cordova-plugins/camera": "^6.3.0",
+    "@awesome-cordova-plugins/file": "^6.3.0",
+    "@awesome-cordova-plugins/file-path": "^6.3.0",
     "@awesome-cordova-plugins/network": "^6.3.0",
     "@awesome-cordova-plugins/status-bar": "^6.3.0",
     "@ionic-native/splash-screen": "^5.36.0",
@@ -54,6 +57,8 @@
     "@typescript-eslint/parser": "5.3.0",
     "cordova-android": "^10.1.2",
     "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-file": "^7.0.0",
+    "cordova-plugin-filepath": "^1.6.0",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-network-information": "^3.0.0",
@@ -82,7 +87,14 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-network-information": {}
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      },
+      "cordova-plugin-filepath": {},
+      "cordova-plugin-file": {
+        "ANDROIDX_WEBKIT_VERSION": "1.4.0"
+      }
     },
     "platforms": [
       "android"

@@ -15,13 +15,16 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
+import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(),
+    IonicModule.forRoot({ _forceStatusbarPadding: true }),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
@@ -35,7 +38,10 @@ import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
       useClass: IonicRouteStrategy
     },
     SplashScreen,
-    StatusBar
+    StatusBar,
+    Camera,
+    FilePath,
+    File
   ],
   bootstrap: [AppComponent],
 })

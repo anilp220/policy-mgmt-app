@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { LoadingController } from '@ionic/angular';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,7 @@ export class UserService {
     others: [],
   };
   constructor(private firebaseAuth: AngularFireAuth,
+    private fireStorage: AngularFireStorage,
     private firestore: AngularFirestore) { }
 
   async currentUserDetailRef() {
@@ -85,5 +86,28 @@ export class UserService {
         this.allCollections[key] = [];
       }
     }
+  }
+
+  uploadFile(path, data) {
+    return this.fireStorage.upload(path, data);
+  }
+
+  uploadImgAndUpdate(blob): Promise<any> {
+    return new Promise(async (res, rej) => {
+      try {
+        blob = await (await fetch(blob)).blob();
+        const imgUpload = await this.uploadFile('/users/' + this.user.uid, blob);
+        this.user.userInfo.previewUrl = await imgUpload.ref.getDownloadURL();
+        const updateduser = await this.updateUser(this.user.userInfo, this.user.uid);
+        res(updateduser);
+      } catch (error) {
+        console.log(error);
+        rej(error);
+      }
+    });
+  }
+
+  updateUser(data, uid) {
+    return this.firestore.collection('users').doc(uid).update(data);
   }
 }

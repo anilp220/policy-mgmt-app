@@ -58,6 +58,10 @@ const routes: Routes = [
         path: 'generic-portfolios/:title/:page/:index',
         loadChildren: () => import('../pages/generic-portfolios/generic-portfolios.module').then(m => m.GenericPortfoliosPageModule)
       },
+      {
+        path: 'edit-profile',
+        loadChildren: () => import('../pages/edit-profile/edit-profile.module').then(m => m.EditProfilePageModule)
+      },
     ]
   },
   {

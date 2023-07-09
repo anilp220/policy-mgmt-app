@@ -10,7 +10,7 @@
       <span *ngIf="userService?.user?.userInfo?.firstName"
         style="font-size: 1rem;">{{userService?.user?.userInfo?.firstName}}</span>
     </ion-title>
-    <ion-buttons *ngIf="title!=='Account'" slot="end" class="notify-btn">
+    <ion-buttons *ngIf="title!=='Account' && title !=='Edit Profile'" slot="end" class="notify-btn">
       <ion-icon *ngIf="!userService?.user?.userInfo?.previewUrl" name="person-circle-outline"></ion-icon>
       <img *ngIf="userService?.user?.userInfo?.previewUrl" [src]="userService?.user?.userInfo?.previewUrl" alt="">
       <!-- <ion-button (click)="gotoNotification()">

@@ -1,0 +1,471 @@
+<form #form='ngForm'>
+  <ion-item>
+    <ion-input type="text" name="firstName" [(ngModel)]="usr.firstName" [placeholder]="'Name'">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-item>
+      <ion-input ion-input type="date" max="2999-12-31" name="dob" (change)="calcAge()" [(ngModel)]="usr.dob"
+        [placeholder]="'Date of birth'">
+      </ion-input>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" readonly name="age" [(ngModel)]="usr.age" [placeholder]="'Age'">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="address" [(ngModel)]="usr.address" [placeholder]="'Address (as per aadhar)'">
+    </ion-input>
+  </ion-item>
+  <ion-item *ngIf="usr.isNewUser">
+    <ion-input type="email" required name="email" [(ngModel)]="usr.email" [placeholder]="'E-mail'">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="tel" maxlength="10" name="mobile" [(ngModel)]="usr.mobile" [placeholder]="'Mobile number'">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+
+    <ion-input type="text" name="panNo" [(ngModel)]="usr.panNo" [placeholder]="'Pan no.'">
+
+    </ion-input>
+  </ion-item>
+  <ion-item>
+
+    <ion-input type="tel" name="aadhar" [(ngModel)]="usr.aadhar" [placeholder]="'Aadhar  number'">
+    </ion-input>
+
+  </ion-item>
+  <ion-item>
+
+    <ion-input type="text" name="occupation" [(ngModel)]="usr.occupation" [placeholder]="'Occupation'">
+    </ion-input>
+
+  </ion-item>
+  <ion-item>
+
+    <ion-input type="text" name="designation" [(ngModel)]="usr.designation" [placeholder]="'Designation'">
+    </ion-input>
+
+  </ion-item>
+  <ion-item>
+
+    <ion-input type="number" min="0" name="annualIncome" [(ngModel)]="usr.annualIncome" [placeholder]="'Annual income'">
+    </ion-input>
+
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" name="height" [(ngModel)]="usr.height" [placeholder]="'Height '">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" min="0" name="weight" [(ngModel)]="usr.weight" [placeholder]="'Weight '">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="anyDisease" [(ngModel)]="usr.anyDisease" [placeholder]="'Any prexisting disease'">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label id="example-radio-group-ion-label">Updated in mediclaim policy </ion-label>
+    <ion-radio-group name="updatedInMediclim" [value]="usr.updatedInMediclim" [(ngModel)]="usr.updatedInMediclim">
+      <ion-radio value="Yes">Yes</ion-radio>
+      <ion-radio value="No">No</ion-radio>
+    </ion-radio-group>
+  </ion-item>
+  <ion-item>
+    <ion-label id="example-radio-group-ion-label">Demat account holder</ion-label>
+    <ion-radio-group name="dematAccountHolder" [value]="usr.dematAccountHolder" (change)="dematChange()"
+      [(ngModel)]="usr.dematAccountHolder">
+      <ion-radio value="Yes">Yes</ion-radio>
+      <ion-radio value="No">No</ion-radio>
+    </ion-radio-group>
+  </ion-item>
+  <ion-item *ngIf="usr.dematAccountHolder ==='Yes'">
+    <ion-input type="text" name="dematCompany" [(ngModel)]="usr.dematCompany" [placeholder]="'Demat company name '">
+    </ion-input>
+    <ion-input type="text" name="dematAccountNo" [(ngModel)]="usr.dematAccountNo"
+      [placeholder]="'Demat account number'">
+    </ion-input>
+  </ion-item>
+
+  <!-- Add Family member -->
+  <ion-item>
+    <ion-label>Add Spouse</ion-label>
+    <!-- <button class="hidden-sm add-btn" ion-icon-button (click)="addFamily('spouse')">
+          <ion-icon *ngIf="!item.isSpouse">add_circle_outline</ion-icon>
+          <ion-icon *ngIf="usr.isSpouse">remove_circle_outline</ion-icon>
+      </button> -->
+    <ion-item class="riderForm">
+      <ion-item>
+        <ion-input type="text" name="spouse-name" [(ngModel)]="usr.spouse.name" [placeholder]="'Name'">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="date" max="2999-12-31" name="spouse-dob" [(ngModel)]="usr.spouse.dob" [placeholder]="'D.O.B.'">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" name="spouse-occupation" [(ngModel)]="usr.spouse.occupation"
+          [placeholder]="'Occupation'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="spouse-designation" [(ngModel)]="usr.spouse.designation"
+          [placeholder]="'Designation'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="spouse-annualIncome" [(ngModel)]="usr.spouse.annualIncome"
+          [placeholder]="'Annual income'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-select name="spouse-healthStatus" id="spouse-healthStatus" [(ngModel)]="usr.spouse.healthStatus"
+          placeholder="Health status">
+          <ion-select-option value="Alive" matOption>Alive</ion-select-option>
+          <ion-select-option value="Diseased" matOption>Diseased</ion-select-option>
+        </ion-select>
+
+        <ion-item *ngIf="usr.spouse.healthStatus==='Diseased'">
+          <ion-input type="number" name="spouse-ageOfDeath" [(ngModel)]="usr.spouse.ageOfDeath"
+            [placeholder]="'Age of Death'">
+          </ion-input>
+        </ion-item>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="spouse-height" [(ngModel)]="usr.spouse.height" [placeholder]="'Height'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="spouse-weight" [(ngModel)]="usr.spouse.weight" [placeholder]="'Weight'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="spouse-prexistingDisease" [(ngModel)]="usr.spouse.prexistingDisease"
+          [placeholder]="'Any prexisting disease'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label id="example-radio-group-ion-label">Updated in mediclaim policy </ion-label>
+
+        <ion-radio-group name="spouse-updatedMediclaim" [(ngModel)]="usr.spouse.updatedMediclaim">
+          <ion-radio value="Yes">Yes</ion-radio>
+          <ion-radio value="No">No</ion-radio>
+        </ion-radio-group>
+      </ion-item>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-label>Add Father</ion-label>
+    <!-- <button class="hidden-sm add-btn" ion-icon-button (click)="addFamily('father')">
+          <ion-icon *ngIf="!item.isFather">add_circle_outline</ion-icon>
+          <ion-icon *ngIf="usr.isFather">remove_circle_outline</ion-icon>
+      </button> -->
+    <ion-item class="riderForm">
+      <ion-item>
+
+        <ion-input type="text" name="father-name" [(ngModel)]="usr.father.name" [placeholder]="'Name'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="date" max="2999-12-31" name="father-dob" [(ngModel)]="usr.father.dob" [placeholder]="'D.O.B.'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="father-occupation" [(ngModel)]="usr.father.occupation"
+          [placeholder]="'Occupation'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="father-designation" [(ngModel)]="usr.father.designation"
+          [placeholder]="'Designation'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="father-annualIncome" [(ngModel)]="usr.father.annualIncome"
+          [placeholder]="'Annual income'">
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+        <!--
+                  <ion-input type="text" name="father-healthStatus" [(ngModel)]="usr.father.healthStatus"
+                       [placeholder]="'Health status (alive/diseased)'">
+               -->
+
+        <ion-select name="father-healthStatus" id="father-healthStatus" [(ngModel)]="usr.father.healthStatus"
+          placeholder="Health status">
+          <ion-select-option value="Alive" matOption>Alive</ion-select-option>
+          <ion-select-option value="Diseased" matOption>Diseased</ion-select-option>
+        </ion-select>
+
+        <ion-item *ngIf="usr.father.healthStatus==='Diseased'">
+          <ion-input type="number" name="father-ageOfDeath" [(ngModel)]="usr.father.ageOfDeath"
+            [placeholder]="'Age of Death'">
+          </ion-input>
+        </ion-item>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="father-height" [(ngModel)]="usr.father.height" [placeholder]="'Height'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="father-weight" [(ngModel)]="usr.father.weight" [placeholder]="'Weight'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="father-prexistingDisease" [(ngModel)]="usr.father.prexistingDisease"
+          [placeholder]="'Any prexisting disease'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label id="example-radio-group-ion-label">Updated in mediclaim policy </ion-label>
+
+        <ion-radio-group name="father-updatedMediclaim" [(ngModel)]="usr.father.updatedMediclaim">
+          <ion-radio value="Yes">Yes</ion-radio>
+          <ion-radio value="No">No</ion-radio>
+        </ion-radio-group>
+      </ion-item>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-label>Add Mother</ion-label>
+    <!-- <button class="hidden-sm add-btn" ion-icon-button (click)="addFamily('mother')">
+          <ion-icon *ngIf="!item.isMother">add_circle_outline</ion-icon>
+          <ion-icon *ngIf="usr.isMother">remove_circle_outline</ion-icon>
+      </button> -->
+    <ion-item class="riderForm">
+      <ion-item>
+
+        <ion-input type="text" name="mother-name" [(ngModel)]="usr.mother.name" [placeholder]="'Name'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="date" max="2999-12-31" name="mother-dob" [(ngModel)]="usr.mother.dob" [placeholder]="'D.O.B.'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="mother-occupation" [(ngModel)]="usr.mother.occupation"
+          [placeholder]="'Occupation'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="text" name="mother-designation" [(ngModel)]="usr.mother.designation"
+          [placeholder]="'Designation'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+
+        <ion-input type="number" min="0" name="mother-annualIncome" [(ngModel)]="usr.mother.annualIncome"
+          [placeholder]="'Annual income'">
+
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <!--
+                  <ion-input type="text" name="mother-healthStatus" [(ngModel)]="usr.mother.healthStatus"
+                       [placeholder]="'Health status (alive/diseased)'">
+               -->
+
+        <ion-select name="mother-healthStatus" id="mother-healthStatus" [(ngModel)]="usr.mother.healthStatus"
+          placeholder="Health status">
+          <ion-select-option value="Alive" matOption>Alive</ion-select-option>
+          <ion-select-option value="Diseased" matOption>Diseased</ion-select-option>
+        </ion-select>
+
+        <ion-item *ngIf="usr.mother.healthStatus==='Diseased'">
+          <ion-input type="number" name="mother-ageOfDeath" [(ngModel)]="usr.mother.ageOfDeath"
+            [placeholder]="'Age of Death'">
+
+          </ion-input>
+        </ion-item>
+        <ion-item>
+
+          <ion-input type="number" min="0" name="mother-height" [(ngModel)]="usr.mother.height"
+            [placeholder]="'Height'">
+
+          </ion-input>
+        </ion-item>
+        <ion-item>
+
+          <ion-input type="number" min="0" name="mother-weight" [(ngModel)]="usr.mother.weight"
+            [placeholder]="'Weight'">
+
+          </ion-input>
+        </ion-item>
+        <ion-item>
+
+          <ion-input type="text" name="mother-prexistingDisease" [(ngModel)]="usr.mother.prexistingDisease"
+            [placeholder]="'Any prexisting disease'">
+          </ion-input>
+
+        </ion-item>
+        <ion-item>
+          <ion-label id="example-radio-group-ion-label">Updated in mediclaim policy</ion-label>
+
+          <ion-radio-group name="mother-updatedMediclaim" [(ngModel)]="usr.mother.updatedMediclaim">
+            <ion-radio value="Yes">Yes</ion-radio>
+            <ion-radio value="No">No</ion-radio>
+          </ion-radio-group>
+        </ion-item>
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-item *ngFor="let child of usr.children;let i = index">
+        <ion-label>Child {{i+1}}</ion-label>
+        <button class="hidden-sm add-btn" ion-icon-button (click)="rmChild(i)">
+          <ion-icon>remove_circle_outline</ion-icon>
+        </button>
+        <ion-item class="riderForm">
+          <ion-item>
+            <ion-radio-group name="child-type" [(ngModel)]="child.type">
+              <ion-radio value="Son">Son</ion-radio>
+              <ion-radio value="Daughter">Daughter
+              </ion-radio>
+            </ion-radio-group>
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="text" [name]="'child-name'+i" [(ngModel)]="child.name" [placeholder]="'Name'">
+            </ion-input>
+
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="date" max="2999-12-31" [name]="'child-dob'+i" [(ngModel)]="child.dob"
+              [placeholder]="'D.O.B.'">
+            </ion-input>
+
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="text" [name]="'child-occupation'+i" [(ngModel)]="child.occupation"
+              [placeholder]="'Occupation'">
+            </ion-input>
+
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="text" [name]="'child-designation'+i" [(ngModel)]="child.designation"
+              [placeholder]="'Designation'">
+            </ion-input>
+
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="number" min="0" [name]="'child-annualIncome'+i" [(ngModel)]="child.annualIncome"
+              [placeholder]="'Annual income'">
+            </ion-input>
+
+          </ion-item>
+          <ion-item>
+            <!--
+                      <ion-input type="text" [name]="'child-healthStatus'+i" [(ngModel)]="child.healthStatus"
+                           [placeholder]="'Health status (alive/diseased)'">
+                   -->
+
+            <ion-select [name]="'child-healthStatus'+i" [id]="'child-healthStatus' +i" [(ngModel)]="child.healthStatus"
+              placeholder="Health status">
+              <ion-select-option value="Alive" matOption>Alive</ion-select-option>
+              <ion-select-option value="Diseased" matOption>Diseased</ion-select-option>
+            </ion-select>
+
+            <ion-item *ngIf="child.healthStatus==='Diseased'">
+              <ion-input type="number" [name]="'child-ageOfDeath'+i" [(ngModel)]="child.ageOfDeath"
+                [placeholder]="'Age of Death'">
+              </ion-input>
+            </ion-item>
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="number" min="0" [name]="'child-height'+i" [(ngModel)]="child.height"
+              [placeholder]="'Height'">
+
+            </ion-input>
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="number" min="0" [name]="'child-weight'+i" [(ngModel)]="child.weight"
+              [placeholder]="'Weight'">
+
+            </ion-input>
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="text" [name]="'child-prexisting'+i" [(ngModel)]="child.prexistingDisease"
+              [placeholder]="'Any prexisting disease'">
+
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label id="example-radio-group-ion-label">Updated in mediclaim policy </ion-label>
+
+            <ion-radio-group [name]="'child-updatedMediclaim'+i" [(ngModel)]="child.updatedMediclaim">
+              <ion-radio value="Yes">Yes</ion-radio>
+              <ion-radio value="No">No</ion-radio>
+            </ion-radio-group>
+          </ion-item>
+        </ion-item>
+      </ion-item>
+      <ion-label>Add {{usr.children.length>0 ? 'Another' : ''}} child?</ion-label>
+      <button class="hidden-sm add-btn" ion-icon-button (click)="addChild()">
+        <ion-icon>add_circle_outline</ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item class="form-group">
+      <button mat-button (click)="triggerFile()">
+        <ion-icon>cloud_upload</ion-icon>
+        Upload Profile Picture
+      </button>
+      <ion-item class="img-container">
+        <img style="width:150px" *ngIf="usr.previewUrl " [src]="usr.previewUrl" alt="">
+        <!-- <button class="close" (click)="usr.previewUrl =fileData= null" ion-icon-button *ngIf="usr.previewUrl">
+              <ion-icon>delete</ion-icon>
+          </button> -->
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <button mat-raised-button matRipple (click)="onSubmit()" class="btn-yes" style="margin-right: 10px;"
+        [disabled]="form.invalid">Add</button>
+      <!-- <button mat-raised-button (click)="onUpdate()" class="btn-yes" style="margin-right: 10px;" *ngIf="isEdit"
+  [disabled]="form.invalid">Update</button> -->
+    </ion-item>
+  </ion-item>
+</form>
