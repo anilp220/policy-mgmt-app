@@ -18,7 +18,9 @@ import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 import { File } from '@awesome-cordova-plugins/file/ngx';
-
+import { Network } from '@awesome-cordova-plugins/network/ngx';
+import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,7 +32,7 @@ import { File } from '@awesome-cordova-plugins/file/ngx';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule
   ],
   providers: [
     {
@@ -41,7 +43,10 @@ import { File } from '@awesome-cordova-plugins/file/ngx';
     StatusBar,
     Camera,
     FilePath,
-    File
+    File,
+    FCM,
+    Network,
+    LocalNotifications
   ],
   bootstrap: [AppComponent],
 })

@@ -6,10 +6,13 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root'
 })
 export class AppService {
+
   isLoggedIn = true;
   loading: HTMLIonLoadingElement;
   genericData;
   policies = [];
+  isOnline = false;
+  registrationId;
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
@@ -96,5 +99,9 @@ export class AppService {
       '(\\?[;&a-z\\d%_.~+=-]*)?' + // Query string
       '(\\#[-a-z\\d_]*)?$', 'i'); // Fragment locator
     return pattern.test(str);
+  }
+
+  setRegistrationId(registrationId: any) {
+    this.registrationId = registrationId;
   }
 }

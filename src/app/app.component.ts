@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
+import { Network } from '@awesome-cordova-plugins/network/ngx';
+import { PushService } from './services/push.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,9 @@ export class AppComponent {
     private authService: AuthService,
     public appService: AppService,
     private navCtrl: NavController,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private network: Network,
+    private pushService: PushService
   ) {
     this.initializeApp();
   }
@@ -39,46 +43,75 @@ export class AppComponent {
     // console.log('this.userService.token', this.userService.token);
     this.platform.ready().then(async () => {
       this.splashScreen.hide();
-      if (this.platform.is('android')) {
-        this.statusBar.backgroundColorByHexString('#33000000');
-        this.statusBar.overlaysWebView(true);
-        this.statusBar.styleLightContent();
+      this.setPlatform();
+      this.getCurrentUser();
+      this.checkNetwork();
+      this.pushService.fcmSetup();
+    }).catch(err => {
+      console.log('error platform', err);
+    });
+  }
 
-      } else {
-        this.statusBar.backgroundColorByHexString('#33000000');
-        this.statusBar.styleLightContent();
-      }
-      this.platform.backButton.subscribe((back) => {
-        console.log(back);
-        this.navCtrl.back();
-      });
-      if (await this.appService.getDataFromLocal('introComplete')) {
-        console.log('introComplete');
-        this.appService.presentLoading();
-        const subscription = this.authService.getAuthState().subscribe(async (res) => {
-          if (res && res.uid) {
-            console.log('current user', res.uid);
-            this.userService.user.uid = res.uid;
-            const data = await this.userService.getUserDetail(res.uid);
-            this.userService.user.userInfo = data.data();
-            await this.userService.getAllCollection();
-            this.appService.hideLoading();
-            console.log(this.userService.user);
-          } else {
-            this.appService.hideLoading();
-            this.navCtrl.navigateRoot('/login', { replaceUrl: true });
-          }
-          subscription.unsubscribe();
-        });
-      }
-      else {
-        console.log('intro');
-        this.navCtrl.navigateRoot('intro');
-      }
-    })
-      .catch(err => {
-        console.log('error platform', err);
-      });
+  setPlatform() {
+    if (this.platform.is('android')) {
+      this.statusBar.backgroundColorByHexString('#33000000');
+      this.statusBar.overlaysWebView(true);
+      this.statusBar.styleLightContent();
+    } else {
+      this.statusBar.backgroundColorByHexString('#33000000');
+      this.statusBar.styleLightContent();
+    }
+    this.platform.backButton.subscribe((back) => {
+      console.log(back);
+      this.navCtrl.back();
+    });
+  }
 
+  checkNetwork() {
+    this.network.onDisconnect().subscribe({
+      next: () => {
+        this.appService.showToast('You are offline now.', 3000);
+        this.appService.isOnline = false;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+
+    this.network.onConnect().subscribe({
+      next: () => {
+        this.appService.isOnline = true;
+        // this.getCurrentUser();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  async getCurrentUser() {
+    if (await this.appService.getDataFromLocal('introComplete')) {
+      console.log('introComplete');
+      this.appService.presentLoading();
+      const subscription = this.authService.getAuthState().subscribe(async (res) => {
+        if (res && res.uid) {
+          console.log('current user', res.uid);
+          this.userService.user.uid = res.uid;
+          const data = await this.userService.getUserDetail(res.uid);
+          this.userService.user.userInfo = data.data();
+          await this.userService.getAllCollection();
+          this.appService.hideLoading();
+          console.log(this.userService.user);
+        } else {
+          this.appService.hideLoading();
+          this.navCtrl.navigateRoot('/login', { replaceUrl: true });
+        }
+        subscription.unsubscribe();
+      });
+    }
+    else {
+      console.log('intro');
+      this.navCtrl.navigateRoot('intro');
+    }
   }
 }

@@ -24,7 +24,7 @@
 
     <ion-item>
       <ion-label>Mobile</ion-label>
-      <ion-input readonly [(ngModel)]="usr.mobile" name="mobile" type="number"></ion-input>
+      <ion-input [(ngModel)]="usr.mobile" name="mobile" type="number"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -39,7 +39,7 @@
 
     <ion-item>
       <ion-label>Address</ion-label>
-      <ion-input readonly [(ngModel)]="usr.address" name="address" type="text"></ion-input>
+      <ion-input [(ngModel)]="usr.address" name="address" type="text"></ion-input>
     </ion-item>
     <ion-button class="submit" expand="full" type="submit">Save</ion-button>
   </form>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "786355942521",
+    "project_id": "portfolio-management-app-e4dc2",
+    "storage_bucket": "portfolio-management-app-e4dc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786355942521:android:ef239f8c37121ed8b390a8",
+        "android_client_info": {
+          "package_name": "com.moneycare.pfm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786355942521-c441hl0bn9unl9k803a9lhehr34mc0ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWPOM-pAD5KSN0xPrxYAE_YT_B3GoTmHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786355942521-c441hl0bn9unl9k803a9lhehr34mc0ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

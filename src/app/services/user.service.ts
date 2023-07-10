@@ -98,7 +98,7 @@ export class UserService {
         blob = await (await fetch(blob)).blob();
         const imgUpload = await this.uploadFile('/users/' + this.user.uid, blob);
         this.user.userInfo.previewUrl = await imgUpload.ref.getDownloadURL();
-        const updateduser = await this.updateUser(this.user.userInfo, this.user.uid);
+        const updateduser = await this.updateUser({ previewUrl: this.user.userInfo.previewUrl }, this.user.uid);
         res(updateduser);
       } catch (error) {
         console.log(error);
@@ -108,6 +108,15 @@ export class UserService {
   }
 
   updateUser(data, uid) {
-    return this.firestore.collection('users').doc(uid).update(data);
+    return this.firestore.collection('users').doc(uid).ref.update(data);
+  }
+
+  getNotification() {
+    const ref = this.firestore.collection('notifications').ref;
+    const promise = [
+      ref.where('uid', '==', 'all').orderBy('creationDate', 'asc').get(),
+      ref.where('uid', '==', this.user.uid).get()
+    ];
+    return Promise.all(promise);
   }
 }
