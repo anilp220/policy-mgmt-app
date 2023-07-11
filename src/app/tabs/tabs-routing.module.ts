@@ -28,11 +28,11 @@ const routes: Routes = [
         path: 'upcoming/:type',
         loadChildren: () => import('../pages/upcoming-payments/upcoming-payments.module').then(m => m.UpcomingPaymentsPageModule)
       },
-      {
-        path: 'portfolio-investments/:page',
-        loadChildren: () => import('../pages/portfolio-investments/portfolio-investments.module')
-          .then(m => m.PortfolioInvestmentsPageModule)
-      },
+      // {
+      //   path: 'portfolio-investments/:page',
+      //   loadChildren: () => import('../pages/portfolio-investments/portfolio-investments.module')
+      //     .then(m => m.PortfolioInvestmentsPageModule)
+      // },
       {
         path: 'type-of-policy/:typeOfPolicy',
         loadChildren: () => import('../pages/type-of-policy/type-of-policy.module')

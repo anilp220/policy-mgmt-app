@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 import { UserService } from 'src/app/services/user.service';
-
+enum sipType {
+  SIP = 'SIP',
+  LUMPSUM = 'Lump Sum',
+  LUMPSUMSIP = 'Lump Sum + SIP'
+}
 @Component({
   selector: 'app-generic-portfolios',
   templateUrl: './generic-portfolios.page.html',
@@ -15,6 +20,7 @@ export class GenericPortfoliosPage implements OnInit {
   pageTitle;
   items = [];
   error;
+  sipType = sipType;
   portfolios = {
     'life-insurance': [
       {
@@ -92,25 +98,64 @@ export class GenericPortfoliosPage implements OnInit {
   //     });
   // }
 
-  ionViewWillEnter() {
-
-  }
-
-  ngOnInit() {
+  ionViewDidEnter() {
     this.activatedRoute.params.subscribe(res => {
       this.policyType = res.page;
       this.pageIndex = res.index;
       this.pageTitle = res.title;
-      this.items = this.appService.getPolicies(this.policyType);
-      // this.getData(this.page.split(' ').join('-').toLowerCase());
       console.log(this.policyType);
       console.log(this.pageIndex);
       console.log(this.pageTitle);
       console.log(this.items);
-      if (!this.items.length) {
-        this.error = 'No Data Found';
-      }
+      this.getData();
     });
+  }
+
+  ngOnInit() {
+
+  }
+
+  async getData() {
+    this.items = this.appService.getPolicies(this.policyType);
+    console.log(this.items);
+    if (this.pageTitle === 'mutual-fund') {
+      for (const key in this.items) {
+        if (Object.prototype.hasOwnProperty.call(this.items, key)) {
+          const element = this.items[key];
+          await this.getCurrentNav(element);
+        }
+      }
+    }
+    if (!this.items.length) {
+      this.error = 'No Data Found';
+    }
+    return;
+  }
+
+  async getCurrentNav(item) {
+    const result = await this.userService.fetchSelectedScheme(item.company.id);
+    console.log(result);
+    item.currentNav = result.nav;
+    this.calculateFundValue(item);
+  }
+
+  calculateFundValue(item) {
+    if (item.currentUnits && item.currentNav) {
+      item.currentFundValue = (item.currentUnits * item.currentNav).toFixed(4);
+      this.calcCurrentReturn(item);
+    }
+  }
+
+  calcCurrentReturn(item) {
+    if ((item.modeOfInvestment === this.sipType.SIP
+      || item.modeOfInvestment === this.sipType.LUMPSUMSIP)
+      && item.currentFundValue && item.currentInvestedValue) {
+      item.currentReturn = Math.abs(((item.currentFundValue - item.currentInvestedValue) / item.currentInvestedValue) * 100).toFixed(4);
+    }
+    if (item.modeOfInvestment === this.sipType.LUMPSUM
+      && item.currentFundValue && item.amountInvested) {
+      item.currentReturn = Math.abs(((item.currentFundValue - item.amountInvested) / item.amountInvested) * 100).toFixed(4);
+    }
   }
 
   gotoDetail(item) {
@@ -118,5 +163,12 @@ export class GenericPortfoliosPage implements OnInit {
     console.log(this.policyType);
     this.appService.setData(item);
     this.navCtrl.navigateForward('/tabs/policy-detail/' + this.policyType + '/' + this.pageTitle);
+  }
+
+  async doRefresh(event) {
+    await this.appService.presentLoading('Refreshing...');
+    await this.getData();
+    await this.appService.hideLoading();
+    event.target.complete();
   }
 }

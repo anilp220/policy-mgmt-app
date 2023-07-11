@@ -11,8 +11,10 @@ export class GenericPortfolioCardComponent implements OnInit, AfterViewInit {
   @Input() policyType;
   @Input() pageTitle;
   @Input() cardIndex;
+  @Input() currentNav;
   title = '';
-  constructor(private constService: ConstantsService, private cdr: ChangeDetectorRef) { }
+  constructor(private constService: ConstantsService,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log('item', this.item);

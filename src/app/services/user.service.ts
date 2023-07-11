@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AppService } from './app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +24,11 @@ export class UserService {
     'corporate-insurance': [],
     others: [],
   };
+  allSchemes: any;
   constructor(private firebaseAuth: AngularFireAuth,
     private fireStorage: AngularFireStorage,
+    private appService: AppService,
+    private http: HttpClient,
     private firestore: AngularFirestore) { }
 
   async currentUserDetailRef() {
@@ -118,5 +123,21 @@ export class UserService {
       ref.where('uid', '==', this.user.uid).get()
     ];
     return Promise.all(promise);
+  }
+
+  async fetchAllSchemes() {
+    const localData = await this.appService.getDataFromLocal('allSchemes');
+    if (localData) {
+      console.log('data from local', localData);
+      this.allSchemes = JSON.parse(localData);
+      return;
+    }
+    this.allSchemes = await this.http.get('https://mynk.me/mfapi/get-all-scheme').toPromise();
+    await this.appService.setDataToLocal('allSchemes', JSON.stringify(this.allSchemes));
+    console.log(this.allSchemes);
+  }
+
+  fetchSelectedScheme(id): any {
+    return this.http.get('https://mynk.me/mfapi/get-scheme-data/' + id).toPromise();
   }
 }

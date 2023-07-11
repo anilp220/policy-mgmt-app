@@ -43,6 +43,7 @@ export class AppComponent {
     // console.log('this.userService.token', this.userService.token);
     this.platform.ready().then(async () => {
       this.splashScreen.hide();
+      this.userService.fetchAllSchemes();
       this.setPlatform();
       this.getCurrentUser();
       this.checkNetwork();
