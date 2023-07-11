@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
     this.navCtrl.navigateRoot('/notification');
   }
   goBack() {
-    this.navCtrl.back();
+    console.log(this.title)
+    if (this.title === 'equities') {
+      this.navCtrl.navigateRoot('/tabs/home');
+      return;
+    } else { this.navCtrl.back(); }
   }
 }

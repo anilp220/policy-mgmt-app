@@ -70,16 +70,28 @@ export class TypeOfPolicyPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
     private appService: AppService, private userService: UserService) {
+
+  }
+
+  ionViewWillEnter() {
     this.activatedRoute.params.subscribe(param => {
       this.page = param.typeOfPolicy;
       this.getData(this.page);
     });
   }
 
+  ionViewDidEnter() {
+
+  }
+
   getData(collection) {
     this.items = [...this.userService.allCollections[collection]];
     console.log(this.items);
     this.appService.setPolicies(this.items);
+    if (this.page === 'equities') {
+      this.navCtrl.navigateForward('/tabs/generic-portfolios/' + this.page + '/' + 'equities' + '/' + 0);
+      return;
+    }
     if (!this.items.length) {
       this.error = 'No Data Found';
     }

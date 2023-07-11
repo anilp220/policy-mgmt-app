@@ -22,6 +22,9 @@
           <span *ngIf="pageTitle==='mutual-fund'">
             {{item?.company?.name}}
           </span>
+          <span *ngIf="pageTitle==='equities'">
+            {{item?.company?.symbol}}
+          </span>
         </div>
       </div>
       <div class="table">
@@ -178,6 +181,32 @@
               <ion-col>{{item.totalInvestment}}</ion-col>
               <ion-col>{{item.termOfInvestment}}</ion-col>
               <ion-col>{{item.renewalDate}}</ion-col>
+            </ion-row>
+          </div>
+        </div>
+        <div *ngIf="pageTitle==='equities'">
+          <div class="row1">
+            <ion-row>
+              <ion-col>Current Share Price</ion-col>
+              <ion-col>Current Fund Value</ion-col>
+              <ion-col>Current Return</ion-col>
+            </ion-row>
+            <ion-row class="data-col">
+              <ion-col>{{item.currentSharePrice}}</ion-col>
+              <ion-col>{{item.currentFundValue}}</ion-col>
+              <ion-col>{{item.currentReturn}}</ion-col>
+            </ion-row>
+          </div>
+          <div class="row2">
+            <ion-row>
+              <ion-col>Investor Name</ion-col>
+              <ion-col>Bank Details</ion-col>
+              <ion-col>ISIN No.</ion-col>
+            </ion-row>
+            <ion-row class="data-col">
+              <ion-col>{{item.investorName}}</ion-col>
+              <ion-col>{{item.bankDetails}}</ion-col>
+              <ion-col>{{item.isinNo}}</ion-col>
             </ion-row>
           </div>
         </div>

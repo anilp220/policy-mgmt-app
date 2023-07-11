@@ -34,7 +34,10 @@ export class AppService {
   getPolicies(policyType) {
     console.log('policy', this.policies);
     console.log('policyType', policyType);
-    return this.policies.filter(policy => (policy.typeOfPolicy === policyType) || (policy.modeOfInvestment === policyType));
+    return policyType === 'equities' ? this.policies :
+      this.policies.filter(
+        policy => (policy.typeOfPolicy === policyType) || (policy.modeOfInvestment === policyType)
+      );
   }
 
   getDataFromLocal(param) {

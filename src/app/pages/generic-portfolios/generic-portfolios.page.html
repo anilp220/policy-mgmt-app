@@ -9,7 +9,7 @@
       <!-- <span class="title">
         {{pageTitle.toUpperCase()}}
       </span> -->
-      <span class="sub-title">
+      <span *ngIf="pageTitle !=='equities'" class="sub-title">
         {{policyType}}
       </span>
     </div>

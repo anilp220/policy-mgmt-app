@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
     {
       name: 'Equities',
       collection: 'equities',
-      path: '/generic-portfolios/'
+      path: '/tabs/type-of-policy/'
     },
     {
       name: 'Vehicle Insurance',

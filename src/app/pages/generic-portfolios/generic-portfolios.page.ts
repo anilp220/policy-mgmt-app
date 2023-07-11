@@ -98,7 +98,7 @@ export class GenericPortfoliosPage implements OnInit {
   //     });
   // }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.activatedRoute.params.subscribe(res => {
       this.policyType = res.page;
       this.pageIndex = res.index;

@@ -91,6 +91,20 @@
           <td>{{item.dateOfPurchase}}</td>
         </tr>
       </tbody>
+      <tbody *ngIf="pageTitle==='equities'">
+        <tr>
+          <td>Current Share Price</td>
+          <td>Current Fund Value</td>
+          <td>Current Shares</td>
+          <td>Date of Purchase</td>
+        </tr>
+        <tr>
+          <td>{{item.currentSharePrice}}</td>
+          <td>{{item.currentFundValue}}</td>
+          <td>{{item.currentShares}}</td>
+          <td>{{item.dateOfPurchase}}</td>
+        </tr>
+      </tbody>
       <!-- <tbody *ngIf="page==='Life Insurance'">
         <tr>
           <td>Cover Amount</td>
