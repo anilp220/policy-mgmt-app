@@ -7,7 +7,7 @@ import { AuthService } from './services/auth.service';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { PushService } from './services/push.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -27,7 +27,8 @@ export class AppComponent {
     private navCtrl: NavController,
     private statusBar: StatusBar,
     private network: Network,
-    private pushService: PushService
+    private pushService: PushService,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -44,6 +45,7 @@ export class AppComponent {
     this.platform.ready().then(async () => {
       this.splashScreen.hide();
       this.userService.fetchAllSchemes();
+      this.userService.fetchRapidApi();
       this.setPlatform();
       this.getCurrentUser();
       this.checkNetwork();
@@ -62,9 +64,10 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('#33000000');
       this.statusBar.styleLightContent();
     }
-    this.platform.backButton.subscribe((back) => {
-      console.log(back);
-      this.navCtrl.back();
+    this.platform.backButton.subscribe(() => {
+      if (this.router.url === '/tabs/generic-portfolios/equities/equities/0') {
+        this.navCtrl.navigateBack('/tabs/home');
+      } else if (this.router.url !== '/tabs/home') { this.navCtrl.back(); }
     });
   }
 

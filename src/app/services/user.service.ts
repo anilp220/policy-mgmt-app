@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AppService } from './app.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +28,7 @@ export class UserService {
     others: [],
   };
   allSchemes: any;
+  allEquities: any;
   constructor(private firebaseAuth: AngularFireAuth,
     private fireStorage: AngularFireStorage,
     private appService: AppService,
@@ -139,5 +143,35 @@ export class UserService {
 
   fetchSelectedScheme(id): any {
     return this.http.get('https://mynk.me/mfapi/get-scheme-data/' + id).toPromise();
+  }
+
+  fetchRapidApi(identifier?: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const options = {
+        headers: {
+          'X-RapidAPI-Key': '10c1a577b3mshba9e708290ede0bp1c1031jsnd7730f7f19af',
+          'X-RapidAPI-Host': 'latest-stock-price.p.rapidapi.com'
+        }
+      };
+      if (identifier) {
+        options['params'] = {
+          identifier
+        };
+      }
+      this.http.get('https://latest-stock-price.p.rapidapi.com/any', options)
+        .toPromise()
+        .then(result => {
+          console.log('rapid resp', result);
+          if (identifier) {
+            resolve(result);
+          } else {
+            this.allEquities = result;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+        });
+    });
   }
 }
