@@ -32,9 +32,24 @@ export class UserAccountPage implements OnInit {
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
-
-
   editProfile() {
     this.navCtrl.navigateForward('/tabs/edit-profile');
+  }
+
+  selectImg() {
+    this.camera.takePhoto(0)
+      .then((imgData) => {
+        this.usr.previewUrl = imgData;
+        this.appService.presentLoading('Uploading...');
+        return this.userService.uploadImgAndUpdate(imgData);
+      })
+      .then((imgUpload) => {
+        console.log(imgUpload);
+        this.appService.hideLoading();
+      })
+      .catch((err => {
+        console.log(err);
+        this.appService.hideLoading();
+      }));
   }
 }

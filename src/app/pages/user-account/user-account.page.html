@@ -1,14 +1,26 @@
 <app-header [title]="'Account'"></app-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <ion-avatar>
-        <img [src]="usr.previewUrl || '/assets/images/profile.png'" alt="">
-        <!-- <ion-button (click)="selectImg()" fill="clear">
+  <div class="profile-header">
+    <div class="profile-img">
+      <div class="img">
+        <img [src]="usr.previewUrl || '/assets/images/profile.png'" alt="" />
+        <ion-button (click)="selectImg()" fill="clear">
           <ion-icon name="camera"></ion-icon>
-        </ion-button> -->
-      </ion-avatar>
+        </ion-button>
+      </div>
+      <div class="profile-info">
+        <div>{{usr.firstName}}</div>
+        <div>{{usr.occupation}}</div>
+        <div>
+          <ion-icon name="location"></ion-icon>
+          {{usr.address}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <ion-card>
+    <ion-card-content>
       <ion-card-header>
         <ion-card-title>{{usr.firstName}}</ion-card-title>
         <ion-card-subtitle>
@@ -18,32 +30,47 @@
         </ion-card-subtitle>
       </ion-card-header>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
   <ion-list lines="full" mode="ios">
-    <ion-item (click)="editProfile()">
+    <!-- <ion-item (click)="editProfile()">
       <ion-label>Edit Profile</ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
+    </ion-item> -->
+    <ion-item (click)="editProfile()">
+      <ion-label>Personal Information</ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
     </ion-item>
-    <ion-item>
-      <ion-label>About Us
-      </ion-label>
+    <ion-item (click)="editProfile()">
+      <ion-label>Family Member Details</ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-item>
-      <ion-label>Privacy Policy
-      </ion-label>
+      <ion-label>About Us </ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Privacy Policy</ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item (click)="settings()">
+      <ion-label>Settings </ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-item (click)="logout()">
-      <ion-label>Logout
-      </ion-label>
+      <ion-label>Logout </ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
