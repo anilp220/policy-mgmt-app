@@ -46,10 +46,19 @@ export class HomePage implements OnInit {
       path: '/tabs/type-of-policy/'
     }
   ];
+  segragatedData = {
+    'life-insurance': {},
+    mediclaim: {},
+    'mutual-fund': {},
+    equities: {},
+    'vehicle-insurance': {},
+    'corporate-insurance': {},
+    others: {},
+  };
   constructor(private navCtrl: NavController, private appService: AppService, public userService: UserService) {
-    this.portfolio.map(port => {
-      port.path += port.collection + '/';
-    });
+    // this.portfolio.map(port => {
+    //   port.path += port.collection + '/';
+    // });
     console.log(this.portfolio);
   }
 
@@ -58,17 +67,65 @@ export class HomePage implements OnInit {
 
   ionViewDidEnter() {
     // this.loadSimplePieChart();
+    setTimeout(() => {
+      this.eachPortfolio();
+    }, 1000);
+  }
+
+  eachPortfolio() {
+    this.segragatedData = {
+      'life-insurance': {},
+      mediclaim: {},
+      'mutual-fund': {},
+      equities: {},
+      'vehicle-insurance': {},
+      'corporate-insurance': {},
+      others: {},
+    };
+    this.portfolio.forEach(port => {
+      this.segragateData(port);
+    });
   }
 
   async doRefresh(event) {
     console.log('refresh', event);
-    this.appService.presentLoading('Refreshing...');
+    await this.appService.presentLoading('Refreshing...');
     await this.userService.getAllCollection();
-    this.appService.hideLoading();
+    this.eachPortfolio();
+    await this.appService.hideLoading();
     event.target.complete();
   }
 
   redirectTo(path) {
     this.navCtrl.navigateForward(path);
+  }
+
+  onClick() {
+    console.log(this.segragatedData);
+  }
+
+  segragateData(port) {
+    const col = this.userService.allCollections[port.collection];
+    col.map(element => {
+      switch (port.collection) {
+        case 'mutual-fund':
+        case 'equities':
+          this.mapOwner(port, element.investorName, element);
+          break;
+        case 'life-insurance':
+          this.mapOwner(port, element.nameOfLifeInsured, element);
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  mapOwner(port, name, element) {
+    if (this.segragatedData[port.collection][name]) {
+      this.segragatedData[port.collection][name].push(element);
+    } else {
+      this.segragatedData[port.collection][name] = [element];
+    }
   }
 }

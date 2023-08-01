@@ -1,28 +1,35 @@
 <app-header></app-header>
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
-      refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    ></ion-refresher-content>
   </ion-refresher>
   <ion-row class="header-margin">
     <div>
-      <img src="../../../assets/images/banner1.png" alt="">
+      <img src="../../../assets/images/banner1.png" alt="" />
     </div>
   </ion-row>
-  <ion-row class="categories-item ">
+  <ion-row class="categories-item">
     <!-- [size]="i===0 ? 11 : 5" -->
-    <ion-col class="ion-activatable" *ngFor="let port of portfolio;let i = index" size="5">
+    <ion-col
+      class="ion-activatable"
+      *ngFor="let port of portfolio;let i = index"
+      size="5"
+    >
       <!-- <a [routerLink]="'/generic-portfolios/portfolio/' + port.name+'/'+i"> -->
       <ion-ripple-effect></ion-ripple-effect>
 
-      <a [routerLink]="port.path">
-        <img [src]="'../../../assets/icon/'+port.collection+'.png'" alt="">
+      <!-- [routerLink]="port.path" -->
+      <a (click)="onClick()">
+        <img [src]="'../../../assets/icon/'+port.collection+'.png'" alt="" />
         <p>{{port.name}}</p>
       </a>
       <div class="badge">
-        <span>
-          {{userService.allCollections[port.collection].length}}
-        </span>
+        <span> {{userService.allCollections[port.collection].length}} </span>
       </div>
     </ion-col>
   </ion-row>
