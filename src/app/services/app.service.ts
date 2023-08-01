@@ -32,8 +32,6 @@ export class AppService {
   }
 
   getPolicies(policyType) {
-    console.log('policy', this.policies);
-    console.log('policyType', policyType);
     return policyType === 'equities' ? this.policies :
       this.policies.filter(
         policy => (policy.typeOfPolicy === policyType) || (policy.modeOfInvestment === policyType)
@@ -41,7 +39,6 @@ export class AppService {
   }
 
   getDataFromLocal(param) {
-    console.log('local storage', param);
     return this.localStorage.get(param);
   }
 
@@ -75,12 +72,10 @@ export class AppService {
       showBackdrop: true,
       message: message || 'Loading...'
     });
-    console.log('loding', this.loading);
     await this.loading.present();
   }
 
   async hideLoading() {
-    console.log(this.loading);
     if (this.loading) {
       await this.loading.dismiss();
       this.loading = null;

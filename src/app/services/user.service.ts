@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AppService } from './app.service';
 import { Observable } from 'rxjs';
+import { Models } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class UserService {
   };
   genericData;
   allCollections = {
-    'life-insurance': [],
+    [Models.collections.lifeInsurance]: [],
     mediclaim: [],
     'mutual-fund': [],
     equities: [],
@@ -132,7 +133,7 @@ export class UserService {
   async fetchAllSchemes() {
     const localData = await this.appService.getDataFromLocal('allSchemes');
     if (localData) {
-      console.log('data from local', localData);
+      // console.log('data from local', localData);
       this.allSchemes = JSON.parse(localData);
       return;
     }
@@ -161,7 +162,7 @@ export class UserService {
       this.http.get('https://latest-stock-price.p.rapidapi.com/any', options)
         .toPromise()
         .then(result => {
-          console.log('rapid resp', result);
+          // console.log('rapid resp', result);
           if (identifier) {
             resolve(result);
           } else {
