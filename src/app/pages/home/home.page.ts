@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
+import { Models } from 'src/app/services/models';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,68 +12,48 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage implements OnInit {
   portfolio: any = [
     {
-      name: 'Life Insurance',
-      collection: 'life-insurance',
-      path: '/tabs/type-of-policy/',
+      name: Models.titles.lifeInsurance,
+      collection: Models.collections.lifeInsurance,
     },
     {
-      name: 'Mediclaim',
-      collection: 'mediclaim',
-      path: '/tabs/type-of-policy/',
+      name: Models.titles.mediclaim,
+      collection: Models.collections.mediclaim,
     },
     {
-      name: 'Mutual Fund',
-      collection: 'mutual-fund',
-      path: '/tabs/type-of-policy/',
+      name: Models.titles.mututalFund,
+      collection: Models.collections.mututalFund,
     },
     {
-      name: 'Equities',
-      collection: 'equities',
-      path: '/tabs/type-of-policy/'
+      name: Models.titles.equities,
+      collection: Models.collections.equities,
     },
     {
-      name: 'Vehicle Insurance',
-      collection: 'vehicle-insurance',
-      path: '/tabs/type-of-policy/'
+      name: Models.titles.vehicleInsurance,
+      collection: Models.collections.vehicleInsurance,
     },
     {
-      name: 'Corporate Insurance',
-      collection: 'corporate-insurance',
-      path: '/tabs/type-of-policy/'
+      name: Models.titles.corporateInsurance,
+      collection: Models.collections.corporateInsurance,
     },
     {
-      name: 'Others',
-      collection: 'others',
-      path: '/tabs/type-of-policy/'
+      name: Models.titles.others,
+      collection: Models.collections.others
     }
   ];
-  segragatedData = {
-    'life-insurance': {},
-    mediclaim: {},
-    'mutual-fund': {},
-    equities: {},
-    'vehicle-insurance': {},
-    'corporate-insurance': {},
-    others: {},
-  };
+  segragatedData = {};
   constructor(private navCtrl: NavController, private appService: AppService, public userService: UserService) {
-    // this.portfolio.map(port => {
-    //   port.path += port.collection + '/';
-    // });
-    console.log(this.portfolio);
   }
 
   ngOnInit() {
   }
 
   ionViewDidEnter() {
-    // this.loadSimplePieChart();
     setTimeout(() => {
       this.eachPortfolio();
     }, 1000);
   }
 
-  eachPortfolio() {
+  resetSegragatedData() {
     this.segragatedData = {
       'life-insurance': {},
       mediclaim: {},
@@ -82,6 +63,10 @@ export class HomePage implements OnInit {
       'corporate-insurance': {},
       others: {},
     };
+  }
+
+  eachPortfolio() {
+    this.resetSegragatedData();
     this.portfolio.forEach(port => {
       this.segragateData(port);
     });
@@ -100,8 +85,15 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward(path);
   }
 
-  onClick() {
-    console.log(this.segragatedData);
+  onClick(port) {
+    console.log(this.segragatedData[port.collection]);
+    console.log(this.userService.allCollections[port.collection]);
+    this.navCtrl.navigateForward('tabs/generic-portfolio', {
+      state: {
+        item: JSON.stringify(this.segragatedData[port.collection]),
+        title: port.name
+      }
+    });
   }
 
   segragateData(port) {

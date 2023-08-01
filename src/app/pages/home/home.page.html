@@ -24,7 +24,7 @@
       <ion-ripple-effect></ion-ripple-effect>
 
       <!-- [routerLink]="port.path" -->
-      <a (click)="onClick()">
+      <a (click)="onClick(port)">
         <img [src]="'../../../assets/icon/'+port.collection+'.png'" alt="" />
         <p>{{port.name}}</p>
       </a>

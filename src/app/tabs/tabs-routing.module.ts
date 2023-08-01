@@ -17,36 +17,6 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'sum-assured',
-        loadChildren: () => import('../pages/sum-assured/sum-assured.module').then(m => m.SumAssuredPageModule)
-      },
-      {
-        path: 'transactions',
-        loadChildren: () => import('../pages/transactions/transactions.module').then(m => m.TransactionsPageModule)
-      },
-      {
-        path: 'upcoming/:type',
-        loadChildren: () => import('../pages/upcoming-payments/upcoming-payments.module').then(m => m.UpcomingPaymentsPageModule)
-      },
-      // {
-      //   path: 'portfolio-investments/:page',
-      //   loadChildren: () => import('../pages/portfolio-investments/portfolio-investments.module')
-      //     .then(m => m.PortfolioInvestmentsPageModule)
-      // },
-      {
-        path: 'type-of-policy/:typeOfPolicy',
-        loadChildren: () => import('../pages/type-of-policy/type-of-policy.module')
-          .then(m => m.TypeOfPolicyPageModule)
-      },
-      {
-        path: 'view-policy',
-        loadChildren: () => import('../pages/view-policy/view-policy.module').then(m => m.ViewPolicyPageModule)
-      },
-      {
-        path: 'policy-detail/:policy/:pageTitle',
-        loadChildren: () => import('../pages/policy-detail/policy-detail.module').then(m => m.PolicyDetailPageModule)
-      },
-      {
         path: 'notification',
         loadChildren: () => import('../pages/notification/notification.module').then(m => m.NotificationPageModule)
       },
@@ -55,13 +25,13 @@ const routes: Routes = [
         loadChildren: () => import('../pages/user-account/user-account.module').then(m => m.UserAccountPageModule)
       },
       {
-        path: 'generic-portfolios/:title/:page/:index',
-        loadChildren: () => import('../pages/generic-portfolios/generic-portfolios.module').then(m => m.GenericPortfoliosPageModule)
-      },
-      {
         path: 'edit-profile',
         loadChildren: () => import('../pages/edit-profile/edit-profile.module').then(m => m.EditProfilePageModule)
       },
+      {
+        path: 'generic-portfolio',
+        loadChildren: () => import('../pages/generic-portfolio/generic-portfolio.module').then(m => m.GenericPortfolioPageModule)
+      }
     ]
   },
   {
