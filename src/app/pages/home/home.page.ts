@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
-import { Models } from 'src/app/services/models';
+import { Models } from 'src/app/services/models.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,36 +12,39 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage implements OnInit {
   portfolio: any = [
     {
-      name: Models.titles.lifeInsurance,
-      collection: Models.collections.lifeInsurance,
+      name: this.models.titles.lifeInsurance,
+      collection: this.models.collections.lifeInsurance,
     },
     {
-      name: Models.titles.mediclaim,
-      collection: Models.collections.mediclaim,
+      name: this.models.titles.mediclaim,
+      collection: this.models.collections.mediclaim,
     },
     {
-      name: Models.titles.mututalFund,
-      collection: Models.collections.mututalFund,
+      name: this.models.titles.mutualFund,
+      collection: this.models.collections.mutualFund,
     },
     {
-      name: Models.titles.equities,
-      collection: Models.collections.equities,
+      name: this.models.titles.equities,
+      collection: this.models.collections.equities,
     },
     {
-      name: Models.titles.vehicleInsurance,
-      collection: Models.collections.vehicleInsurance,
+      name: this.models.titles.vehicleInsurance,
+      collection: this.models.collections.vehicleInsurance,
     },
     {
-      name: Models.titles.corporateInsurance,
-      collection: Models.collections.corporateInsurance,
+      name: this.models.titles.corporateInsurance,
+      collection: this.models.collections.corporateInsurance,
     },
     {
-      name: Models.titles.others,
-      collection: Models.collections.others
+      name: this.models.titles.others,
+      collection: this.models.collections.others
     }
   ];
   segragatedData = {};
-  constructor(private navCtrl: NavController, private appService: AppService, public userService: UserService) {
+  constructor(private navCtrl: NavController,
+    private appService: AppService,
+    private models: Models,
+    public userService: UserService) {
   }
 
   ngOnInit() {
@@ -100,12 +103,18 @@ export class HomePage implements OnInit {
     const col = this.userService.allCollections[port.collection];
     col.map(element => {
       switch (port.collection) {
-        case 'mutual-fund':
-        case 'equities':
+        case this.models.collections.mutualFund:
+        case this.models.collections.equities:
           this.mapOwner(port, element.investorName, element);
           break;
-        case 'life-insurance':
+        case this.models.collections.lifeInsurance:
           this.mapOwner(port, element.nameOfLifeInsured, element);
+          break;
+        case this.models.collections.vehicleInsurance:
+          this.mapOwner(port, element.nameOfOwner, element);
+          break;
+        case this.models.collections.mediclaim:
+          this.mapOwner(port, element.typeOfPolicy, element);
           break;
         default:
           break;

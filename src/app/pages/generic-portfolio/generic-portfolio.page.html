@@ -1,3 +1,46 @@
 <app-header [title]="title"></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    ></ion-refresher-content>
+  </ion-refresher>
+  <div class="header-margin">
+    <ng-container *ngIf="title == models.titles.mutualFund">
+      <div *ngFor="let data of portfolioData | keyvalue">
+        <app-mutual-fund-card
+          [data]="data.value"
+          [title]="data.key"
+        ></app-mutual-fund-card>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="title == models.titles.lifeInsurance">
+      <div *ngFor="let data of portfolioData | keyvalue">
+        <app-life-insurance-card
+          [data]="data.value"
+          [title]="data.key"
+        ></app-life-insurance-card>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="title == models.titles.mediclaim">
+      <div *ngFor="let data of portfolioData | keyvalue">
+        <app-mediclaim-card
+          [data]="data.value"
+          [title]="data.key"
+        ></app-mediclaim-card>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="title == models.titles.vehicleInsurance">
+      <div *ngFor="let data of portfolioData | keyvalue">
+        <app-vehicle-insurance-card
+          [data]="data.value"
+          [title]="data.key"
+        ></app-vehicle-insurance-card>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

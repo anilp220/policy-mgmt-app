@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AppService } from './app.service';
 import { Observable } from 'rxjs';
-import { Models } from './models';
+import { Models } from './models.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +20,13 @@ export class UserService {
   };
   genericData;
   allCollections = {
-    [Models.collections.lifeInsurance]: [],
-    mediclaim: [],
-    'mutual-fund': [],
-    equities: [],
-    'vehicle-insurance': [],
-    'corporate-insurance': [],
-    others: [],
+    [this.models.collections.lifeInsurance]: [],
+    [this.models.collections.mediclaim]: [],
+    [this.models.collections.mutualFund]: [],
+    [this.models.collections.equities]: [],
+    [this.models.collections.vehicleInsurance]: [],
+    [this.models.collections.corporateInsurance]: [],
+    [this.models.collections.others]: [],
   };
   allSchemes: any;
   allEquities: any;
@@ -34,6 +34,7 @@ export class UserService {
     private fireStorage: AngularFireStorage,
     private appService: AppService,
     private http: HttpClient,
+    private models: Models,
     private firestore: AngularFirestore) { }
 
   async currentUserDetailRef() {

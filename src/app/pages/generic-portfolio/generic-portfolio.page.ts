@@ -1,22 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppService } from 'src/app/services/app.service';
+import { Models } from 'src/app/services/models.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-generic-portfolio',
   templateUrl: './generic-portfolio.page.html',
   styleUrls: ['./generic-portfolio.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenericPortfolioPage implements OnInit {
   portfolioData;
   title: any;
-  item;
-  constructor(private route: ActivatedRoute, private router: Router) {
+  beforeRefresh;
+  constructor(private route: ActivatedRoute,
+    private appService: AppService,
+    private userService: UserService,
+    private cdr: ChangeDetectorRef,
+    public models: Models, private router: Router) {
     this.route.queryParams.subscribe(_p => {
       const navParams = this.router.getCurrentNavigation().extras.state;
       if (navParams) {
-        this.item = JSON.parse(navParams.item);
+        this.portfolioData = JSON.parse(navParams.item);
         this.title = navParams.title;
-        console.log(this.item);
+        this.beforeRefresh = JSON.parse(JSON.stringify(this.portfolioData));
+        console.log(this.portfolioData);
+        console.log(this.title);
       }
     });
   }
@@ -24,6 +34,14 @@ export class GenericPortfolioPage implements OnInit {
   ngOnInit() {
   }
 
-
+  async doRefresh(event) {
+    await this.appService.presentLoading('Refreshing...');
+    this.portfolioData = null;
+    this.portfolioData = JSON.parse(JSON.stringify(this.beforeRefresh));
+    await this.userService.getAllCollection();
+    this.cdr.detectChanges();
+    await this.appService.hideLoading();
+    event.target.complete();
+  }
 
 }

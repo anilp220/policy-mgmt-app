@@ -1,0 +1,25 @@
+<div class="investorCard">
+  <ion-grid>
+    <ion-row>
+      <ion-col>Investor- {{ title }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2.4">COMPANY</ion-col>
+      <ion-col size="2.4">DATE OF PURCHASE</ion-col>
+      <ion-col size="2.4">INVESTED VALUE</ion-col>
+      <ion-col size="2.4">FUND VALUE</ion-col>
+      <ion-col size="2.4">RETURN</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of data" (click)="gotoDetail(item)">
+      <ion-col size="2.4">{{ item.company.name.split("-")[0] }}</ion-col>
+      <ion-col size="2.4">{{
+        item.dateOfPurchase | date : "dd/MM/yyyy"
+      }}</ion-col>
+      <ion-col size="2.4">{{ item.currentInvestedValue }}</ion-col>
+      <ion-col size="2.4">{{ item.currentFundValue }}</ion-col>
+      <ion-col size="2.4" [ngClass]="item.currentReturn < 0 ? 'red' : 'green'">
+        {{ item.currentReturn }}%
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

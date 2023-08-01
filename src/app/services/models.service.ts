@@ -1,21 +1,27 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class Models {
-  static collections = {
+  collections = {
     lifeInsurance: 'life-insurance',
     mediclaim: 'mediclaim',
-    mututalFund: 'mutual-fund',
+    mutualFund: 'mutual-fund',
     equities: 'equities',
     vehicleInsurance: 'vehicle-insurance',
     corporateInsurance: 'corporate-insurance',
     others: 'others',
   };
 
-  static titles = {
+  titles = {
     lifeInsurance: 'Life Insurance',
     mediclaim: 'Mediclaim',
-    mututalFund: 'Mutual Fund',
+    mutualFund: 'Mutual Fund',
     equities: 'Equities',
     vehicleInsurance: 'Vehicle Insurance',
     corporateInsurance: 'Corporate Insurance',
     others: 'Others',
   };
+
 }
