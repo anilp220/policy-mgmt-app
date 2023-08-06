@@ -1,0 +1,32 @@
+<app-header [title]="title"></app-header>
+<ion-content>
+  <div class="header-margin">
+    <ion-accordion-group>
+      <ion-accordion
+        toggleIconSlot="start"
+        toggleIcon="caret-down-outline"
+        *ngFor="let item of portfolioData;let i=index"
+        [value]="i+1"
+      >
+        <ion-item slot="header" color="primary">
+          <ion-label>{{item.title}}</ion-label>
+        </ion-item>
+        <div class="ion-padding content-body" slot="content">
+          <ng-container *ngFor="let dataItem of item.data">
+            <ion-row *ngIf="dataItem.value !==null">
+              <ng-container *ngIf="dataItem.key!='url';else url">
+                <ion-col size="6">{{dataItem.key}}</ion-col>
+                <ion-col size="6">{{dataItem.value}}</ion-col>
+              </ng-container>
+              <ng-template #url>
+                <ion-col style="border: 0px">
+                  <a [href]="dataItem.value">Click here</a>
+                </ion-col>
+              </ng-template>
+            </ion-row>
+          </ng-container>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+</ion-content>

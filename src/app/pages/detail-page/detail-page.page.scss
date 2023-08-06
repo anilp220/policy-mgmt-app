@@ -1,0 +1,28 @@
+ion-content {
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
+  background-color: #fffffffc;
+  ion-accordion-group{
+    margin: 20px;
+    ion-accordion{
+      margin: 20px auto;
+      border-radius: 15px;
+      ion-item > ion-label{
+        font-family: "Montserrat";
+      }
+      .content-body{
+        background: #cae7fa;
+        color: black;
+        font-family: "Montserrat";
+        ion-col:nth-child(1){
+          border-right: 1px solid;
+        }
+        ion-row{
+          border-bottom: 1px solid;
+        }
+        ion-row:last-child{
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}

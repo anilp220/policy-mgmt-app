@@ -31,7 +31,12 @@ export class GenericPortfolioPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.appService.presentLoading();
+    console.log(this.title);
+    if (this.title !== this.models.titles.equities && this.title !== this.models.titles.mutualFund) {
+      await this.appService.hideLoading();
+    }
   }
 
   async doRefresh(event) {
@@ -39,8 +44,10 @@ export class GenericPortfolioPage implements OnInit {
     this.portfolioData = null;
     this.portfolioData = JSON.parse(JSON.stringify(this.beforeRefresh));
     await this.userService.getAllCollection();
+    if (this.title !== this.models.titles.equities || this.title !== this.models.titles.mutualFund) {
+      await this.appService.hideLoading();
+    }
     this.cdr.detectChanges();
-    await this.appService.hideLoading();
     event.target.complete();
   }
 

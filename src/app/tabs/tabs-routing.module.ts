@@ -31,6 +31,10 @@ const routes: Routes = [
       {
         path: 'generic-portfolio',
         loadChildren: () => import('../pages/generic-portfolio/generic-portfolio.module').then(m => m.GenericPortfolioPageModule)
+      },
+      {
+        path: 'detail-page',
+        loadChildren: () => import('../pages/detail-page/detail-page.module').then(m => m.DetailPagePageModule)
       }
     ]
   },

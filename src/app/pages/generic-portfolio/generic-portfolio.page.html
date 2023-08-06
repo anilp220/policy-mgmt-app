@@ -15,6 +15,7 @@
         <app-mutual-fund-card
           [data]="data.value"
           [title]="data.key"
+          [pageTitle]="title"
         ></app-mutual-fund-card>
       </div>
     </ng-container>
@@ -40,6 +41,14 @@
           [data]="data.value"
           [title]="data.key"
         ></app-vehicle-insurance-card>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="title == models.titles.equities">
+      <div *ngFor="let data of portfolioData | keyvalue">
+        <app-equities-card
+          [data]="data.value"
+          [title]="data.key"
+        ></app-equities-card>
       </div>
     </ng-container>
   </div>

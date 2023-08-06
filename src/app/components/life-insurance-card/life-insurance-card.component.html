@@ -9,7 +9,10 @@
       <ion-col size="3">MODE + MODAL PREMIUM</ion-col>
       <ion-col size="3">SUM ASSURED + CURRENT STATUS</ion-col>
     </ion-row>
-    <ion-row *ngFor="let item of data" (click)="gotoDetail(item)">
+    <ion-row *ngFor="let item of data" (click)="gotoDetail(item, title)">
+      <div class="ion-activatable ripple">
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
       <ion-col size="3">{{ item.company }} - {{ item.plan }}</ion-col>
       <ion-col size="3">{{ item.policyNo }} - {{ item.doc }}</ion-col>
       <ion-col size="3">{{ item.mode }} - {{ item.modalPremium }}</ion-col>

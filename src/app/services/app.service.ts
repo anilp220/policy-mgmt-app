@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Injectable({
@@ -16,7 +16,8 @@ export class AppService {
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private localStorage: Storage
+    private localStorage: Storage,
+    private navCtrl: NavController
   ) { }
 
   setData(data) {
@@ -101,5 +102,15 @@ export class AppService {
 
   setRegistrationId(registrationId: any) {
     this.registrationId = registrationId;
+  }
+
+  gotoPolicyDetail(item, title) {
+    console.log(item);
+    this.navCtrl.navigateForward('tabs/detail-page', {
+      state: {
+        item: JSON.stringify(item),
+        title
+      }
+    });
   }
 }

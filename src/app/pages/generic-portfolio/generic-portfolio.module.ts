@@ -12,6 +12,7 @@ import { MutualFundCardComponent } from 'src/app/components/mutual-fund-card/mut
 import { LifeInsuranceCardComponent } from 'src/app/components/life-insurance-card/life-insurance-card.component';
 import { MediclaimCardComponent } from 'src/app/components/mediclaim-card/mediclaim-card.component';
 import { VehicleInsuranceCardComponent } from 'src/app/components/vehicle-insurance-card/vehicle-insurance-card.component';
+import { EquitiesCardComponent } from 'src/app/components/equities-card/equities-card.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { VehicleInsuranceCardComponent } from 'src/app/components/vehicle-insura
     MutualFundCardComponent,
     LifeInsuranceCardComponent,
     MediclaimCardComponent,
-    VehicleInsuranceCardComponent
+    VehicleInsuranceCardComponent,
+    EquitiesCardComponent
   ]
 })
 export class GenericPortfolioPageModule { }

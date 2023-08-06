@@ -23,5 +23,4 @@ export class Models {
     corporateInsurance: 'Corporate Insurance',
     others: 'Others',
   };
-
 }
