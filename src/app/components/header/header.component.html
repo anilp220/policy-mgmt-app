@@ -1,18 +1,44 @@
 <ion-header class="app-header">
   <ion-toolbar>
-    <ion-buttons slot="start" class="notify-btn" style="float: left;" *ngIf="!isHome">
+    <ion-buttons
+      slot="start"
+      class="notify-btn"
+      style="float: left"
+      *ngIf="!isHome"
+    >
       <ion-button (click)="goBack()">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title *ngIf="title">{{title.toUpperCase()}} </ion-title>
-    <ion-title *ngIf="!title">WELCOME <br>
-      <span *ngIf="userService?.user?.userInfo?.firstName"
-        style="font-size: 1rem;">{{userService?.user?.userInfo?.firstName}}</span>
+    <ion-title *ngIf="title"
+      >{{ title.toUpperCase() }}
+      <span style="display: block; font-size: 14px" *ngIf="investorName">
+        ({{ investorName.toUpperCase() }})
+      </span>
     </ion-title>
-    <ion-buttons *ngIf="title!=='Account' && title !=='Edit Profile'" slot="end" class="notify-btn">
-      <ion-icon *ngIf="!userService?.user?.userInfo?.previewUrl" name="person-circle-outline"></ion-icon>
-      <img *ngIf="userService?.user?.userInfo?.previewUrl" [src]="userService?.user?.userInfo?.previewUrl" alt="">
+    <ion-title *ngIf="!title"
+      >WELCOME <br />
+      <span
+        *ngIf="userService?.user?.userInfo?.firstName"
+        style="font-size: 1rem"
+        >{{ userService?.user?.userInfo?.firstName }}</span
+      >
+    </ion-title>
+
+    <ion-buttons
+      *ngIf="title !== 'Account' && title !== 'Edit Profile'"
+      slot="end"
+      class="notify-btn"
+    >
+      <ion-icon
+        *ngIf="!userService?.user?.userInfo?.previewUrl"
+        name="person-circle-outline"
+      ></ion-icon>
+      <img
+        *ngIf="userService?.user?.userInfo?.previewUrl"
+        [src]="userService?.user?.userInfo?.previewUrl"
+        alt=""
+      />
       <!-- <ion-button (click)="gotoNotification()">
         <ion-icon name="notifications-circle-outline"></ion-icon>
       </ion-button> -->

@@ -17,7 +17,7 @@ enum sipType {
 
 export class MutualFundCardComponent implements OnInit {
   @Input() data = [];
-  @Input() title;
+  @Input() investorName;
   @Input() pageTitle;
   sipType = sipType;
   portfolioData = [

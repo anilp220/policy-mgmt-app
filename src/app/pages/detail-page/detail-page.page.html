@@ -1,4 +1,4 @@
-<app-header [title]="title"></app-header>
+<app-header [title]="title" [investorName]="investorName"></app-header>
 <ion-content>
   <div class="header-margin">
     <ion-accordion-group>
@@ -11,12 +11,21 @@
         <ion-item slot="header" color="primary">
           <ion-label>{{item.title}}</ion-label>
         </ion-item>
-        <div class="ion-padding content-body" slot="content">
-          <ng-container *ngFor="let dataItem of item.data">
+        <div class="content-body" slot="content">
+          <ng-container *ngFor="let dataItem of item.data;let j=index">
             <ion-row *ngIf="dataItem.value !==null">
               <ng-container *ngIf="dataItem.key!='url';else url">
                 <ion-col size="6">{{dataItem.key}}</ion-col>
-                <ion-col size="6">{{dataItem.value}}</ion-col>
+                <ion-col
+                  *ngIf="!isObject(dataItem.value);else modalView"
+                  size="6"
+                  >{{dataItem.value}}</ion-col
+                >
+                <ng-template #modalView>
+                  <ion-col size="6">
+                    <a (click)="openModal(dataItem,i+''+j)">Click here</a>
+                  </ion-col>
+                </ng-template>
               </ng-container>
               <ng-template #url>
                 <ion-col style="border: 0px">

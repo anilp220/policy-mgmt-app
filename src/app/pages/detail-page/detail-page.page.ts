@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppService } from 'src/app/services/app.service';
+import { ModalController, PopoverController } from '@ionic/angular';
+import { PopupModalComponent } from 'src/app/components/popup-modal/popup-modal.component';
 import { Models } from 'src/app/services/models.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-page',
@@ -14,12 +14,16 @@ export class DetailPagePage implements OnInit {
   title: any;
   beforeRefresh: any;
   portfolioData: any;
+  investorName: any;
   constructor(private route: ActivatedRoute,
+    private modalCtrl: ModalController,
     public models: Models, private router: Router) {
     this.route.queryParams.subscribe(_p => {
       const navParams = this.router.getCurrentNavigation().extras.state;
       if (navParams) {
         this.portfolioData = JSON.parse(navParams.item);
+        console.log(navParams.title);
+        this.investorName = navParams.investorName;
         this.title = navParams.title;
         this.beforeRefresh = JSON.parse(JSON.stringify(this.portfolioData));
       }
@@ -31,5 +35,26 @@ export class DetailPagePage implements OnInit {
 
   ionViewWillInit() {
 
+  }
+
+  isObject(value) {
+    if (value == null) {
+      return false;
+    }
+    return typeof value == 'object';
+  }
+
+  async openModal(data, id) {
+    console.log(data, id);
+    const modal = await this.modalCtrl.create({
+      component: PopupModalComponent,
+      backdropDismiss: false,
+      id,
+      componentProps: {
+        item: data
+      },
+      cssClass: 'custom-modal'
+    });
+    return await modal.present();
   }
 }

@@ -104,12 +104,13 @@ export class AppService {
     this.registrationId = registrationId;
   }
 
-  gotoPolicyDetail(item, title) {
+  gotoPolicyDetail(item, title, investorName?) {
     console.log(item);
     this.navCtrl.navigateForward('tabs/detail-page', {
       state: {
         item: JSON.stringify(item),
-        title
+        title,
+        investorName
       }
     });
   }

@@ -1,24 +1,24 @@
 <div class="investorCard">
   <ion-grid>
     <ion-row>
-      <ion-col>Life Insured- {{ title }}</ion-col>
+      <ion-col>LIFE INSURED- {{ investorName.toUpperCase() }}</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="3">COMPANY + PLAN</ion-col>
-      <ion-col size="3">POLICY NO. + DOC</ion-col>
-      <ion-col size="3">MODE + MODAL PREMIUM</ion-col>
-      <ion-col size="3">SUM ASSURED + CURRENT STATUS</ion-col>
+      <ion-col size="2.4">COMPANY + PLAN</ion-col>
+      <ion-col size="2.4">POLICY NO. + DOC</ion-col>
+      <ion-col size="2.4">MODE + MODAL PREMIUM</ion-col>
+      <ion-col size="2.4">SUM ASSURED</ion-col>
+      <ion-col size="2.4">CURRENT STATUS</ion-col>
     </ion-row>
-    <ion-row *ngFor="let item of data" (click)="gotoDetail(item, title)">
+    <ion-row *ngFor="let item of data" (click)="gotoDetail(item)">
       <div class="ion-activatable ripple">
         <ion-ripple-effect></ion-ripple-effect>
       </div>
-      <ion-col size="3">{{ item.company }} - {{ item.plan }}</ion-col>
-      <ion-col size="3">{{ item.policyNo }} - {{ item.doc }}</ion-col>
-      <ion-col size="3">{{ item.mode }} - {{ item.modalPremium }}</ion-col>
-      <ion-col size="3"
-        >{{ item.sumAssured }} - {{ item.currentStatus }}</ion-col
-      >
+      <ion-col size="2.4">{{ item.company }} </ion-col>
+      <ion-col size="2.4">{{ item.policyNo }} - {{ item.doc }}</ion-col>
+      <ion-col size="2.4">{{ item.mode }} - {{ item.modalPremium }}</ion-col>
+      <ion-col size="2.4">{{ item.sumAssured }}</ion-col>
+      <ion-col size="2.4">{{ item.currentStatus }}</ion-col>
     </ion-row>
   </ion-grid>
 </div>

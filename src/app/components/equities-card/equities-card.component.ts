@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EquitiesCardComponent implements OnInit {
   @Input() data = [];
-  @Input() title;
+  @Input() investorName;
   constructor(private userService: UserService,
     public appService: AppService,
     private cdr: ChangeDetectorRef) { }
@@ -24,7 +24,7 @@ export class EquitiesCardComponent implements OnInit {
       element.currentSharePrice = 0;
       this.getCurrentSharePrice(element);
     });
-    console.log(this.title);
+    console.log(this.investorName);
   }
 
   calcCurrentReturn(item) {

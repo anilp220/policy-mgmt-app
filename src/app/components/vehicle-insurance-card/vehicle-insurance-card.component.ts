@@ -7,12 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class VehicleInsuranceCardComponent implements OnInit {
   @Input() data = [];
-  @Input() title;
+  @Input() investorName;
   constructor() { }
 
   ngOnInit() {
     console.log(this.data);
-    console.log(this.title);
+    console.log(this.investorName);
   }
 
   gotoDetail(item) {

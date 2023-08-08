@@ -85,15 +85,15 @@ export class PushService {
   // }
 
   async fcmSetup() {
-    FCM.onNotification().subscribe(async (data) => {
-      console.log(data);
-      if (data.wasTapped) {
-        console.log('Received in background');
-      } else {
-        console.log('Received in foreground');
-        this.showLocalNotification(data);
-      };
-    });
+    // FCM.onNotification().subscribe(async (data) => {
+    //   console.log(data);
+    //   if (data.wasTapped) {
+    //     console.log('Received in background');
+    //   } else {
+    //     console.log('Received in foreground');
+    //     this.showLocalNotification(data);
+    //   };
+    // });
     // console.log('has permission', await FCM.hasPermission());
     // FCM.onTokenRefresh().subscribe(token => {
     //   console.log('FCM token', token);
@@ -103,7 +103,8 @@ export class PushService {
   }
 
   getToken() {
-    return FCM.getToken();
+    // return FCM.getToken();
+    return;
   }
 
   showLocalNotification(data) {

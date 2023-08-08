@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
         this.userService.user.userInfo = currentUserDetail;
         const token = await this.pushService.getToken();
         console.log(token);
-        await this.userService.updateUser({ registrationId: token }, success.user.uid);
+        await this.userService.updateUser({ registrationId: 'token' }, success.user.uid);
         console.log(user);
         if (user && user.role === 'client' && user.isActive) {
           this.appService.setDataToLocal('userInfo', user).then(async () => {

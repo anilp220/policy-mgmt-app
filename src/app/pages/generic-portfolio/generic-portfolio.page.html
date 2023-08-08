@@ -14,7 +14,7 @@
       <div *ngFor="let data of portfolioData | keyvalue">
         <app-mutual-fund-card
           [data]="data.value"
-          [title]="data.key"
+          [investorName]="data.key"
           [pageTitle]="title"
         ></app-mutual-fund-card>
       </div>
@@ -23,7 +23,8 @@
       <div *ngFor="let data of portfolioData | keyvalue">
         <app-life-insurance-card
           [data]="data.value"
-          [title]="data.key"
+          [investorName]="data.key"
+          [pageTitle]="title"
         ></app-life-insurance-card>
       </div>
     </ng-container>
@@ -31,7 +32,8 @@
       <div *ngFor="let data of portfolioData | keyvalue">
         <app-mediclaim-card
           [data]="data.value"
-          [title]="data.key"
+          [investorName]="data.key"
+          [pageTitle]="title"
         ></app-mediclaim-card>
       </div>
     </ng-container>
@@ -39,7 +41,8 @@
       <div *ngFor="let data of portfolioData | keyvalue">
         <app-vehicle-insurance-card
           [data]="data.value"
-          [title]="data.key"
+          [investorName]="data.key"
+          [pageTitle]="title"
         ></app-vehicle-insurance-card>
       </div>
     </ng-container>
@@ -47,7 +50,8 @@
       <div *ngFor="let data of portfolioData | keyvalue">
         <app-equities-card
           [data]="data.value"
-          [title]="data.key"
+          [investorName]="data.key"
+          [pageTitle]="title"
         ></app-equities-card>
       </div>
     </ng-container>

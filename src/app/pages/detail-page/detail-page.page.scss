@@ -13,6 +13,9 @@ ion-content {
         background: #cae7fa;
         color: black;
         font-family: "Montserrat";
+        ion-col{
+          padding: 10px;
+        }
         ion-col:nth-child(1){
           border-right: 1px solid;
         }

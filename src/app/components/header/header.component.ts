@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() userName: string;
   @Input() previewUrl: string;
+  @Input() investorName: string;
   isHome = false;
   constructor(private navCtrl: NavController, private router: Router, public userService: UserService) {
     this.isHome = this.router.url === '/tabs/home';

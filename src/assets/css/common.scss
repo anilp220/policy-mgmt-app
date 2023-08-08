@@ -94,7 +94,7 @@ ion-toolbars.toolbar-searchbar {
   font-family: "Montserrat";
   ion-row:nth-child(1){
     color: #1bc9f6;
-    font-size: 20px;
+    font-size: 15px;
     border-bottom: 1px solid;
   }
   ion-row:nth-child(2){
@@ -119,4 +119,7 @@ ion-toolbars.toolbar-searchbar {
   .green{
     color:green
   }
+}
+.custom-modal{
+  --ion-background-color: transparent !important;
 }
