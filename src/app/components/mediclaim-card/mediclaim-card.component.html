@@ -1,7 +1,7 @@
 <div class="investorCard">
   <ion-grid>
     <ion-row>
-      <ion-col>Type of plan- {{ investorName }}</ion-col>
+      <ion-col>TYPE OF PLAN- {{ investorName.toUpperCase() }}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="2.4">PROPOSER</ion-col>
@@ -17,7 +17,7 @@
       <ion-col size="2.4">{{ item.proposer }}</ion-col>
       <ion-col size="2.4">{{ item.company }} - {{ item.plan }}</ion-col>
       <ion-col size="2.4">
-        {{ item.purchaseDate }} - {{ item.policyPeriod }}
+        {{ item.purchaseDate | date : "dd-MMM-yyyy" }} - {{ item.policyPeriod }}
       </ion-col>
       <ion-col size="2.4">{{ item.premium }}</ion-col>
       <ion-col size="2.4">{{ item.statusOfPolicy }}</ion-col>

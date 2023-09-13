@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MediclaimCardComponent implements OnInit {
   @Input() data = [];
   @Input() investorName;
+  @Input() pageTitle;
   constructor() { }
 
   ngOnInit() {
