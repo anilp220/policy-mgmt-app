@@ -27,6 +27,7 @@ export class UserService {
     [this.models.collections.vehicleInsurance]: [],
     [this.models.collections.corporateInsurance]: [],
     [this.models.collections.others]: [],
+    [this.models.collections.loans]: [],
   };
   allSchemes: any;
   allEquities: any;

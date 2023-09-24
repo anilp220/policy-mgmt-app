@@ -8,13 +8,13 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'home',
-        loadChildren: () => import('../pages/home/home.module').then(m => m.HomePageModule)
+        path: '',
+        redirectTo: '/tabs/dashboard',
+        pathMatch: 'full'
       },
       {
-        path: '',
-        redirectTo: '/tabs/home',
-        pathMatch: 'full'
+        path: 'portfolios',
+        loadChildren: () => import('../pages/portfolios/portfolios.module').then(m => m.PortfoliosPageModule)
       },
       {
         path: 'notification',
@@ -35,12 +35,16 @@ const routes: Routes = [
       {
         path: 'detail-page',
         loadChildren: () => import('../pages/detail-page/detail-page.module').then(m => m.DetailPagePageModule)
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/tabs/dashboard',
     pathMatch: 'full'
   },
 ];

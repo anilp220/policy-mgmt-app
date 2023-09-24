@@ -13,9 +13,9 @@ export class HeaderComponent implements OnInit {
   @Input() userName: string;
   @Input() previewUrl: string;
   @Input() investorName: string;
-  isHome = false;
+  isDashboard = false;
   constructor(private navCtrl: NavController, private router: Router, public userService: UserService) {
-    this.isHome = this.router.url === '/tabs/home';
+    this.isDashboard = this.router.url === '/tabs/dashboard';
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.navCtrl.navigateRoot('/notification');
   }
   goBack() {
-    console.log(this.title)
+    console.log(this.title);
     if (this.title === 'equities') {
       this.navCtrl.navigateRoot('/tabs/home');
       return;

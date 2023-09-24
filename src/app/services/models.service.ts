@@ -12,6 +12,7 @@ export class Models {
     vehicleInsurance: 'vehicle-insurance',
     corporateInsurance: 'corporate-insurance',
     others: 'others',
+    loans: 'loans'
   };
 
   titles = {
@@ -22,5 +23,6 @@ export class Models {
     vehicleInsurance: 'Vehicle Insurance',
     corporateInsurance: 'Corporate Insurance',
     others: 'Others',
+    loans: 'Loans',
   };
 }

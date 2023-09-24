@@ -1,0 +1,58 @@
+<app-header></app-header>
+<ion-content>
+  <div class="content-container">
+    <ion-row class="categories-item">
+      <ion-col (click)="onClick('portfolios')" class="ion-activatable">
+        <a>
+          <div>Portfolios</div>
+          <div>
+            <img
+              [src]="'../../../assets/icon/dashboard/MYPORTFOLIO.png'"
+              alt=""
+            />
+          </div>
+        </a>
+      </ion-col>
+    </ion-row>
+    <ion-row class="categories-item">
+      <ion-col class="ion-activatable margin-right">
+        <a (click)="onClick(port)">
+          <img [src]="'../../../assets/icon/dashboard/SUMASSURED.png'" alt="" />
+          <p>Sum Assured</p>
+        </a>
+      </ion-col>
+      <ion-col class="ion-activatable">
+        <a (click)="onClick(port)">
+          <img
+            [src]="'../../../assets/icon/dashboard/RIDERSUMASSURED.png'"
+            alt=""
+          />
+          <p>Rider Sum Assured</p>
+        </a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="categories-item">
+      <ion-col class="ion-activatable margin-right">
+        <a (click)="onClick(port)">
+          <img [src]="'../../../assets/icon/dashboard/MATURITIES.png'" alt="" />
+          <p>Maturities</p>
+        </a>
+      </ion-col>
+      <ion-col class="ion-activatable">
+        <a (click)="onClick(port)">
+          <img [src]="'../../../assets/icon/dashboard/RENEWALS.png'" alt="" />
+          <p>Renewals</p>
+        </a>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="bottom-banner">
+    <div class="banner-cnt">
+      <div class="logo">
+        <img src="../../../assets/icon/dashboard/MYSOSFAMILY.png" alt="" />
+      </div>
+      <div class="title">WE ARE HERE WITH YOU</div>
+    </div>
+  </div>
+</ion-content>

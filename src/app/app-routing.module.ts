@@ -21,10 +21,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule)
   },
   {
-    path: 'home',
-    // loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  }
+    path: 'portfolios',
+    loadChildren: () => import('./pages/portfolios/portfolios.module').then( m => m.PortfoliosPageModule)
+  },
+  // {
+  //   path: 'home',
+  //   // loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+  //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  // },
 ];
 @NgModule({
   imports: [

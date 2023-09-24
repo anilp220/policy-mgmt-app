@@ -5,11 +5,11 @@ import { Models } from 'src/app/services/models.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-portfolios',
+  templateUrl: './portfolios.page.html',
+  styleUrls: ['./portfolios.page.scss'],
 })
-export class HomePage implements OnInit {
+export class PortfoliosPage implements OnInit {
   portfolio: any = [
     {
       name: this.models.titles.lifeInsurance,
@@ -38,6 +38,10 @@ export class HomePage implements OnInit {
     {
       name: this.models.titles.others,
       collection: this.models.collections.others
+    },
+    {
+      name: this.models.titles.loans,
+      collection: this.models.collections.loans
     }
   ];
   segragatedData = {};
@@ -65,6 +69,7 @@ export class HomePage implements OnInit {
       'vehicle-insurance': {},
       'corporate-insurance': {},
       others: {},
+      loans: {}
     };
   }
 

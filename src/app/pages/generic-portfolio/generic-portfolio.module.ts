@@ -7,12 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { GenericPortfolioPageRoutingModule } from './generic-portfolio-routing.module';
 
 import { GenericPortfolioPage } from './generic-portfolio.page';
-import { HeaderComponent } from 'src/app/components/header/header.component';
 import { MutualFundCardComponent } from 'src/app/components/mutual-fund-card/mutual-fund-card.component';
 import { LifeInsuranceCardComponent } from 'src/app/components/life-insurance-card/life-insurance-card.component';
 import { MediclaimCardComponent } from 'src/app/components/mediclaim-card/mediclaim-card.component';
 import { VehicleInsuranceCardComponent } from 'src/app/components/vehicle-insurance-card/vehicle-insurance-card.component';
 import { EquitiesCardComponent } from 'src/app/components/equities-card/equities-card.component';
+import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
   imports: [
@@ -23,12 +23,12 @@ import { EquitiesCardComponent } from 'src/app/components/equities-card/equities
   ],
   declarations: [
     GenericPortfolioPage,
-    HeaderComponent,
     MutualFundCardComponent,
     LifeInsuranceCardComponent,
     MediclaimCardComponent,
     VehicleInsuranceCardComponent,
-    EquitiesCardComponent
+    EquitiesCardComponent,
+    SharedModuleModule
   ]
 })
 export class GenericPortfolioPageModule { }
