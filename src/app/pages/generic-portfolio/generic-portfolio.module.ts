@@ -13,12 +13,14 @@ import { MediclaimCardComponent } from 'src/app/components/mediclaim-card/medicl
 import { VehicleInsuranceCardComponent } from 'src/app/components/vehicle-insurance-card/vehicle-insurance-card.component';
 import { EquitiesCardComponent } from 'src/app/components/equities-card/equities-card.component';
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
+import { GenericePortfolioTableComponent } from 'src/app/components/generice-portfolio-table/generice-portfolio-table.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModuleModule,
     GenericPortfolioPageRoutingModule
   ],
   declarations: [
@@ -28,7 +30,8 @@ import { SharedModuleModule } from 'src/app/modules/shared-module.module';
     MediclaimCardComponent,
     VehicleInsuranceCardComponent,
     EquitiesCardComponent,
-    SharedModuleModule
+    GenericePortfolioTableComponent,
+    VehicleInsuranceCardComponent
   ]
 })
 export class GenericPortfolioPageModule { }

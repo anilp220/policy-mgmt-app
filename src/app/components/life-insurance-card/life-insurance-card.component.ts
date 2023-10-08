@@ -16,15 +16,50 @@ export class LifeInsuranceCardComponent implements OnInit {
     { title: 'CLIENT DETAILS', data: [] },
     { title: 'POLICY DETAILS', data: [] }
   ];
+  tableTitle = [];
+  tableData = {
+    item: null,
+    data: []
+  };
   constructor(private models: Models, public appService: AppService) {
   }
 
   ngOnInit() {
     console.log(this.data);
-    console.log(this.investorName);
+    this.buildGenericeTableData();
+  }
+
+  buildGenericeTableData() {
+    // const item = { ...this.data[0] };
+    this.tableTitle = [
+      ['COMPANY', 'PLAN'],
+      ['POLICY NO', 'D.O.C.'],
+      ['MODE', 'PREMIUM'],
+      ['SUM ASSURED'],
+      ['STATUS']
+    ];
+    this.data.forEach(item => {
+      this.tableData.item = item;
+      this.tableData.data.push([
+        [item.company, item.plan],
+        [item.policyNo, item.doc],
+        [item.mode, item.premium],
+        [item.sumAssured],
+        [item.currentStatus]
+      ]);
+    });
+    console.log(this.tableData);
+    // this.tableData = [
+    //   [item.company, item.plan],
+    //   [item.policyNo, item.doc],
+    //   [item.mode, item.premium],
+    //   [item.sumAssured],
+    //   [item.currentStatus]
+    // ];
   }
 
   gotoDetail(item) {
+    console.log(item);
     this.portfolioData[0].data = this.clientDetails(item);
     this.portfolioData[1].data = this.policytDetails(item);
     this.appService.gotoPolicyDetail(this.portfolioData, this.pageTitle, this.investorName);
@@ -32,6 +67,10 @@ export class LifeInsuranceCardComponent implements OnInit {
 
   clientDetails(item) {
     const obj = [
+      {
+        key: 'Proposer Name',
+        value: item.proposerName
+      },
       {
         key: 'DOB Proposer',
         value: item.proposerDOB

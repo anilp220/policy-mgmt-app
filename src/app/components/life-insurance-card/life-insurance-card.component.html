@@ -1,72 +1,12 @@
 <div class="investorCard">
   <ion-grid>
-    <ion-row>
-      <ion-col>LIFE INSURED- {{ investorName.toUpperCase() }}</ion-col>
+    <ion-row class="title">
+      <ion-col>Investor- {{ investorName.toUpperCase() }}</ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>COMPANY</div>
-          <div>PLAN</div>
-        </div>
-      </ion-col>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>POLICY NO.</div>
-          <div>DOC</div>
-        </div>
-      </ion-col>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>MODE</div>
-          <div>MODAL PREMIUM</div>
-        </div>
-      </ion-col>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>SUM ASSURED</div>
-          <div>CURRENT STATUS</div>
-        </div>
-      </ion-col>
-      <!-- <ion-col size="3">COMPANY + PLAN</ion-col>
-      <ion-col size="3">POLICY NO. + DOC</ion-col>
-      <ion-col size="3">MODE + MODAL PREMIUM</ion-col>
-      <ion-col size="3">SUM ASSURED</ion-col>
-      <ion-col size="3">CURRENT STATUS</ion-col> -->
-    </ion-row>
-    <ion-row *ngFor="let item of data" (click)="gotoDetail(item)">
-      <div class="ion-activatable ripple">
-        <ion-ripple-effect></ion-ripple-effect>
-      </div>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>{{ item.company }}</div>
-          <div>{{ item.plan }}</div>
-        </div>
-      </ion-col>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>{{ item.policyNo }}</div>
-          <div>{{ item.doc * 1000 | date : "dd-MMM-yyyy" }}</div>
-        </div>
-      </ion-col>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>{{ item.mode }}</div>
-          <div>{{ item.modalPremium }}</div>
-        </div>
-      </ion-col>
-      <ion-col size="3">
-        <div class="col-container">
-          <div>{{ item.sumAssured }}</div>
-          <div>{{ item.currentStatus }}</div>
-        </div>
-      </ion-col>
-      <!-- <ion-col size="3">{{ item.company }} - {{ item.plan }} </ion-col>
-      <ion-col size="3">{{ item.policyNo }} - {{ item.doc }}</ion-col>
-      <ion-col size="3">{{ item.mode }} - {{ item.modalPremium }}</ion-col>
-      <ion-col size="3">{{ item.sumAssured }}</ion-col>
-      <ion-col size="3">{{ item.currentStatus }}</ion-col> -->
-    </ion-row>
+    <generice-portfolio-table
+      [tableTitle]="tableTitle"
+      [tableData]="tableData"
+      (gotoDetailEvent)="gotoDetail($event)"
+    ></generice-portfolio-table>
   </ion-grid>
 </div>

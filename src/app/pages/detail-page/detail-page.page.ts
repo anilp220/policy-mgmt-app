@@ -15,6 +15,7 @@ export class DetailPagePage implements OnInit {
   beforeRefresh: any;
   portfolioData: any;
   investorName: any;
+  allItems: any;
   constructor(private route: ActivatedRoute,
     private modalCtrl: ModalController,
     public models: Models, private router: Router) {
@@ -22,9 +23,9 @@ export class DetailPagePage implements OnInit {
       const navParams = this.router.getCurrentNavigation().extras.state;
       if (navParams) {
         this.portfolioData = JSON.parse(navParams.item);
-        console.log(navParams.title);
         this.investorName = navParams.investorName;
         this.title = navParams.title;
+        this.allItems = JSON.parse(navParams.allItems);
         this.beforeRefresh = JSON.parse(JSON.stringify(this.portfolioData));
       }
     });

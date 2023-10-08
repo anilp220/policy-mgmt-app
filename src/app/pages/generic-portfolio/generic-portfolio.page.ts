@@ -25,15 +25,12 @@ export class GenericPortfolioPage implements OnInit {
         this.portfolioData = JSON.parse(navParams.item);
         this.title = navParams.title;
         this.beforeRefresh = JSON.parse(JSON.stringify(this.portfolioData));
-        console.log(this.portfolioData);
-        console.log(this.title);
       }
     });
   }
 
   async ngOnInit() {
     await this.appService.presentLoading();
-    console.log(this.title);
     if (this.title !== this.models.titles.equities && this.title !== this.models.titles.mutualFund) {
       await this.appService.hideLoading();
     }
