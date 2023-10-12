@@ -131,3 +131,18 @@ ion-toolbars.toolbar-searchbar {
 .elipses{
 
 }
+
+.col-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-anchor{
+  background: #80bbea;
+  padding: 5px 20px;
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}

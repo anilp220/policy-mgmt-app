@@ -17,5 +17,17 @@ export class PopupModalComponent implements OnInit {
   dismiss() {
     this.modalCtrl.dismiss();
   }
-
+  async openModal(data, id) {
+    console.log(data, id);
+    const modal = await this.modalCtrl.create({
+      component: PopupModalComponent,
+      backdropDismiss: false,
+      id,
+      componentProps: {
+        item: data
+      },
+      cssClass: 'custom-modal'
+    });
+    return await modal.present();
+  }
 }

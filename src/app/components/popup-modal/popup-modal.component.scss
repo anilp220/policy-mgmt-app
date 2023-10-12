@@ -30,17 +30,25 @@
   }
   .content{
     color: black;
+    padding: 10px;
+    max-height: 400px;
+    overflow: scroll;
     ion-col{
-      padding: 10px;
+      padding: 5px;
+      border: 1px solid;
     }
     ion-col:nth-child(1){
-      border-right: 1px solid;
+      margin-right: 2.5px;
+    }
+    ion-col:nth-child(2){
+      margin-left: 2.5px;
     }
     ion-row{
-      border-bottom: 1px solid;
-    }
-    ion-row:last-child{
-      border-bottom: 0;
+      margin-bottom: 5px;
     }
   }
+}
+.cvg-row{
+  font-size: 12px;
+  text-align: center;
 }

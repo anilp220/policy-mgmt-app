@@ -55,5 +55,14 @@
         ></app-equities-card>
       </div>
     </ng-container>
+    <ng-container *ngIf="title == models.titles.corporateInsurance">
+      <div *ngFor="let data of portfolioData | keyvalue">
+        <app-corporate-insurance-card
+          [data]="data.value"
+          [investorName]="data.key"
+          [pageTitle]="title"
+        ></app-corporate-insurance-card>
+      </div>
+    </ng-container>
   </div>
 </ion-content>

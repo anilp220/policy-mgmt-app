@@ -121,6 +121,9 @@ export class PortfoliosPage implements OnInit {
         case this.models.collections.mediclaim:
           this.mapOwner(port, element.typeOfPolicy, element);
           break;
+        case this.models.collections.corporateInsurance:
+          this.mapOwner(port, element.typeOfPolicy, element);
+          break;
         default:
           break;
       }

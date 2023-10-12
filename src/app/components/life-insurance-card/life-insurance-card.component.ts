@@ -62,7 +62,7 @@ export class LifeInsuranceCardComponent implements OnInit {
     console.log(item);
     this.portfolioData[0].data = this.clientDetails(item);
     this.portfolioData[1].data = this.policytDetails(item);
-    this.appService.gotoPolicyDetail(this.portfolioData, this.pageTitle, this.investorName);
+    this.appService.gotoPolicyDetail(this.portfolioData, this.pageTitle, this.investorName, item);
   }
 
   clientDetails(item) {
@@ -247,8 +247,58 @@ export class LifeInsuranceCardComponent implements OnInit {
   }
   getCoverageDetails(item) {
     //todo
-    return [
+    console.log(item);
+    const obj = [
+      {
+        key: 'SUM ASSURED',
+        value: item.sumAssured
+      },
+      {
+        key: 'DEATH BENEFIT',
+        value: item.deathBenefit
+      },
+      {
+        key: 'Death Benefit Value',
+        value: item.deathBenefitValue
+      },
     ];
+    for (let i = 0; i < item.riders?.length; i++) {
+      const rider = item.riders[i];
+      const riderObj = {
+        key: 'Rider ' + (i + 1),
+        value: [
+          {
+            key: 'RIDER NAME',
+            value: rider.riderName
+          },
+          {
+            key: 'SUM',
+            value: rider.sumAssured
+          },
+          {
+            key: 'RIDER VALIDITY',
+            value: rider.riderValidity
+          },
+          {
+            key: 'FEATURE',
+            value: rider.features
+          }
+        ],
+        labelName: rider.riderName,
+        coverages: []
+      };
+      for (let j = 0; j < rider.coverages?.length; j++) {
+        const coverages = rider.coverages[j];
+        riderObj.coverages.push({
+          disease: coverages.disease,
+          diseaseOverview: coverages.diseaseOverview,
+          sumAssured: coverages.sumAssured
+        });
+      }
+      obj.push(riderObj);
+    }
+    console.log(obj);
+    return obj;
   }
   getPremiumPayingDetails(item) {
     return [

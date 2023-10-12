@@ -1,16 +1,71 @@
 <ion-content>
-  <div class="container">
-    <div class="header">
-      <span class="title">{{ item.key }}</span>
-      <ion-button fill="clear" class="close" (click)="dismiss()">
-        <ion-icon name="close-outline"></ion-icon>
-      </ion-button>
-    </div>
-    <div class="content">
-      <ion-row *ngFor="let data of item.value">
-        <ion-col size="6">{{ data.key }}</ion-col>
-        <ion-col size="6">{{ data.value }}</ion-col>
-      </ion-row>
+  <div *ngIf="item.isAccordian; else container">
+    <div class="container">
+      <div class="header">
+        <span class="title">{{ item.key }}</span>
+        <ion-button fill="clear" class="close" (click)="dismiss()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="content">
+        <ion-accordion-group>
+          <ion-accordion
+            toggleIconSlot="start"
+            toggleIcon="caret-down-outline"
+            *ngFor="let itemValue of item.value; let i = index"
+            [value]="i + 1"
+          >
+            <ion-item slot="header" color="primary">
+              <ion-label>{{ itemValue.title }}</ion-label>
+            </ion-item>
+            <div class="content-body" slot="content">
+              <ng-container *ngFor="let dataItem of itemValue.data">
+                <ion-row *ngIf="dataItem.value">
+                  <ion-col>{{ dataItem.key }}</ion-col>
+                  <ion-col>{{ dataItem.value }}</ion-col>
+                </ion-row>
+              </ng-container>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
     </div>
   </div>
+  <ng-template #container>
+    <div class="container">
+      <div class="header">
+        <span class="title">{{ item.key }}</span>
+        <ion-button fill="clear" class="close" (click)="dismiss()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="content-body content">
+        <ng-container *ngFor="let data of item.value">
+          <ion-row>
+            <ion-col>{{ data.key }}</ion-col>
+            <ion-col *ngIf="data.labelName; else showValue">
+              <a class="modal-anchor" (click)="openModal(data, i + '' + j)">{{
+                data.labelName
+              }}</a>
+            </ion-col>
+            <ng-template #showValue>
+              <ion-col>{{ data.value }}</ion-col>
+            </ng-template>
+          </ion-row>
+        </ng-container>
+        <ng-container *ngIf="item.coverages">
+          <ion-row class="cvg-row">
+            <ion-col>DISEASE</ion-col>
+            <ion-col>OVERVIEW</ion-col>
+            <ion-col>SUM ASSURED</ion-col>
+          </ion-row>
+          <ion-row class="cvg-row" *ngFor="let cvg of item.coverages">
+            <ion-col>{{ cvg.disease }}</ion-col>
+            <ion-col>{{ cvg.diseaseOverview }}</ion-col>
+            <ion-col>{{ cvg.sumAssured }}</ion-col>
+          </ion-row>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
 </ion-content>

@@ -19,6 +19,8 @@ ion-content {
           border: 1px solid;
           margin-bottom: 5px;
           background-color: white;
+          display: flex;
+          align-items: center;
         }
         ion-col:nth-child(1){
           // border-right: 1px solid;

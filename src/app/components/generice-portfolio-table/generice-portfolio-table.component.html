@@ -1,5 +1,9 @@
 <ion-row class="heading">
-  <ion-col *ngFor="let titleArr of tableTitle" size="2.2">
+  <ion-col
+    *ngFor="let titleArr of tableTitle"
+    [ngClass]="titleArr.length == 1 ? 'col-center' : ''"
+    size="2.2"
+  >
     <div class="margin-t-5" *ngFor="let title of titleArr">{{ title }}</div>
   </ion-col>
 </ion-row>
@@ -7,7 +11,11 @@
   *ngFor="let dataRow of tableData.data"
   (click)="gotoDetail(tableData.item)"
 >
-  <ion-col size="2.2" *ngFor="let dataCol of dataRow">
+  <ion-col
+    size="2.2"
+    *ngFor="let dataCol of dataRow"
+    [ngClass]="dataCol.length == 1 ? 'col-center' : ''"
+  >
     <div class="margin-t-5" *ngFor="let data of dataCol">{{ data }}</div>
   </ion-col>
 </ion-row>

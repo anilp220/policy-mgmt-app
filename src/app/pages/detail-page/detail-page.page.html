@@ -21,7 +21,9 @@
                 >
                 <ng-template #modalView>
                   <ion-col>
-                    <a (click)="openModal(dataItem,i+''+j)">Click here</a>
+                    <a class="modal-anchor" (click)="openModal(dataItem,i+''+j)"
+                      >Click here</a
+                    >
                   </ion-col>
                 </ng-template>
               </ng-container>
@@ -36,13 +38,13 @@
       </ion-accordion>
     </ion-accordion-group>
     <div class="url-container">
-      <div *ngIf="allItems.branchLocator">
+      <div *ngIf="allItems?.branchLocator">
         <a [href]="allItems.branchLocator">BRANCH LOCATOR</a>
       </div>
-      <div *ngIf="allItems.policyDownload">
+      <div *ngIf="allItems?.policyDownload">
         <a [href]="allItems.policyDownload">POLICY DOWNLOAD</a>
       </div>
-      <div *ngIf="allItems.claimProcedure">
+      <div *ngIf="allItems?.claimProcedure">
         <a [href]="allItems.claimProcedure">CLAIM PROCEDURE</a>
       </div>
     </div>

@@ -1,15 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
+
 @Component({
-  selector: 'app-mediclaim-card',
-  templateUrl: './mediclaim-card.component.html',
-  styleUrls: ['./mediclaim-card.component.scss'],
+  selector: 'app-corporate-insurance-card',
+  templateUrl: './corporate-insurance-card.component.html',
+  styleUrls: ['./corporate-insurance-card.component.scss'],
 })
-export class MediclaimCardComponent implements OnInit {
+export class CorporateInsuranceCardComponent implements OnInit {
   @Input() data = [];
   @Input() investorName;
   @Input() pageTitle;
   portfolioData = [
+    { title: 'CLIENT DETAILS', data: [] },
     { title: 'POLICY DETAILS', data: [] }
   ];
   tableTitle = [];
@@ -21,6 +23,27 @@ export class MediclaimCardComponent implements OnInit {
 
   ngOnInit() {
     this.buildGenericeTableData();
+  }
+
+  buildGenericeTableData() {
+    this.tableTitle = [
+      ['INSURANCE COMPANY'],
+      ['D.O.P.', 'POLICY PERIOD'],
+      ['COVERAGE'],
+      ['PREMIUM'],
+      ['POLICY STATUS']
+    ];
+    this.data.forEach(item => {
+      this.tableData.item = item;
+      this.tableData.data.push([
+        [item.insuranceCompanyName],
+        [item.purchaseDate, item.policyPeriod],
+        [item[this.getTypeOfPolicyAsKey(item.typeOfPolicy)]?.policyCoverage?.coverage],
+        [item.premium],
+        [item.statusOfPolicy],
+      ]);
+    });
+    console.log(this.tableData);
   }
 
   gotoDetail(item) {
@@ -103,25 +126,20 @@ export class MediclaimCardComponent implements OnInit {
     ];
   }
 
-  buildGenericeTableData() {
-    this.tableTitle = [
-      ['PROPOSER', 'TYPE'],
-      ['COMPANY', 'PLAN'],
-      ['D.O.P.', 'POLICY PERIOD'],
-      ['PREMIUM'],
-      ['POLICY STATUS']
-    ];
-    this.data.forEach(item => {
-      this.tableData.item = item;
-      this.tableData.data.push([
-        [item.proposer, item.type],
-        [item.company, item.plan],
-        [item.purchaseDate, item.policyPeriod],
-        [item.premium],
-        [item.statusOfPolicy]
-      ]);
-    });
-    console.log(this.tableData);
+  getTypeOfPolicyAsKey(str) {
+    if (str) {
+      const arr = str.toLowerCase().split(' ');
+      let result = '';
+      for (let i = 0; i < arr.length; i++) {
+        let temp = arr[i];
+        if (i > 0) {
+          temp = temp[0].toUpperCase() + temp.slice(1);
+        }
+        result += temp;
+      }
+      console.log(result);
+      return result;
+    }
   }
 
   insuredMemberDetail(item: any[]) {
@@ -218,4 +236,5 @@ export class MediclaimCardComponent implements OnInit {
       },
     ];
   }
+
 }
