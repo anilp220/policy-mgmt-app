@@ -23,6 +23,7 @@ export class GenericPortfolioPage implements OnInit {
       const navParams = this.router.getCurrentNavigation().extras.state;
       if (navParams) {
         this.portfolioData = JSON.parse(navParams.item);
+        console.log(this.portfolioData);
         this.title = navParams.title;
         this.beforeRefresh = JSON.parse(JSON.stringify(this.portfolioData));
       }

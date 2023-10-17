@@ -15,6 +15,7 @@ import { EquitiesCardComponent } from 'src/app/components/equities-card/equities
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 import { GenericePortfolioTableComponent } from 'src/app/components/generice-portfolio-table/generice-portfolio-table.component';
 import { CorporateInsuranceCardComponent } from 'src/app/components/corporate-insurance-card/corporate-insurance-card.component';
+import { FixedDepositCardComponent } from 'src/app/components/fixed-deposit-card/fixed-deposit-card.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { CorporateInsuranceCardComponent } from 'src/app/components/corporate-in
     EquitiesCardComponent,
     GenericePortfolioTableComponent,
     VehicleInsuranceCardComponent,
-    CorporateInsuranceCardComponent
+    CorporateInsuranceCardComponent,
+    FixedDepositCardComponent
   ]
 })
 export class GenericPortfolioPageModule { }

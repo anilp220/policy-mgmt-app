@@ -94,6 +94,7 @@ export class PortfoliosPage implements OnInit {
   }
 
   onClick(port) {
+    console.log(this.segragatedData);
     console.log(this.segragatedData[port.collection]);
     console.log(this.userService.allCollections[port.collection]);
     this.navCtrl.navigateForward('tabs/generic-portfolio', {
@@ -124,6 +125,9 @@ export class PortfoliosPage implements OnInit {
         case this.models.collections.corporateInsurance:
           this.mapOwner(port, element.typeOfPolicy, element);
           break;
+        case this.models.collections.fixedDeposit:
+          this.mapOwner(port, element.typeOfPolicy, element);
+          break;
         default:
           break;
       }
@@ -131,10 +135,17 @@ export class PortfoliosPage implements OnInit {
   }
 
   mapOwner(port, name, element) {
-    if (this.segragatedData[port.collection][name]) {
-      this.segragatedData[port.collection][name].push(element);
+    let keyName = name;
+    if (port.collection === this.models.collections.corporateInsurance) {
+      keyName = name + ' - ' + element.companyName;
+    }
+    if (port.collection === this.models.collections.fixedDeposit) {
+      keyName = name + ' - ' + element.firstholder;
+    }
+    if (this.segragatedData[port.collection][keyName]) {
+      this.segragatedData[port.collection][keyName].push(element);
     } else {
-      this.segragatedData[port.collection][name] = [element];
+      this.segragatedData[port.collection][keyName] = [element];
     }
   }
 }
