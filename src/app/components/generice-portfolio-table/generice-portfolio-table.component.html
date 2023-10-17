@@ -16,6 +16,11 @@
     *ngFor="let dataCol of dataRow"
     [ngClass]="dataCol.length == 1 ? 'col-center' : ''"
   >
-    <div class="margin-t-5" *ngFor="let data of dataCol">{{ data }}</div>
+    <div class="margin-t-5" *ngFor="let data of dataCol">
+      <span *ngIf="isReturn(data)" [ngClass]="isRed(data) ? 'red' : 'green'">{{
+        data
+      }}</span>
+      <span *ngIf="!isReturn(data)">{{ data }}</span>
+    </div>
   </ion-col>
 </ion-row>

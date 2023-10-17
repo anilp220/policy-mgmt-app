@@ -36,8 +36,8 @@ export class PortfoliosPage implements OnInit {
       collection: this.models.collections.corporateInsurance,
     },
     {
-      name: this.models.titles.others,
-      collection: this.models.collections.others
+      name: this.models.titles.fixedDeposit,
+      collection: this.models.collections.fixedDeposit
     },
     {
       name: this.models.titles.loans,
@@ -62,14 +62,14 @@ export class PortfoliosPage implements OnInit {
 
   resetSegragatedData() {
     this.segragatedData = {
-      'life-insurance': {},
-      mediclaim: {},
-      'mutual-fund': {},
-      equities: {},
-      'vehicle-insurance': {},
-      'corporate-insurance': {},
-      others: {},
-      loans: {}
+      [this.models.collections.lifeInsurance]: {},
+      [this.models.collections.mediclaim]: {},
+      [this.models.collections.mutualFund]: {},
+      [this.models.collections.equities]: {},
+      [this.models.collections.vehicleInsurance]: {},
+      [this.models.collections.corporateInsurance]: {},
+      [this.models.collections.fixedDeposit]: {},
+      [this.models.collections.loans]: {},
     };
   }
 

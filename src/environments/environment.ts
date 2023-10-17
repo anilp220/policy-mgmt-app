@@ -20,6 +20,8 @@ export const environment = {
     // appId: "1:569187583937:web:719193d3e00c0dcad8d140",
     // measurementId: "G-7YGYZFY1KM"
   },
+  getAllScheme: 'http://api.moneycare.co.in/mfapi/get-all-scheme',
+  getScehemeData: 'http://api.moneycare.co.in/mfapi/get-scheme-data/'
   // androidBannerAd: 'ca-app-pub-3984102337736404/3718736001',
   // iosBannerAd: 'ca-app-pub-3984102337736404/9901000975'
 };

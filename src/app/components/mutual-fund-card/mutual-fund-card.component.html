@@ -1,4 +1,4 @@
-<div class="investorCard">
+<!-- <div class="investorCard">
   <ion-grid>
     <ion-row>
       <ion-col>Investor- {{ investorName }}</ion-col>
@@ -24,5 +24,17 @@
         {{ item.currentReturn }}%
       </ion-col>
     </ion-row>
+  </ion-grid>
+</div> -->
+<div class="investorCard">
+  <ion-grid>
+    <ion-row class="title">
+      <ion-col>Investor- {{ investorName.toUpperCase() }}</ion-col>
+    </ion-row>
+    <generice-portfolio-table
+      [tableTitle]="tableTitle"
+      [tableData]="tableData"
+      (gotoDetailEvent)="gotoDetail($event)"
+    ></generice-portfolio-table>
   </ion-grid>
 </div>

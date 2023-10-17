@@ -26,16 +26,40 @@ export class MutualFundCardComponent implements OnInit {
     { title: 'FUTURE VALUES OF INVESTMENT', data: [] },
     { title: 'RETURN PERFORMANCE', data: [] }
   ];
+  tableTitle = [];
+  tableData = {
+    item: null,
+    data: []
+  };
+
   constructor(private userService: UserService,
     private appService: AppService,
     private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.data.forEach(element => {
-      element.currentReturn = 0;
-      element.currentFundValue = 0;
-      this.calculateFundValue(element);
-    });
+    this.buildGenericeTableData();
+  }
+
+  async buildGenericeTableData() {
+    this.tableTitle = [
+      ['COMPANY'],
+      ['D.O.P.'],
+      ['INVESTED VALUE'],
+      ['FUND VALUE'],
+      ['RETURN']
+    ];
+    for (const item of this.data) {
+      await this.calculateFundValue(item);
+      this.tableData.item = item;
+      this.tableData.data.push([
+        [item.company.name],
+        [item.dateOfPurchase],
+        [item.currentInvestedValue],
+        [item.currentFundValue],
+        [item.currentReturn + '%']
+      ]);
+    }
+    this.cdr.detectChanges();
   }
 
   gotoDetail(item) {
@@ -43,7 +67,7 @@ export class MutualFundCardComponent implements OnInit {
     this.portfolioData[1].data = this.investmentDetail(item);
     this.portfolioData[2].data = this.futureValues(item);
     this.portfolioData[3].data = this.returnPerformance(item);
-    this.appService.gotoPolicyDetail(this.portfolioData, this.pageTitle);
+    this.appService.gotoPolicyDetail(this.portfolioData, this.pageTitle, this.investorName, item);
   }
 
   calcCurrentReturn(item) {
@@ -135,9 +159,19 @@ export class MutualFundCardComponent implements OnInit {
         value: item.taxSaver
       },
       {
-        key: 'Purpose of Invesment',
-        value: item.purposeOfInvestment
+        key: 'Purchase Details',
+        value: this.purchaseDetails(item)
       },
+      {
+        key: 'Agent/Broker',
+        value: item.agent
+      },
+    ];
+    return obj;
+  }
+
+  purchaseDetails(item) {
+    return [
       {
         key: 'Date of Purchase',
         value: item.dateOfPurchase
@@ -147,24 +181,24 @@ export class MutualFundCardComponent implements OnInit {
         value: item.modeOfInvestment
       },
       {
-        key: 'Lump Sum Invested Amount',
-        value: item.modeOfInvestment === sipType.LUMPSUMSIP ? item.lumpSumSIPamountInvested : null
-      },
-      {
         key: 'Status',
         value: item.status
       },
       {
+        key: 'Lump Sum Invested Amount',
+        value: item.modeOfInvestment === sipType.LUMPSUMSIP ? item.lumpSumSIPamountInvested : 'NA'
+      },
+      {
         key: 'SIP Amount',
-        value: item.modeOfInvestment !== sipType.LUMPSUM ? item.amountInvested : null
+        value: item.modeOfInvestment !== sipType.LUMPSUM ? item.amountInvested : 'NA'
       },
       {
         key: 'SIP Date',
-        value: item.modeOfInvestment !== sipType.LUMPSUM ? item.sipDate : null
+        value: item.modeOfInvestment !== sipType.LUMPSUM ? item.sipDate : 'NA'
       },
       {
         key: 'Annual SIP Invesment',
-        value: item.modeOfInvestment !== sipType.LUMPSUM ? item.annualSIPInvestment : null
+        value: item.modeOfInvestment !== sipType.LUMPSUM ? item.annualSIPInvestment : 'NA'
       },
       {
         key: 'Current Units',
@@ -190,16 +224,15 @@ export class MutualFundCardComponent implements OnInit {
         key: 'Tax Benefit',
         value: item.taxBenefit
       },
-      {
-        key: 'Agent/Broker',
-        value: item.agent
-      },
     ];
-    return obj;
   }
 
   futureValues(item) {
     const obj = [
+      {
+        key: 'Purpose of Invesment',
+        value: item.purposeOfInvestment
+      },
       {
         key: 'Term of Investment (Months)',
         value: item.termOfInvestment
@@ -227,7 +260,7 @@ export class MutualFundCardComponent implements OnInit {
   returnPerformance(item) {
     const obj = [
       {
-        key: 'url',
+        key: 'RETURN PERFORMANCE SINCE INCEPTION',
         value: item.returnPerformance
       }
     ];

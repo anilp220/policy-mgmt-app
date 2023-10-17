@@ -8,6 +8,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AppService } from './app.service';
 import { Observable } from 'rxjs';
 import { Models } from './models.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class UserService {
     [this.models.collections.equities]: [],
     [this.models.collections.vehicleInsurance]: [],
     [this.models.collections.corporateInsurance]: [],
-    [this.models.collections.others]: [],
+    [this.models.collections.fixedDeposit]: [],
     [this.models.collections.loans]: [],
   };
   allSchemes: any;
@@ -60,13 +61,16 @@ export class UserService {
     return new Promise((resolve, reject) => {
       try {
         this.resetAllCollection();
-        const collection = ['life-insurance',
-          'mediclaim',
-          'mutual-fund',
-          'equities',
-          'vehicle-insurance',
-          'corporate-insurance',
-          'others'];
+        const collection = [
+          this.models.collections.lifeInsurance,
+          this.models.collections.mediclaim,
+          this.models.collections.mutualFund,
+          this.models.collections.equities,
+          this.models.collections.vehicleInsurance,
+          this.models.collections.corporateInsurance,
+          this.models.collections.fixedDeposit,
+          this.models.collections.loans,
+        ];
         const promiseArr = [];
         collection.forEach((col) => {
           promiseArr.push(this.getDocument(col, this.user?.userInfo?.clientId));
@@ -139,13 +143,13 @@ export class UserService {
       this.allSchemes = JSON.parse(localData);
       return;
     }
-    this.allSchemes = await this.http.get('https://mynk.me/mfapi/get-all-scheme').toPromise();
+    this.allSchemes = await this.http.get(environment.getAllScheme).toPromise();
     await this.appService.setDataToLocal('allSchemes', JSON.stringify(this.allSchemes));
     console.log(this.allSchemes);
   }
 
   fetchSelectedScheme(id): any {
-    return this.http.get('https://mynk.me/mfapi/get-scheme-data/' + id).toPromise();
+    return this.http.get(environment.getScehemeData + id).toPromise();
   }
 
   fetchRapidApi(identifier?: any): Promise<any> {

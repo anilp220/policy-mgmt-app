@@ -8,9 +8,10 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class GenericePortfolioTableComponent implements OnInit {
 
-  @Input() tableTitle: any;
+  @Input() tableTitle: any[];
   @Input() tableData: any;
   @Output() gotoDetailEvent = new EventEmitter<any>();
+  isMutualFund = false;
   constructor() { }
 
   ngOnInit() {
@@ -21,5 +22,13 @@ export class GenericePortfolioTableComponent implements OnInit {
     this.gotoDetailEvent.emit(data);
   }
 
+  isReturn(str: string) {
+    return str?.toString().includes('%');
+  }
+
+  isRed(str: string) {
+    str = str.slice(0, str.length - 1);
+    return Number(str) < 0;
+  }
 
 }

@@ -11,7 +11,7 @@ export class Models {
     equities: 'equities',
     vehicleInsurance: 'vehicle-insurance',
     corporateInsurance: 'corporate-insurance',
-    others: 'others',
+    fixedDeposit: 'fixed-deposit',
     loans: 'loans'
   };
 
@@ -22,7 +22,7 @@ export class Models {
     equities: 'Equities',
     vehicleInsurance: 'Vehicle Insurance',
     corporateInsurance: 'Corporate Insurance',
-    others: 'Others',
+    fixedDeposit: 'Fixed Deposit',
     loans: 'Loans',
   };
 }
