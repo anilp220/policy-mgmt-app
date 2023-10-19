@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
           this.appService.setDataToLocal('userInfo', user).then(async () => {
             await this.userService.getAllCollection();
             this.appService.hideLoading();
-            this.router.navigateByUrl('tabs/home', { replaceUrl: true });
+            this.router.navigateByUrl('tabs/dashboard', { replaceUrl: true });
           })
             .catch(err => {
               this.appService.hideLoading();
