@@ -1,12 +1,25 @@
 ion-slides {
   // max-height: -webkit-fill-available;
   height: 100%;
-  --bullet-background-active: white;
-  --bullet-background: #ffff;
-  background-image: linear-gradient(0deg, #2196F3 0%, #3F51B5 100%) !important;
-
+  --bullet-background-active: #004AAD;
+  --bullet-background: #004AAD;
+  background: white;
   img {
-    // max-width: 200px;
+    max-width: 40vh;
+    margin: auto;
+    /* text-align: center; */
+    /* justify-content: center; */
+    display: block;
+  }
+  span{
+    color: #004AAD;
+    font-weight: bold;
+    font-size: 3vh;
+  }
+  .sub-span{
+    font-size: 2vh;
+    margin-bottom: 15px;
+    display: block;
   }
 }
 
@@ -14,92 +27,5 @@ ion-slides {
   position: absolute;
   top: 10px;
   right: 20px;
-  color: white;
-}
-
-ion-content {
-  // --background: url(../../../assets/images/screen.png) no-repeat center/cover fixed;
-}
-
-.get-started {
-  background: white;
-  position: relative;
-  height: 100%;
-  width: 100%;
-
-  .container {
-    position: absolute;
-    top: 50%;
-    text-align: center;
-    width: 100%;
-    left: 50%;
-    height: 100%;
-    padding-top: 100px;
-    transform: translate(-50%, -50%);
-
-    img {
-      width: 200px;
-      margin-bottom: 20px;
-    }
-
-    .text-content {
-      div {
-        font-size: 30px;
-        font-weight: bold;
-        color: #2b2e83;
-
-        .green {
-          color: #0b8e36;
-          margin-right: 5px;
-        }
-      }
-
-      button {
-        width: 160px;
-        color: #2b2e83;
-        font-size: 20px;
-        background: #0b8e36;
-        font-weight: bold;
-        border-radius: 14px;
-        padding: 15px;
-        margin-top: 80px;
-      }
-    }
-  }
-
-}
-
-.info {
-  position: absolute;
-  top: 50px;
-  left: 30px;
-  width: 230px;
-  text-align: left;
-
-  h2 {
-    font-size: 30px;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-
-    span {
-      color: #0f70b7;
-    }
-  }
-
-  p {
-    color: #7a7a7a;
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-  }
-}
-
-.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
-  margin: 0 4px;
-  width: 25px;
-}
-
-.swiper-pagination-bullet {
-  border-radius: 10px;
+  color: #004AAD;
 }

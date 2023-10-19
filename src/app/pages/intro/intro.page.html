@@ -1,60 +1,37 @@
 <ion-content>
-  <!-- <div *ngIf="!getStarted" class="get-started">
-    <div class="container">
-      <img src="assets/icon/logo.png" alt="">
-      <div class="text-content">
-        <div>
-          <span class="green">Our</span>
-          <span>Secretary</span>
-        </div>
-        <button (click)="getStarted=true">
-          Get Started
-        </button>
-      </div>
-    </div>
-
-  </div> -->
-  <ion-slides pager="true" (ionSlideWillChange)="ionSlideTouchEnd()" [options]="slideOpts">
+  <ion-slides
+    pager="true"
+    (ionSlideWillChange)="ionSlideTouchEnd()"
+    [options]="slideOpts"
+  >
     <!-- Intro Screen 1 -->
     <ion-slide>
-      <!-- <div class="info">
-        <h2>
-          <span>Scan </span>Documents
-        </h2>
-        <p>Content on Scan Documents. Two Lines content</p>
-      </div> -->
-      <!-- <app-intro1></app-intro1> -->
       <p class="skip" (click)="finish()">SKIP</p>
-      <img src="assets/icon/intro1.png" alt="">
+      <div>
+        <img src="assets/icon/intro1.png" alt="" />
+        <span>KNOW YOUR INVESTMENTS BETTER WITH US...</span>
+      </div>
     </ion-slide>
     <!-- Intro Screen 2 -->
     <ion-slide>
-      <!-- <div class="info">
-        <h2>
-          <span>Save </span>Documents
-        </h2>
-        <p>Content on Save Documents. Two Lines content</p>
-      </div> -->
       <p class="skip" (click)="finish()">SKIP</p>
-      <img src="assets/icon/intro2.png" alt="">
-      <!-- <app-intro2></app-intro2> -->
+      <div>
+        <img src="assets/icon/intro2.png" alt="" />
+        <span>KNOW WHAT YOU OWN, AND KNOW WHY YOU OWN IT.</span>
+      </div>
     </ion-slide>
     <!-- Intro Screen 3 -->
     <ion-slide>
-      <!-- <div class="info">
-        <h2>
-          <span>Store </span>Documents
-        </h2>
-        <p>Content on Save Documents. Two Lines content</p>
-      </div> -->
-      <img src="assets/icon/intro3.png" alt="">
-      <!-- <app-intro3></app-intro3> -->
-      <!-- <img src="assets/images/intro3.png" alt=""> -->
+      <div>
+        <img src="assets/icon/intro3.png" alt="" />
+        <span class="sub-span">“A STITCH IN TIME SAVES NINE”</span>
+        <span>LET'S CONNECT TO UPGRADE YOUR PORTFOLIO</span>
+      </div>
     </ion-slide>
   </ion-slides>
 </ion-content>
 <ion-fab *ngIf="isLastSlide" slot="fixed" vertical="top" horizontal="end">
   <ion-fab-button color="transparent" (click)="finish()">
-    <ion-icon style="color: white;" name="arrow-forward"></ion-icon>
+    <ion-icon style="color: #004aad" name="arrow-forward"></ion-icon>
   </ion-fab-button>
 </ion-fab>
