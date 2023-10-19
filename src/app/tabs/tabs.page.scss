@@ -8,7 +8,9 @@ ion-tab-button {
 }
 
 ion-fab-button {
-  --background: linear-gradient(0deg, #2196F3 0%, #3F51B5 100%) !important;
+  --background: #004AAD;
+
+  // --background: linear-gradient(0deg, #2196F3 0%, #3F51B5 100%) !important;
 }
 
 .home-button {
@@ -21,8 +23,10 @@ ion-fab-button {
 
   ion-icon {
     vertical-align: middle;
-    font-size: 40px;
-    color: #278eec;
-    // color: white;
+    font-size: 30px;
+    background: white;
+    border-radius: 50%;
+    color: #004AAD;
+    border: 2px solid #004AAD;
   }
 }

@@ -14,7 +14,11 @@ export class DashboardPage implements OnInit {
   }
 
   onClick(path) {
-    this.navCtrl.navigateForward('tabs/' + path);
+    if (path) {
+      this.navCtrl.navigateForward('tabs/' + path);
+    } else {
+      alert('Page under Development');
+    }
   }
 
 }
