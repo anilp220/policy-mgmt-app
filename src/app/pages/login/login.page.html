@@ -4,59 +4,92 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <img class="pfm-logo" src="assets/icon/pfm-logo.png" alt="">
+            <img class="pfm-logo" src="assets/icon/pfm-logo.png" alt="" />
           </ion-col>
         </ion-row>
         <ion-row class="login-header">
           <ion-col>
-            <div>
-              {{forgotPassword ? 'Reset Password' : 'Log In'}}
-            </div>
+            <div>{{title}}</div>
           </ion-col>
         </ion-row>
-        <!-- <ion-row class="validation-containter">
-          <ion-col>
-            <div class="validation-error" *ngIf="invalidUserError">
-              <span class="form-error">{{ invalidUserError }}</span>
-            </div>
-          </ion-col>
-        </ion-row> -->
         <ion-row>
           <ion-col>
             <div *ngIf="!forgotPassword" class="formDiv">
-              <form #formData="ngForm" (ngSubmit)="onSubmit(formData)" class="formStyle1">
+              <form
+                #formData="ngForm"
+                (ngSubmit)="onSubmit(formData)"
+                class="formStyle1"
+              >
                 <ion-item>
-                  <ion-input type="email" placeholder="Email Address" [(ngModel)]="email" name="email" required
-                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+                  <ion-input
+                    type="email"
+                    placeholder="Email Address"
+                    [(ngModel)]="email"
+                    name="email"
+                    required
+                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
+                  >
                   </ion-input>
-                  <!-- <img src="assets/images/warning.png" *ngIf="invalidUserError" class="warningIcon" /> -->
                 </ion-item>
                 <ion-item>
-                  <ion-input [type]="showPassword ? 'text' :'password'" placeholder="Password" [(ngModel)]="password"
-                    name="password" required>
+                  <ion-input
+                    [type]="showPassword ? 'text' :'password'"
+                    placeholder="Password"
+                    [(ngModel)]="password"
+                    name="password"
+                    required
+                  >
                   </ion-input>
-                  <ion-icon *ngIf="!showPassword" (click)="toggleShow()" name="eye"></ion-icon>
-                  <ion-icon *ngIf="showPassword" (click)="toggleShow()" name="eye-off"></ion-icon>
+                  <ion-icon
+                    *ngIf="!showPassword"
+                    (click)="toggleShow()"
+                    name="eye"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="showPassword"
+                    (click)="toggleShow()"
+                    name="eye-off"
+                  ></ion-icon>
                 </ion-item>
-                <p (click)="forgotPassword = !forgotPassword;" class="forgot-password">
+                <p (click)="onForgotClick()" class="forgot-password">
                   Forgot Password?
                 </p>
-                <ion-button class="cirFullBlue" [disabled]="formData.invalid" type="submit">Login
+                <ion-button
+                  class="cirFullBlue"
+                  [disabled]="formData.invalid"
+                  type="submit"
+                  >Login
+                </ion-button>
+                <ion-button class="cirFullBlue register" (click)="register()"
+                  >Register
                 </ion-button>
               </form>
             </div>
             <div *ngIf="forgotPassword" class="formDiv">
-              <form #formData="ngForm" (ngSubmit)="resetPassword()" class="formStyle1">
+              <form
+                #formData="ngForm"
+                (ngSubmit)="resetPassword()"
+                class="formStyle1"
+              >
                 <ion-item>
-                  <ion-input type="email" placeholder="Email Address" [(ngModel)]="email" name="email" required
-                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+                  <ion-input
+                    type="email"
+                    placeholder="Email Address"
+                    [(ngModel)]="email"
+                    name="email"
+                    required
+                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
+                  >
                   </ion-input>
-                  <!-- <img src="assets/images/warning.png" *ngIf="invalidUserError" class="warningIcon" /> -->
                 </ion-item>
-                <p (click)="forgotPassword = !forgotPassword;" class="forgot-password">
+                <p (click)="backToLogin()" class="forgot-password">
                   Back to login?
                 </p>
-                <ion-button class="cirFullBlue" [disabled]="formData.invalid" type="submit">Reset
+                <ion-button
+                  class="cirFullBlue"
+                  [disabled]="formData.invalid"
+                  type="submit"
+                  >Reset
                 </ion-button>
               </form>
             </div>

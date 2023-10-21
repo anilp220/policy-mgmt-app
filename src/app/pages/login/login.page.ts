@@ -6,18 +6,26 @@ import { AppService } from 'src/app/services/app.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { PushService } from 'src/app/services/push.service';
 import { UserService } from 'src/app/services/user.service';
-
+enum Title {
+  signin = 'Sign In',
+  forgotPassword = 'FORGOT PASSWORD',
+  register = 'SIGN UP'
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
   invalidUserError;
   email;
   password;
   showPassword = false;
   forgotPassword = false;
+  login = true;
+  signup = false;
+  title = Title.signin;
   constructor(private authService: AuthService,
     private appService: AppService,
     private router: Router,
@@ -79,6 +87,7 @@ export class LoginPage implements OnInit {
       this.appService.presentLoading();
       const result = await this.authService.forgetPassword(this.email);
       this.forgotPassword = !this.forgotPassword;
+      this.title = Title.signin;
       this.appService.hideLoading();
       this.appService.showToast('Link to reset the password has been sent to your email.');
     } catch (error) {
@@ -90,5 +99,19 @@ export class LoginPage implements OnInit {
 
   toggleShow() {
     this.showPassword = !this.showPassword;
+  }
+
+  onForgotClick() {
+    this.forgotPassword = !this.forgotPassword;
+    this.title = Title.forgotPassword;
+  }
+
+  backToLogin() {
+    this.forgotPassword = !this.forgotPassword;
+    this.title = Title.signin;
+  }
+
+  register() {
+    this.title = Title.register;
   }
 }

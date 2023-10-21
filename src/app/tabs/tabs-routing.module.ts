@@ -39,7 +39,11 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('../pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)
-      }
+      },
+      {
+        path: 'sum-assured',
+        loadChildren: () => import('../pages/sum-assured/sum-assured.module').then(m => m.SumAssuredPageModule)
+      },
     ]
   },
   {

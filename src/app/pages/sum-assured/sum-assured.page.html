@@ -1,0 +1,40 @@
+<app-header [title]="'Sum Assured'"></app-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    ></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="ion-padding">
+    <div class="canvas">
+      <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; height: 300px; display: block"
+      ></highcharts-chart>
+    </div>
+    <div class="diesease-table">
+      <ion-row>
+        <ion-col>
+          <div class="tab-title">Life Sum Assured</div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rows">
+        <ion-col>Investor Name</ion-col>
+        <ion-col>Total Sum Assured</ion-col>
+      </ion-row>
+      <ion-row
+        class="rows cols"
+        *ngFor="let data of mergedData"
+        (click)="onClick(data)"
+      >
+        <ion-col>{{data.nameOfLifeInsured}}</ion-col>
+        <ion-col>{{data.sumAssured}}</ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>
