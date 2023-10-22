@@ -24,11 +24,6 @@ const routes: Routes = [
     path: 'portfolios',
     loadChildren: () => import('./pages/portfolios/portfolios.module').then(m => m.PortfoliosPageModule)
   },
-  // {
-  //   path: 'home',
-  //   // loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
-  //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  // },
 ];
 @NgModule({
   imports: [

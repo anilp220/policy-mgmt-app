@@ -13,7 +13,6 @@ import { MediclaimCardComponent } from 'src/app/components/mediclaim-card/medicl
 import { VehicleInsuranceCardComponent } from 'src/app/components/vehicle-insurance-card/vehicle-insurance-card.component';
 import { EquitiesCardComponent } from 'src/app/components/equities-card/equities-card.component';
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
-import { GenericePortfolioTableComponent } from 'src/app/components/generice-portfolio-table/generice-portfolio-table.component';
 import { CorporateInsuranceCardComponent } from 'src/app/components/corporate-insurance-card/corporate-insurance-card.component';
 import { FixedDepositCardComponent } from 'src/app/components/fixed-deposit-card/fixed-deposit-card.component';
 
@@ -32,7 +31,6 @@ import { FixedDepositCardComponent } from 'src/app/components/fixed-deposit-card
     MediclaimCardComponent,
     VehicleInsuranceCardComponent,
     EquitiesCardComponent,
-    GenericePortfolioTableComponent,
     VehicleInsuranceCardComponent,
     CorporateInsuranceCardComponent,
     FixedDepositCardComponent

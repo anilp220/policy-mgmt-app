@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SumAssuredPageRoutingModule } from './sum-assured-routing.module';
+import { SumAssuredDetailPageRoutingModule } from './sum-assured-detail-routing.module';
 
-import { SumAssuredPage } from './sum-assured.page';
+import { SumAssuredDetailPage } from './sum-assured-detail.page';
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModuleModule } from 'src/app/modules/shared-module.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    SumAssuredPageRoutingModule,
-    SharedModuleModule,
+    SumAssuredDetailPageRoutingModule,
+    SharedModuleModule
   ],
-  declarations: [SumAssuredPage]
+  declarations: [SumAssuredDetailPage]
 })
-export class SumAssuredPageModule { }
+export class SumAssuredDetailPageModule { }

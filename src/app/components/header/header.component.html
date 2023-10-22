@@ -11,8 +11,8 @@
       </ion-button>
     </ion-buttons>
     <ion-title *ngIf="title"
-      >{{ title.toUpperCase() }}
-      <span *ngIf="investorName"> ({{ investorName.toUpperCase() }}) </span>
+      >{{ title.toUpperCase() }}<br />
+      <span *ngIf="investorName"> {{ investorName.toUpperCase() }} </span>
     </ion-title>
     <ion-title *ngIf="!title"
       >WELCOME <br />

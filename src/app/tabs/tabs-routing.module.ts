@@ -44,6 +44,10 @@ const routes: Routes = [
         path: 'sum-assured',
         loadChildren: () => import('../pages/sum-assured/sum-assured.module').then(m => m.SumAssuredPageModule)
       },
+      {
+        path: 'sum-assured-detail',
+        loadChildren: () => import('../pages/sum-assured-detail/sum-assured-detail.module').then(m => m.SumAssuredDetailPageModule)
+      },
     ]
   },
   {

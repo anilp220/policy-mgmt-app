@@ -4,7 +4,9 @@
 // eslint-disable-next-line @typescript-eslint/prefer-for-of
 /* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import * as Highcharts from 'highcharts';
+import { HighchartService } from 'src/app/services/highchart.service';
 import { Models } from 'src/app/services/models.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -13,25 +15,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./sum-assured.page.scss'],
 })
 export class SumAssuredPage implements OnInit {
-  colors = [
-    '#ffb3ba',
-    '#ffdfba',
-    '#ffffba',
-    '#baffc9',
-    '#bae1ff',
-    '#ff8b94',
-    '#ffaaa5',
-    '#ffd3b6',
-    '#dcedc1',
-    '#a8e6cf',
-  ];
   highcharts: typeof Highcharts = Highcharts;
   chartOptions;
   mergedData = [];
   liData = [];
-  constructor(private userService: UserService, private models: Models) { }
+  constructor(private userService: UserService,
+    private highChartService: HighchartService,
+    private navCtrl: NavController,
+    private models: Models) { }
+
   ngOnInit(): void {
-    console.log(this.userService.allCollections[this.models.collections.lifeInsurance]);
     this.liData = [...this.userService.allCollections[this.models.collections.lifeInsurance]];
     const holder = {};
     const plotData = [];
@@ -49,57 +42,20 @@ export class SumAssuredPage implements OnInit {
 
     for (let i = 0; i < this.mergedData.length; i++) {
       const ele = this.mergedData[i];
-      const innerItem = [ele.nameOfLifeInsured + '<br>' + ele.sumAssured, ele.sumAssured];
+      const innerItem = [ele.nameOfLifeInsured, ele.sumAssured];
       plotData.push(innerItem);
     }
     this.mergedData = this.mergedData.sort((a, b) => b.sumAssured - a.sumAssured);
-    this.chartOptions = {
-      chart: {
-        type: 'pie',
-        backgroundColor: 'transparent',
-        margin: 0,
-      },
-      title: {
-        text: ''
-      },
-      plotOptions: {
-        pie: {
-          // slicedOffset: 10,
-          center: ['50%', '50%']
-        }
-      },
-      tooltip: {
-        formatter() {
-          return '<b>' + this.point.name + '</b>: ' + this.y;
-        }
-      },
-      series: [{
-        data: plotData,
-        size: '80%',
-        innerSize: '50%',
-        showInLegend: false,
-        type: 'pie',
-        dataLabels: {
-          enabled: true,
-          style: {
-            fontSize: '15px',
-            fontWeight: 'bold'
-          }
-        },
-        colors: this.colors
-      }],
-      legend: {
-        enabled: true,
-        align: 'left',
-        layout: 'horizontal',
-      },
-      credits: {
-        enabled: false
-      },
-    };
+    this.chartOptions = this.highChartService.getDonutChart(plotData, true);
   }
+
   onClick(item) {
     const foundItems = this.liData.filter(el => el.nameOfLifeInsured === item.nameOfLifeInsured);
-    console.log(foundItems);
+    this.navCtrl.navigateForward('tabs/sum-assured-detail', {
+      state: {
+        item: JSON.stringify(foundItems),
+        title: item.nameOfLifeInsured
+      }
+    });
   }
 }

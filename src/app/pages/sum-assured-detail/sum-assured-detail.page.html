@@ -1,0 +1,31 @@
+<app-header [title]="'Sum Assured'" [investorName]="investorName"></app-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <div class="canvas">
+      <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; display: block"
+      ></highcharts-chart>
+    </div>
+    <div class="investorCard">
+      <ion-grid>
+        <ion-row class="title">
+          <ion-col>LIFE INSURED- {{ investorName }}</ion-col>
+        </ion-row>
+        <generice-portfolio-table
+          [tableTitle]="tableTitle"
+          [tableData]="tableData"
+          (gotoDetailEvent)="gotoDetail($event)"
+        ></generice-portfolio-table>
+      </ion-grid>
+    </div>
+    <div class="bar-chart">
+      <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="barChartOptions"
+      ></highcharts-chart>
+    </div>
+  </div>
+</ion-content>
