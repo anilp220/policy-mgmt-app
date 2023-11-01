@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/prefer-for-of */
 // eslint-disable-next-line @typescript-eslint/prefer-for-of
 /* eslint-disable eqeqeq */
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import * as Highcharts from 'highcharts';
 import { HighchartService } from 'src/app/services/highchart.service';
@@ -19,6 +19,7 @@ export class SumAssuredPage implements OnInit {
   chartOptions;
   mergedData = [];
   liData = [];
+  chart;
   constructor(private userService: UserService,
     private highChartService: HighchartService,
     private navCtrl: NavController,

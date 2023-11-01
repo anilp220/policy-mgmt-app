@@ -40,7 +40,7 @@ export class LifeInsuranceCardComponent implements OnInit {
       this.tableData.data.push([
         [item.company, item.plan],
         [item.policyNo, item.doc],
-        [item.mode, item.premium],
+        [item.mode, item.modalPremium],
         [item.sumAssured],
         [item.currentStatus]
       ]);

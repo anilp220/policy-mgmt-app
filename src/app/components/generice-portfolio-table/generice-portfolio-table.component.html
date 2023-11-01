@@ -2,14 +2,14 @@
   <ion-col
     *ngFor="let titleArr of tableTitle"
     [ngClass]="titleArr.length == 1 ? 'col-center' : ''"
-    size="2.2"
-  >
+    size="2.2">
     <div class="margin-t-5" *ngFor="let title of titleArr">{{ title }}</div>
   </ion-col>
 </ion-row>
 <ion-row
-  *ngFor="let dataRow of tableData.data"
-  (click)="gotoDetail(tableData.item)"
+  *ngFor="let dataRow of tableData?.data;let i = index"
+  class="item-row"
+  (click)="gotoDetail(tableData,i)"
 >
   <ion-col
     size="2.2"

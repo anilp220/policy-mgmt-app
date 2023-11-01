@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'portfolios',
     loadChildren: () => import('./pages/portfolios/portfolios.module').then(m => m.PortfoliosPageModule)
   },
+  {
+    path: 'upcoming-maturities',
+    loadChildren: () => import('./pages/upcoming-maturities/upcoming-maturities.module').then( m => m.UpcomingMaturitiesPageModule)
+  },
 ];
 @NgModule({
   imports: [

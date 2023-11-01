@@ -18,8 +18,10 @@ export class GenericePortfolioTableComponent implements OnInit {
     console.log(this.tableTitle, this.tableData);
   }
 
-  gotoDetail(data) {
-    this.gotoDetailEvent.emit(data);
+  gotoDetail(data,index?) {
+    console.log(data);
+    const item = data.item?.length ? data.item[index] : data.item;
+    this.gotoDetailEvent.emit(item);
   }
 
   isReturn(str: string) {

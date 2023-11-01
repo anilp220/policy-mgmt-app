@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class HighchartService {
     '#dcedc1',
     '#a8e6cf',
   ];
-  getDonutChart(data, showSum?) {
+  constructor() { }
+  getDonutChart(data, showSum?, diseases?) {
     return {
       chart: {
         type: 'pie',
@@ -50,7 +52,9 @@ export class HighchartService {
           },
           formatter() {
             // eslint-disable-next-line max-len
-            return showSum ? ('<b>' + this.point.name + '</b> <br>' + this.y) : (this.point.name + '<br>' + this.percentage.toFixed() + '%');
+            return showSum ? ('<b>' + this.point.name + '</b> <br>'
+              + this.y + (diseases ? ' Diseases' : '')) :
+              (this.point.name + '<br>' + this.percentage.toFixed() + '%');
           }
         },
         colors: this.colors
@@ -66,106 +70,151 @@ export class HighchartService {
     };
   }
 
-  getBarChart() {
-    return {
-      chart: {
-        type: 'bar',
-        backgroundColor: 'transparent',
-        margin: 0,
+  // getBarChart() {
+  //   return {
+  //     chart: {
+  //       type: 'bar',
+  //       backgroundColor: 'transparent',
+  //       margin: 0,
+  //     },
+  //     title: {
+  //       text: 'LIFE-TIME SUM ASSURED',
+  //       style: {
+  //         fontSize: '20px',
+  //         padding: '10px'
+  //       }
+  //     },
+  //     xAxis: {
+  //       title: {
+  //         text: 'Age',
+  //         style: {
+  //           fontSize: '15px'
+  //         }
+  //       },
+  //       lineColor: 'black'
+  //     },
+  //     yAxis: {
+  //       min: 0,
+  //       title: {
+  //         text: '',
+  //       },
+  //       labels: {
+  //         overflow: 'justify',
+  //         style: {
+  //           fontSize: '15px'
+  //         }
+  //       },
+  //       lineWidth: 1,
+  //       lineColor: 'black'
+  //     },
+  //     plotOptions: {
+  //       bar: {
+  //         dataLabels: {
+  //           enabled: true,
+  //         },
+  //         center: ['5% ,0%']
+  //       },
+  //     },
+  //     legend: {
+  //       enabled: false
+  //     },
+  //     credits: {
+  //       enabled: false,
+  //     },
+  //     series: [
+  //       {
+  //         name: 'SUM ASSURED',
+  //         data: [
+  //           ['Shanghai', 24.2],
+  //           ['Beijing', 20.8],
+  //           ['Karachi', 14.9],
+  //           ['Shenzhen', 13.7],
+  //           ['Guangzhou', 13.1],
+  //         ],
+  //         dataLabels: {
+  //           enabled: true,
+  //           style: {
+  //             fontSize: '15',
+  //             fontWeight: 'bold'
+  //           }
+  //         },
+  //       },
+  //     ],
+  //     responsive: {
+  //       rules: [{
+  //         condition: {
+  //           maxWidth: 500
+  //         },
+  //         chartOptions: {
+  //           legend: {
+  //             align: 'center',
+  //             verticalAlign: 'bottom',
+  //             layout: 'horizontal'
+  //           },
+  //           yAxis: {
+  //             labels: {
+  //               align: 'left',
+  //               x: 0,
+  //               y: -5
+  //             },
+  //             title: {
+  //               text: null
+  //             }
+  //           },
+  //           subtitle: {
+  //             text: null
+  //           },
+  //           credits: {
+  //             enabled: false
+  //           }
+  //         }
+  //       }]
+  //     }
+  //   };
+  // }
+
+  getBarChart(htmlRef) {
+    const option = {
+      type: 'horizontalBar',
+      data: {
+        labels: [65, 59, 80, 81, 56, 55, 40],
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            backgroundColor: '#6eaee0',
+            fill: true,
+            borderRadius: 15,
+          },
+        ]
       },
-      title: {
-        text: 'LIFE-TIME SUM ASSURED',
-        style: {
-          fontSize: '20px',
-          padding: '10px'
+      options: {
+        indexAxis: 'y',
+        legend: {
+          display: false
+        },
+        elements: {
+          bar: {
+            borderWidth: 1,
+          }
+        },
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Chart.js Horizontal Bar Chart'
+          }
         }
       },
-      xAxis: {
-        title: {
-          text: 'Age',
-          style: {
-            fontSize: '15px'
-          }
-        },
-        lineColor: 'black'
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: '',
-        },
-        labels: {
-          overflow: 'justify',
-          style: {
-            fontSize: '15px'
-          }
-        },
-        lineWidth: 1,
-        lineColor: 'black'
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            enabled: true,
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Age',
           },
-          center: ['5% ,0%']
-        },
-      },
-      legend: {
-        enabled: false
-      },
-      credits: {
-        enabled: false,
-      },
-      series: [
-        {
-          name: 'SUM ASSURED',
-          data: [
-            ['Shanghai', 24.2],
-            ['Beijing', 20.8],
-            ['Karachi', 14.9],
-            ['Shenzhen', 13.7],
-            ['Guangzhou', 13.1],
-          ],
-          dataLabels: {
-            enabled: true,
-            style: {
-              fontSize: '15',
-              fontWeight: 'bold'
-            }
-          },
-        },
-      ],
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500
-          },
-          chartOptions: {
-            legend: {
-              align: 'center',
-              verticalAlign: 'bottom',
-              layout: 'horizontal'
-            },
-            yAxis: {
-              labels: {
-                align: 'left',
-                x: 0,
-                y: -5
-              },
-              title: {
-                text: null
-              }
-            },
-            subtitle: {
-              text: null
-            },
-            credits: {
-              enabled: false
-            }
-          }
         }]
       }
     };
+    return new Chart(htmlRef, option);
   }
 }

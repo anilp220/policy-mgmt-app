@@ -48,6 +48,15 @@ const routes: Routes = [
         path: 'sum-assured-detail',
         loadChildren: () => import('../pages/sum-assured-detail/sum-assured-detail.module').then(m => m.SumAssuredDetailPageModule)
       },
+      {
+        path: 'rider-sum-assured',
+        loadChildren: () => import('../pages/rider-sum-assured/rider-sum-assured.module').then(m => m.RiderSumAssuredPageModule)
+      },
+      {
+        path: 'rider-sum-assured-detail',
+        loadChildren:
+          () => import('../pages/rider-sum-assured-detail/rider-sum-assured-detail.module').then(m => m.RiderSumAssuredDetailPageModule)
+      },
     ]
   },
   {

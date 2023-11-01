@@ -1,4 +1,4 @@
-<app-header [title]="'Sum Assured'"></app-header>
+<app-header [title]="'Rider Sum Assured'"></app-header>
 <ion-content>
   <div class="ion-padding canvas">
     <div>
@@ -11,20 +11,20 @@
     <div class="disease-table">
       <ion-row>
         <ion-col>
-          <div class="tab-title">Life Sum Assured</div>
+          <div class="tab-title">DISEASES COVERED</div>
         </ion-col>
       </ion-row>
       <ion-row class="rows">
         <ion-col>Investor Name</ion-col>
-        <ion-col>Total Sum Assured</ion-col>
+        <ion-col>Total DISEASES</ion-col>
       </ion-row>
       <ion-row
         class="rows cols"
         *ngFor="let data of mergedData"
         (click)="onClick(data)"
       >
-        <ion-col>{{data.nameOfLifeInsured}}</ion-col>
-        <ion-col>{{data.sumAssured}}</ion-col>
+        <ion-col>{{data.name}}</ion-col>
+        <ion-col>{{countDiesease(data.diseases)}} DISEASES</ion-col>
       </ion-row>
     </div>
   </div>

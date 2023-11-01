@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { AppService } from 'src/app/services/app.service';
@@ -24,6 +24,7 @@ export class SumAssuredDetailPage implements OnInit {
     private highChartService: HighchartService,
     private liService: LiService,
     private appService: AppService,
+    private elementRef: ElementRef,
     private router: Router) {
     this.route.queryParams.subscribe(_p => {
       const navParams = this.router.getCurrentNavigation().extras.state;
@@ -35,6 +36,12 @@ export class SumAssuredDetailPage implements OnInit {
       }
     });
   }
+
+  ngOnInit() {
+    const htmlRef = this.elementRef.nativeElement.querySelector('#horizontalBar');
+    this.barChartOptions = this.highChartService.getBarChart(htmlRef);
+  }
+
   buildGenericeTableData(data) {
     // const item = { ...this.data[0] };
     this.tableTitle = [
@@ -66,12 +73,9 @@ export class SumAssuredDetailPage implements OnInit {
     console.log(plotData);
     this.chartOptions = this.highChartService.getDonutChart(plotData);
   }
-  ngOnInit() {
-    this.barChartOptions = this.highChartService.getBarChart();
-  }
+
   gotoDetail(item) {
     const data = this.liService.getDetails(item);
     this.appService.gotoPolicyDetail(data, this.investorName, null, item);
   }
-
 }

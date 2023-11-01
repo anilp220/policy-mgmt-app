@@ -24,4 +24,7 @@ ion-row:nth-child(n+1){
       font-size: 8px;
     }
   }
+  ion-col:first-child{
+    margin-left: 0;
+  }
 }

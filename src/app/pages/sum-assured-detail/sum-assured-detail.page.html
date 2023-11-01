@@ -10,7 +10,6 @@
       ></highcharts-chart>
     </div>
     <div class="investorCard">
-      <ion-grid>
         <ion-row class="title">
           <ion-col>LIFE INSURED- {{ investorName }}</ion-col>
         </ion-row>
@@ -19,13 +18,11 @@
           [tableData]="tableData"
           (gotoDetailEvent)="gotoDetail($event)"
         ></generice-portfolio-table>
-      </ion-grid>
     </div>
     <div class="bar-chart">
-      <highcharts-chart
-        [Highcharts]="highcharts"
-        [options]="barChartOptions"
-      ></highcharts-chart>
+      <canvas id="horizontalBar" class="chart chart-horizontalBar"
+        >{{ barChartOptions }}</canvas
+      >
     </div>
   </div>
 </ion-content>

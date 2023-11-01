@@ -1,0 +1,28 @@
+<app-header
+  [title]="'Rider Sum Assured'"
+  [investorName]="investorName"
+></app-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <div class="card" *ngFor="let d of diseases;let i=index">
+      <div class="title-container" (click)="toggle('diseaseBody'+i)">
+        <div class="title">{{d.disease || d.diseaseName}}</div>
+      </div>
+      <div class="body" [id]="'diseaseBody'+i">
+        <div class="overview">{{d.diseaseOverview || 'NA'}}</div>
+        <div class="bottom" (click)="getDetail(d)">
+          <div>SUM ASSURED</div>
+          <div>{{d.sumAssured || 'NA'}}</div>
+        </div>
+        <div *ngIf="d.showCoverage" style="margin-top:5px;">
+          <generice-portfolio-table
+            [tableTitle]="d.tableTitle"
+            [tableData]="d.tableData"
+            (gotoDetailEvent)="gotoDetail($event)"
+          ></generice-portfolio-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
