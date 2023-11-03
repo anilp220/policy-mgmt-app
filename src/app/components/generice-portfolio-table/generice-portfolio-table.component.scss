@@ -7,7 +7,7 @@ ion-row{
   color: #00000075;
   ion-col{
     border: 1px solid black;
-    color: blue;
+    color: #194AB0;
     background: white;
     margin: 0px 0px 5px 5px;
     div{
@@ -17,7 +17,7 @@ ion-row{
 }
 ion-row:nth-child(n+1){
   ion-col{
-    border: 1px solid;
+    border: 1px solid black;
     background: white;
     margin: 0px 0px 5px 5px;
     div{
@@ -27,4 +27,11 @@ ion-row:nth-child(n+1){
   ion-col:first-child{
     margin-left: 0;
   }
+}
+.no-data{
+  margin:0 5px;
+  color: black;
+  text-align: center;
+  font-size: 14px;
+  font-family: "Montserrat";
 }

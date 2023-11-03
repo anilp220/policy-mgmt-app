@@ -9,8 +9,7 @@
 <ion-row
   *ngFor="let dataRow of tableData?.data;let i = index"
   class="item-row"
-  (click)="gotoDetail(tableData,i)"
->
+  (click)="gotoDetail(tableData,i)">
   <ion-col
     size="2.2"
     *ngFor="let dataCol of dataRow"
@@ -23,4 +22,9 @@
       <span *ngIf="!isReturn(data)">{{ data }}</span>
     </div>
   </ion-col>
+</ion-row>
+<ion-row class="no-data" *ngIf="tableData?.renewals && tableData?.data.length==0">
+      <ion-col>
+      NO RENEWALS THIS MONTH
+      </ion-col>
 </ion-row>

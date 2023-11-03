@@ -57,6 +57,14 @@ const routes: Routes = [
         loadChildren:
           () => import('../pages/rider-sum-assured-detail/rider-sum-assured-detail.module').then(m => m.RiderSumAssuredDetailPageModule)
       },
+      {
+        path: 'upcoming-renewals',
+        loadChildren: () => import('../pages/upcoming-renewals/upcoming-renewals.module').then(m => m.UpcomingRenewalsPageModule)
+      },
+      {
+        path: 'upcoming-maturities',
+        loadChildren: () => import('../pages/upcoming-maturities/upcoming-maturities.module').then( m => m.UpcomingMaturitiesPageModule)
+      }
     ]
   },
   {

@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SlideInOutAnimation } from 'src/app/animation';
 import { AppService } from 'src/app/services/app.service';
 import { HealthInsuranceService } from 'src/app/services/health-insurance.service';
 import { HighchartService } from 'src/app/services/highchart.service';

@@ -4,19 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpcomingMaturitiesPageRoutingModule } from './upcoming-maturities-routing.module';
+import { UpcomingRenewalsPageRoutingModule } from './upcoming-renewals-routing.module';
 
-import { UpcomingMaturitiesPage } from './upcoming-maturities.page';
+import { UpcomingRenewalsPage } from './upcoming-renewals.page';
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
+import {NgChartsModule} from 'ng2-charts';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpcomingMaturitiesPageRoutingModule,
+    UpcomingRenewalsPageRoutingModule,
+    NgChartsModule,
     SharedModuleModule
   ],
-  declarations: [UpcomingMaturitiesPage]
+  declarations: [UpcomingRenewalsPage]
 })
-export class UpcomingMaturitiesPageModule {}
+export class UpcomingRenewalsPageModule {}

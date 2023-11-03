@@ -1,9 +1,10 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class HighchartService {
   colors = [
     '#ffb3ba',
@@ -70,111 +71,155 @@ export class HighchartService {
     };
   }
 
-  // getBarChart() {
-  //   return {
-  //     chart: {
-  //       type: 'bar',
-  //       backgroundColor: 'transparent',
-  //       margin: 0,
-  //     },
-  //     title: {
-  //       text: 'LIFE-TIME SUM ASSURED',
-  //       style: {
-  //         fontSize: '20px',
-  //         padding: '10px'
-  //       }
-  //     },
-  //     xAxis: {
-  //       title: {
-  //         text: 'Age',
-  //         style: {
-  //           fontSize: '15px'
-  //         }
-  //       },
-  //       lineColor: 'black'
-  //     },
-  //     yAxis: {
-  //       min: 0,
-  //       title: {
-  //         text: '',
-  //       },
-  //       labels: {
-  //         overflow: 'justify',
-  //         style: {
-  //           fontSize: '15px'
-  //         }
-  //       },
-  //       lineWidth: 1,
-  //       lineColor: 'black'
-  //     },
-  //     plotOptions: {
-  //       bar: {
-  //         dataLabels: {
-  //           enabled: true,
-  //         },
-  //         center: ['5% ,0%']
-  //       },
-  //     },
-  //     legend: {
-  //       enabled: false
-  //     },
-  //     credits: {
-  //       enabled: false,
-  //     },
-  //     series: [
-  //       {
-  //         name: 'SUM ASSURED',
-  //         data: [
-  //           ['Shanghai', 24.2],
-  //           ['Beijing', 20.8],
-  //           ['Karachi', 14.9],
-  //           ['Shenzhen', 13.7],
-  //           ['Guangzhou', 13.1],
-  //         ],
-  //         dataLabels: {
-  //           enabled: true,
-  //           style: {
-  //             fontSize: '15',
-  //             fontWeight: 'bold'
-  //           }
-  //         },
-  //       },
-  //     ],
-  //     responsive: {
-  //       rules: [{
-  //         condition: {
-  //           maxWidth: 500
-  //         },
-  //         chartOptions: {
-  //           legend: {
-  //             align: 'center',
-  //             verticalAlign: 'bottom',
-  //             layout: 'horizontal'
-  //           },
-  //           yAxis: {
-  //             labels: {
-  //               align: 'left',
-  //               x: 0,
-  //               y: -5
-  //             },
-  //             title: {
-  //               text: null
-  //             }
-  //           },
-  //           subtitle: {
-  //             text: null
-  //           },
-  //           credits: {
-  //             enabled: false
-  //           }
-  //         }
-  //       }]
-  //     }
-  //   };
-  // }
+  getAnnualPremiumChart(categories: string[],data: string[]){
+    categories =categories.map(cat=>cat.slice(0,3));
+    return {
+      chart: {
+        type: 'bar',
+        backgroundColor: 'transparent',
+        height:200,
+        style:{
+        }
+      },
+      title: {
+        text: ''
+      },
+      xAxis: {
+        type:'category',
+        categories,
+        lineWidth: 0,
+   minorGridLineWidth: 0,
+   lineColor: 'transparent',
+   minorTickLength: 0,
+   tickLength: 0,
+        title: {
+          text: '',
+        },
+        labels:{
+          // overflow: 'justify',
+          enabled:true,
+          style:{
+            fontSize:12,
+            backgroundColor:'red',
+            color:'black',
+          },
+        },
+        enabled:true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: '',
+        },
+        labels: {
+          enabled:false
+        }
+      },
+      tooltip: {
+        valuePrefix: 'Rs. '
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            style:{
+              fontSize:12
+            },
+            formatter() {
+              // eslint-disable-next-line eqeqeq
+              if(this.y != 0) {
+                return this.y;
+              }
+            }
+          }
+        },
+        series: {
+          // pointWidth:50,
+          // pointPadding: 0
+        },
+      },
+      legend: {
+        enabled:false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [
+        {
+          name: 'Renewal Amount',
+          data
+        }
+      ]
+    };
+  }
+
+  getLifeTimeSumChart(categories: string[],data: string[]){
+    return {
+      chart: {
+        type: 'bar',
+        backgroundColor: 'transparent',
+        style:{
+        }
+      },
+      title: {
+        text: ''
+      },
+      xAxis: {
+        type:'category',
+        categories,
+        title: {
+          text: '',
+        },
+        labels:{
+          // overflow: 'justify',
+          enabled:true,
+          style:{
+            fontSize:12,
+            backgroundColor:'red',
+            color:'black',
+          }
+        },
+        enabled:true,
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: '',
+        },
+        labels: {
+          enabled:false
+        }
+      },
+      tooltip: {
+        valuePrefix: 'Rs. '
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            style:{
+              fontSize:12
+            }
+          }
+        }
+      },
+      legend: {
+        enabled:false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [
+        {
+          name: 'Renewal Amount',
+          data
+        }
+      ]
+    };
+  }
 
   getBarChart(htmlRef) {
-    const option = {
+    const option: any = {
       type: 'horizontalBar',
       data: {
         labels: [65, 59, 80, 81, 56, 55, 40],
@@ -217,4 +262,62 @@ export class HighchartService {
     };
     return new Chart(htmlRef, option);
   }
+
+//   getAnnualPremiumChart(htmlRef,labels,data,) {
+//     const option: any = {
+//       type: 'bar',
+//       tooltip: {
+//         enabled: true,
+//         titleColor:'red'
+//     },
+//       data: {
+//         labels,
+//         datasets: [
+//           {
+//             label: 'Premiun',
+//             data,
+//             backgroundColor: '#7BC5FF',
+//             fill: true,
+//             borderRadius: 15,
+//           },
+//         ]
+//       },
+//       options: {
+//         // indexAxis: 'x',
+//         legend: {
+//           display: false
+//         },
+//         // elements: {
+//         //   bar: {
+//         //     borderWidth: 10,
+//         //   }
+//         // },
+//         responsive: true,
+//         plugins: {
+//           // title: {
+//           //   display: true,
+//           // },
+//           tooltip: {
+//             mode: 'index',
+//             intersect: false,
+//             enabled:true
+//           }
+//         }
+//       },
+//       scales: {
+//         // yAxes: [{
+//         //   scaleLabel: {
+//         //     display: false,
+//         //   },
+//         // }],
+//         xAxes: [{
+//           ticks: {
+//             display: false //this will remove only the label
+//         }
+// //this will remove all the x-axis grid lines
+//       }]
+//       }
+//     };
+//     return new Chart(htmlRef, option);
+//   }
 }

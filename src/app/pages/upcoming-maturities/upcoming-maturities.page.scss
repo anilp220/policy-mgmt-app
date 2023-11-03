@@ -1,0 +1,43 @@
+ion-content {
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
+  background-color: #fffffffc;
+}
+.month-tabs{
+  margin-top: 80px;
+  padding: 10px 0px;
+  display: flex;
+  .year-btn{
+    background: #1647B0;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 5px 10px;
+    float: right;
+    color: white;
+  }
+  div{
+    color: #194AB0;
+    font-size: 0.8rem;
+    margin: auto;
+  }
+}
+.padding{
+  padding: 0 10px;
+  font-family: Montserrat;
+}
+.card-container{
+  margin-top: 10px;
+}
+.month-title{
+  background: var(--title-blue);
+  padding: 15px 25px;
+  border-radius: 25px;
+}
+.month{
+  display: inline-block;
+}
+.amount{
+  float: right;
+}
+.table{
+  margin-top: 10px;
+}

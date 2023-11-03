@@ -1,0 +1,49 @@
+<app-header [title]="'Upcoming Renewals'"></app-header>
+<ion-content>
+  <div class="padding">
+    <div class="month-tabs">
+      <ion-row>
+        <ion-col *ngFor="let month of months;let i = index">
+          <div
+            (click)="onMonthClick(i)"
+            [ngClass]="month.isClicked ? 'clicked' : ''"
+          >
+            {{month.month + ' Month' + (month.month>1?'s':'')}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngFor="let renewal of renewalsArr" class="card-container">
+      <div class="month-title">
+        <div class="month">{{renewal.month}}</div>
+        <div class="amount">RS {{renewal.totalSum}}/-</div>
+      </div>
+      <div class="table investorCard">
+      <generice-portfolio-table
+            [tableTitle]="tableTitle"
+            [tableData]="renewal.tableData"
+            (gotoDetailEvent)="gotoDetail($event)"
+      ></generice-portfolio-table>
+      </div>
+
+    </div>
+    <div class="graph-container">
+      <div  class="annual-premium">
+        <div class="graph-title">ANNUAL PREMIUM PAY</div>
+        <highcharts-chart *ngIf="chartOptions"
+          [Highcharts]="highcharts"
+          [options]="chartOptions"
+          style="width: 100%; display: block"
+        ></highcharts-chart>
+      </div>
+      <div class="lifetime-renewal">
+      <div class="graph-title">LIFE TIME RENEWAL</div>
+      <highcharts-chart *ngIf="chartOptions"
+          [Highcharts]="highcharts"
+          [options]="chartOptions"
+          style="width: 100%; display: block"
+        ></highcharts-chart>
+      </div>
+    </div>
+  </div>
+</ion-content>

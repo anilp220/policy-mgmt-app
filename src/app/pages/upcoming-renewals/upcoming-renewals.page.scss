@@ -1,0 +1,61 @@
+ion-content {
+  --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
+  background-color: #fffffffc;
+}
+.month-tabs{
+  margin-top: 80px;
+  ion-row{
+    ion-col{
+      div{
+        background: #BCDEFF;
+        padding: 10px 6px;
+        border-radius: 20px;
+        font-size: 11px;
+        text-align: center;
+        border: 1px solid #5BA9D7;
+        color: black;
+      }
+      .clicked{
+        background: rgb(22, 71, 176);
+        color: white;
+      }
+    }
+  }
+}
+.padding{
+  padding: 0 10px;
+  font-family: Montserrat;
+  margin-bottom: 20px;
+}
+.card-container{
+  margin-top: 10px;
+}
+.month-title{
+  background: var(--title-blue);
+  padding: 15px 25px;
+  border-radius: 25px;
+}
+.month{
+  display: inline-block;
+}
+.amount{
+  float: right;
+}
+.table{
+  margin-top: 10px;
+}
+.annual-premium{
+  // width:100%;margin: 0 auto;
+}
+.graph-container{
+  margin-top: 20px;
+}
+.graph-title{
+  background: var(--title-blue);
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 30px;
+  border: 1px solid #06aeff;
+  margin: auto 40px;
+}

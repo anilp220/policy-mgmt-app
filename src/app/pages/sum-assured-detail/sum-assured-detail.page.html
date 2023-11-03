@@ -19,10 +19,12 @@
           (gotoDetailEvent)="gotoDetail($event)"
         ></generice-portfolio-table>
     </div>
-    <div class="bar-chart">
-      <canvas id="horizontalBar" class="chart chart-horizontalBar"
-        >{{ barChartOptions }}</canvas
-      >
-    </div>
+    <!-- <div class="bar-chart">
+    <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; display: block"
+      ></highcharts-chart>
+    </div> -->
   </div>
 </ion-content>

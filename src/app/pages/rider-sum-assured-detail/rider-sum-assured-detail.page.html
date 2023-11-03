@@ -15,7 +15,7 @@
           <div>SUM ASSURED</div>
           <div>{{d.sumAssured || 'NA'}}</div>
         </div>
-        <div *ngIf="d.showCoverage" style="margin-top:5px;">
+        <div *ngIf="d.showCoverage" class="investorCard" style="margin-top:5px;">
           <generice-portfolio-table
             [tableTitle]="d.tableTitle"
             [tableData]="d.tableData"

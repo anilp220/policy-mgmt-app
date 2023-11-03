@@ -39,7 +39,7 @@ export class SumAssuredDetailPage implements OnInit {
 
   ngOnInit() {
     const htmlRef = this.elementRef.nativeElement.querySelector('#horizontalBar');
-    this.barChartOptions = this.highChartService.getBarChart(htmlRef);
+    this.barChartOptions = this.highChartService.getBarChart(htmlRef);//todo update chart
   }
 
   buildGenericeTableData(data) {

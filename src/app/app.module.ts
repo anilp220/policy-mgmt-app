@@ -22,6 +22,7 @@ import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
 import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import {NgChartsModule} from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IonicStorageModule.forRoot(),
     IonicModule.forRoot({ _forceStatusbarPadding: true }),
     AppRoutingModule,
+    NgChartsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
