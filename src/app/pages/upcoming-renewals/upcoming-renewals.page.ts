@@ -157,7 +157,7 @@ export class UpcomingRenewalsPage implements OnInit {
     });
     renewals.forEach((item)=>{
       if(this.renewalsObj[item.renewalMonth]){
-          this.renewalsObj[item.renewalMonth].totalSum += item.annualPremium;
+          this.renewalsObj[item.renewalMonth].totalSum += (item.annualPremium || 0);
           this.renewalsObj[item.renewalMonth].tableData.data.push([
             [item.productType,item.typeOfPolicy],
             [item.investorName, item.company],
@@ -177,8 +177,10 @@ export class UpcomingRenewalsPage implements OnInit {
     const labels =[];
     const data = [];
     this.renewalsArr.forEach(item=>{
-      labels.push(item.month);
-      data.push(item.totalSum);
+      if(item.totalSum>0){
+        labels.push(item.month);
+        data.push(item.totalSum);
+      }
     });
     setTimeout(() => {
       this.chartOptions = this.highChartService.getAnnualPremiumChart(labels,data);

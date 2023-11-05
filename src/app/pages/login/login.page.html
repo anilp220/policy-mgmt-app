@@ -4,12 +4,15 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <img class="pfm-logo" src="assets/icon/pfm-logo.png" alt="" />
+            <img class="pfm-logo" src="assets/icon/pfm-logo-black.png" alt="">
           </ion-col>
         </ion-row>
         <ion-row class="login-header">
           <ion-col>
-            <div>{{title}}</div>
+            <div>
+              {{forgotPassword ? 'FORGOT PASSWORD' : 'SIGN IN'}}
+            </div>
+            <p *ngIf="forgotPassword" class="happyToAssist">WE ARE HAPPY TO ASSIST YOU</p>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -21,24 +24,13 @@
                 class="formStyle1"
               >
                 <ion-item>
-                  <ion-input
-                    type="email"
-                    placeholder="Email Address"
-                    [(ngModel)]="email"
-                    name="email"
-                    required
-                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
-                  >
+                  <ion-input type="email" placeholder="EMAIL ADDRESS" [(ngModel)]="email" name="email" required
+                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
                   </ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input
-                    [type]="showPassword ? 'text' :'password'"
-                    placeholder="Password"
-                    [(ngModel)]="password"
-                    name="password"
-                    required
-                  >
+                  <ion-input [type]="showPassword ? 'text' :'password'" placeholder="PASSWORD" [(ngModel)]="password"
+                    name="password" required>
                   </ion-input>
                   <ion-icon
                     *ngIf="!showPassword"
@@ -54,15 +46,8 @@
                 <p (click)="onForgotClick()" class="forgot-password">
                   Forgot Password?
                 </p>
-                <ion-button
-                  class="cirFullBlue"
-                  [disabled]="formData.invalid"
-                  type="submit"
-                  >Login
-                </ion-button>
-                <ion-button class="cirFullBlue register" (click)="register()"
-                  >Register
-                </ion-button>
+                <ion-button class="cirFullBlue" [disabled]="formData.invalid" type="submit">LOGIN</ion-button>
+                <ion-button class="cirFullBlue registerButton" type="button">REGISTER</ion-button>
               </form>
             </div>
             <div *ngIf="forgotPassword" class="formDiv">
@@ -72,25 +57,12 @@
                 class="formStyle1"
               >
                 <ion-item>
-                  <ion-input
-                    type="email"
-                    placeholder="Email Address"
-                    [(ngModel)]="email"
-                    name="email"
-                    required
-                    pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
-                  >
+                  <ion-input type="email" placeholder="Email Address" [(ngModel)]="email" name="email" required pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
                   </ion-input>
                 </ion-item>
-                <p (click)="backToLogin()" class="forgot-password">
-                  Back to login?
-                </p>
-                <ion-button
-                  class="cirFullBlue"
-                  [disabled]="formData.invalid"
-                  type="submit"
-                  >Reset
-                </ion-button>
+                <p (click)="forgotPassword = !forgotPassword;" class="forgot-password"></p>
+                <ion-button class="cirFullBlue" [disabled]="formData.invalid" type="submit">FORGOT</ion-button>
+                <ion-button class="cirFullBlue registerButton" type="button" (click)="forgotPassword = !forgotPassword;">BACK TO LOGIN</ion-button>
               </form>
             </div>
           </ion-col>

@@ -5,7 +5,7 @@ ion-content {
 
 .content-container {
   padding: 10px;
-  margin-top: 80px;
+  margin-top: calc(3rem + 10px);
 }
 
 ion-col:nth-child(odd) {
@@ -163,11 +163,11 @@ a {
 
   // margin-top: 43px;
   ion-col {
-    margin: 10px auto;
-    padding: 20px;
+    margin: calc(10rem / 16) auto;
+    padding: calc(10rem / 16);
     display: grid;
-    border-radius: 20px;
-    box-shadow: 2px 4px 2px #004AAD;
+    border-radius: calc(25rem / 16);
+    box-shadow: calc(2rem / 16) calc(4rem / 16) calc(2rem / 16) #004AAD;
     position: relative;
     background-color: white;
 
@@ -262,7 +262,7 @@ ion-refresher {
   height: 41px;
 
   img {
-    width: 60px;
+    width: calc(65rem / 16);
   }
 }
 
@@ -272,34 +272,34 @@ ion-refresher {
 
 .portfolio-container {
   img {
-    width: 40vw;
+    width: 9.5rem;
     bottom: 0;
     right: 0;
-    padding-bottom: 20px;
+    padding-bottom: 1.2rem;
     position: absolute;
   }
 }
 
 .categories-item:first-child {
   ion-col {
-    min-height: 130px;
-    padding: 15px;
-    margin-top: 6vh;
+    min-height: 9rem;
+    padding: 1rem;
+    margin-top: 4rem;
 
     p {
       color: #004AAD;
       bottom: 0;
       position: absolute;
-      font-size: 6.5vw;
-      padding-bottom: 20px;
+      font-size: 1.2rem;
+      padding-bottom: 1.2rem;
       font-weight: 900;
     }
   }
 }
 
 .categories-item:not(:first-child) img {
-  width: 110px;
-  height: 100px;
+  width: 7rem;
+  height: 7rem;
   object-fit: contain;
   top: 0;
   position: relative;
@@ -307,8 +307,8 @@ ion-refresher {
 
 ion-col.ion-activatable.margin-right.ios.hydrated,
 ion-col.ion-activatable.ios.hydrated:not(:first-child) {
-  padding: 0 20px;
-  height: 150px;
+  padding: 0 1rem;
+  height: 10rem;
 }
 
 .categories-item {
@@ -324,7 +324,7 @@ ion-col.ion-activatable.ios.hydrated:not(:first-child) {
   /* bottom: 0; */
   /* left: 50%; */
   /* transform: translate(-50%, -50%); */
-  margin: 20px auto 50px;
+  margin: calc(25rem / 16) auto calc(50rem / 16);
   font-family: "Montserrat";
   width: 100%;
 }
@@ -353,13 +353,13 @@ ion-fab-button {
 
 ion-col.ion-activatable.margin-right.ios.hydrated,
 ion-col.ion-activatable.ios.hydrated:not(:first-child) {
-  padding: 0 5vw;
-  height: 40vw;
+  padding: 0 1rem;
+  height: 10rem;
 }
 
 
 .title {
-  font-size: 4vw;
+  font-size: 0.8rem;
 }
 
 .banner-cnt {
@@ -370,13 +370,14 @@ ion-col.ion-activatable.ios.hydrated:not(:first-child) {
   text-align: center;
   color: white;
   font-weight: bold;
-  border-radius: 5px;
-  min-height: 41px;
+  border-radius: calc(8rem / 16);
+  min-height: calc(45rem / 16);
+  align-items: center;
 }
 
 .categories-item p {
   padding: 0;
-  font-size: 4vw;
+  font-size: 0.95rem;
   margin: 0;
-  line-height: 1em;
+  line-height: 1.1rem;
 }

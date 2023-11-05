@@ -1,73 +1,83 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-upcoming-maturities',
   templateUrl: './upcoming-maturities.page.html',
   styleUrls: ['./upcoming-maturities.page.scss'],
 })
-export class UpcomingMaturitiesPage implements OnInit  {
+export class UpcomingMaturitiesPage implements OnInit {
 
-  months = [
-    {
-      month:1,
-      isClicked:true,
-    },
-    {
-      month:3,
-      isClicked:false,
-    },
-    {
-      month:6,
-      isClicked:false,
-    }, {
-      month:12,
-      isClicked:false,
-    }
-  ];
   tableTitle = [];
   tableData = {
     item: null,
     data: [],
-    noData:'NO RENEWALS THIS MONTH'
+    noData: 'NO RENEWALS THIS MONTH'
   };
   years = [
-    {isSelected:true,year:'1 YEAR'},
-    {isSelected:false,year:'5 YEARS'},
-    {isSelected:false,year:'10 YEARS'},
-    {isSelected:false,year:'15 YEARS'},
-    {isSelected:false,year:'20 YEARS'},
-    {isSelected:false,year:'25 YEARS'},
-    {isSelected:false,year:'30 YEARS'},
-    {isSelected:false,year:'35 YEARS'},
-    {isSelected:false,year:'40 YEARS'},
-    {isSelected:false,year:'45 YEARS'},
-    {isSelected:false,year:'50 YEARS'},
+    { isClicked: true, year: '1 YEAR' },
+    { isClicked: false, year: '5 YEARS' },
+    { isClicked: false, year: '10 YEARS' },
+    { isClicked: false, year: '15 YEARS' },
+    { isClicked: false, year: '20 YEARS' },
+    { isClicked: false, year: '25 YEARS' },
+    { isClicked: false, year: '30 YEARS' },
+    { isClicked: false, year: '35 YEARS' },
+    { isClicked: false, year: '40 YEARS' },
+    { isClicked: false, year: '45 YEARS' },
+    { isClicked: false, year: '50 YEARS' },
   ];
+  selectedYear = this.years[1].year;
   showSubmenu = false;
-  constructor() { }
+  renewalsObj = {};
+  renewalsArr: any[] = [];
+  constructor(private popoverController: PopoverController) { }
 
   ngOnInit() {
     this.tableTitle = [
-      ['Product Type','Policy Type'],
+      ['Product Type', 'Policy Type'],
       ['Investor Name', 'Company'],
       ['DOC', 'Frequency'],
       ['Renewal Date'],
       ['Amount']
     ];
-    console.log(this.years);
+    this.resetYearObj(5);
   }
 
   menuItemHandler(): void {
     this.showSubmenu = !this.showSubmenu;
   }
 
-  onMonthClick(index){
-    for (let i = 0; i < this.months.length; i++) {
-        if(index === i){
-          this.months[i].isClicked=true;
-        }else{
-          this.months[i].isClicked=false;
-        }
+  yearSelected(index) {
+    this.selectedYear = this.years[index].year;
+    const selectedYear = this.selectedYear.split(' ')[0];
+    for (let i = 0; i < this.years.length; i++) {
+      if (index === i) {
+        this.years[i].isClicked = true;
+      } else {
+        this.years[i].isClicked = false;
+      }
     }
+    this.resetYearObj(selectedYear);
+    this.popoverController.dismiss();
+  }
+
+  resetYearObj(year) {
+    this.renewalsObj = {};
+    const currentYear = new Date().getFullYear();
+    for (let i = 0; i < year; i++) {
+      this.renewalsObj[currentYear + i] = {
+        year: currentYear + i,
+        data: [],
+        tableData: {
+          item: null,
+          data: [],
+          renewals: true
+        },
+        totalSum: 0
+      };
+    }
+    console.log(this.renewalsObj);
+    this.renewalsArr = Object.values(this.renewalsObj);
   }
 }

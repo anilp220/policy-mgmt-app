@@ -108,7 +108,7 @@ ion-toolbars.toolbar-searchbar {
   //   }
   // }
   .title{
-    color: #194AB0;
+    color: #004aad;
     width: 70%;
     font-size: 15px;
     border-bottom: 1px solid;
@@ -177,6 +177,9 @@ ion-toolbars.toolbar-searchbar {
   width: 100% !important;
   height: 100% !important;
 }
+generice-portfolio-table ion-row ion-col {
+  background: linear-gradient(269deg, #c8e4f9, white) !important;
+}
 ion-popover {
   --background: #8FC6F2;
   --backdrop-opacity: 0;
@@ -188,7 +191,8 @@ ion-popover {
 ion-popover .popover-list-item {
   padding: 7px 0;
   font-size: 12px;
-  margin: auto;
+  // margin: auto;
+  text-align: center;
   color: black;
 }
 ion-popover .popover-list-item.selected{
@@ -197,3 +201,6 @@ ion-popover .popover-list-item.selected{
   background: white;
 }
 
+ion-popover .clicked{
+  background: white;
+}

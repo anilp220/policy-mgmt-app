@@ -37,3 +37,15 @@ export class HeaderComponent implements OnInit {
     } else { this.navCtrl.back(); }
   }
 }
+
+function doCheck(query) {
+  if (query.matches) { // If media query matches
+    document.querySelector('html').style.fontSize = '30px';
+  } else {
+    document.querySelector('html').style.fontSize = '';
+  }
+}
+
+const query = window.matchMedia("(min-width: 600px)")
+doCheck(query) // Call listener function at run time
+query.addListener(doCheck) // Attach listener function on state changes

@@ -1,23 +1,34 @@
 ion-title {
-  padding-inline: 45px;
+  padding-inline: 3rem;
   text-align: center;
   font-weight: bold;
   color: white;
-  font-size: 5vw;
-  span{
-    font-size: 4vw;
+  position: relative;
+  // margin-right: -2.8rem;
+  font-size: 1.5rem;
+  height: 3rem !important;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  span {
+    font-size: 1.5rem;
   }
 }
 
+.welcomeTitle {
+  font-size: 1rem;
+}
+
 img {
-  width: 11vw;
-  border: 2px solid white;
+  width: 2.5rem;
+  border: 0.15rem solid white;
   border-radius: 50%;
-  height: 11vw;
+  height: 2.5rem;
 }
 
 .notify-btn ion-icon {
-  font-size: 35px;
+  // font-size: 35px;
+  font-size: calc(30rem / 16);
 }
 
 .app-header ion-toolbar {
@@ -25,11 +36,23 @@ img {
   --border-width: 0 !important;
   --background: linear-gradient(0deg, #004AAD 0%, #3DABD2 100%) !important;
   /* background: linear-gradient(90deg, #420e9b,#02b6fd); */
-  padding: 8px 18px 10px !important;
-  }
+  // padding: 8px 18px 10px !important;
+  padding: 5px 18px 5px !important;
+}
 
-  .app-header .notify-btn {
-    display: inline-block;
-    float: right;
-    margin: 0px;
-    }
+.app-header .notify-btn {
+  display: inline-block;
+  float: right;
+  margin: 0;
+  display: flex;
+}
+
+.notify-btn:first-child {
+  position: fixed;
+  left: 0;
+  // top: 19%;
+}
+.notify-btn:not(:first-child) {
+  position: fixed;
+  right: 0;
+}

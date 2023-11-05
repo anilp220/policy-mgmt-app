@@ -7,6 +7,9 @@ ion-content {
       margin: 20px auto;
       border-radius: 15px;
       background: none;
+      ion-item button {
+        background: linear-gradient(337deg, #59a9e2, #aad7f8) !important;
+      }
       ion-item > ion-label{
         font-family: "Montserrat";
       }
@@ -18,7 +21,8 @@ ion-content {
           padding: 10px;
           border: 1px solid;
           margin-bottom: 5px;
-          background-color: white;
+          // background-color: white;
+          background: linear-gradient(269deg, #c8e4f9, white) !important;
           display: flex;
           align-items: center;
         }

@@ -1,52 +1,23 @@
-<app-header [title]="'Upcoming Renewals'"></app-header>
+<app-header [title]="'Upcoming Maturities'"></app-header>
 <ion-content>
   <div class="padding">
     <div class="month-tabs">
       <div>Check your upcoming maturities in</div>
-      <div class="year-btn" id="click-trigger">1 YEAR</div>
-<ion-popover trigger="click-trigger" triggerAction="click">
-  <ng-template>
-    <div class="popover-list-item" (click)="year.isSelected = !year.isSelected" [ngClass]="year.isSelected ? 'popover-list-item.selected' : ''"
-    *ngFor="let year of years">{{year.year}}</div>
-  </ng-template>
-</ion-popover>
-      <!-- <ion-select value="1 YEAR">
-        <ion-select-option *ngFor="let year of years" [value]="year">{{year}}</ion-select-option>
-      </ion-select> -->
+      <div class="year-btn" id="click-trigger">{{selectedYear}}</div>
+      <ion-popover trigger="click-trigger" triggerAction="click">
+        <ng-template>
+          <div class="popover-list-item"
+          [ngClass]="selectedYear == year.year ? 'clicked' : ''" (click)="yearSelected(i)"
+          *ngFor="let year of years;let i=index">{{year.year}}</div>
+        </ng-template>
+      </ion-popover>
     </div>
-    <div class="card-container">
+    <div *ngFor="let arr of renewalsArr" class="card-container">
       <div class="month-title">
-        <div class="month">September</div>
-        <div class="amount">RS 12312/-</div>
+        <div class="month">{{arr.year}}</div>
+        <div class="amount">RS {{arr.totalSum}}/-</div>
       </div>
       <div class="table investorCard">
-      <generice-portfolio-table
-            [tableTitle]="tableTitle"
-            [tableData]="tableData"
-            (gotoDetailEvent)="gotoDetail($event)"
-      ></generice-portfolio-table>
-      </div>
-
-    </div>
-    <div class="card-container">
-      <div class="month-title">
-        <div class="month">September</div>
-        <div class="amount">RS 12312/-</div>
-      </div>
-      <div class="table">
-      <generice-portfolio-table
-            [tableTitle]="tableTitle"
-            [tableData]="tableData"
-            (gotoDetailEvent)="gotoDetail($event)"
-      ></generice-portfolio-table>
-      </div>
-    </div>
-    <div class="card-container">
-      <div class="month-title">
-        <div class="month">September</div>
-        <div class="amount">RS 12312/-</div>
-      </div>
-      <div class="table">
       <generice-portfolio-table
             [tableTitle]="tableTitle"
             [tableData]="tableData"
