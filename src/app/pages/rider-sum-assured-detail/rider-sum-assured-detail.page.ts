@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
-import { HealthInsuranceService } from 'src/app/services/health-insurance.service';
+import { HealthInsuranceService } from 'src/app/services/collection-services/health-insurance.service';
 import { HighchartService } from 'src/app/services/highchart.service';
-import { LiService } from 'src/app/services/li.service';
+import { LifeInsuranceService } from 'src/app/services/collection-services/life-insurance.service';
 
 @Component({
   selector: 'app-rider-sum-assured-detail',
@@ -15,7 +15,7 @@ export class RiderSumAssuredDetailPage implements OnInit {
   diseases = [];
   constructor(private route: ActivatedRoute,
     private appService: AppService,
-    private liService: LiService,
+    private liService: LifeInsuranceService,
     private hiService: HealthInsuranceService,
     private router: Router) {
     this.route.queryParams.subscribe(_p => {

@@ -27,7 +27,7 @@ export class UpcomingMaturitiesPage implements OnInit {
     { isClicked: false, year: '45 YEARS' },
     { isClicked: false, year: '50 YEARS' },
   ];
-  selectedYear = this.years[1].year;
+  selectedYear;
   showSubmenu = false;
   renewalsObj = {};
   renewalsArr: any[] = [];
@@ -35,13 +35,13 @@ export class UpcomingMaturitiesPage implements OnInit {
 
   ngOnInit() {
     this.tableTitle = [
-      ['Product Type', 'Policy Type'],
-      ['Investor Name', 'Company'],
-      ['DOC', 'Frequency'],
-      ['Renewal Date'],
-      ['Amount']
+      ['Investor Name','Product Type'],
+      ['Company', 'DOC'],
+      ['Return Type', 'Return Date'],
+      ['Total Investment'],
+      ['Maturity','IRR']
     ];
-    this.resetYearObj(5);
+    this.yearSelected(1);
   }
 
   menuItemHandler(): void {

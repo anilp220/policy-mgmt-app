@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LiService {
+export class LifeInsuranceService {
   getDetails(item) {
     const portfolioData = [
       { title: 'CLIENT DETAILS', data: [] },

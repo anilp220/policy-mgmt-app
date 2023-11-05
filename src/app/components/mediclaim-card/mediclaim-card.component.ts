@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
-import { HealthInsuranceService } from 'src/app/services/health-insurance.service';
+import { HealthInsuranceService } from 'src/app/services/collection-services/health-insurance.service';
 @Component({
   selector: 'app-mediclaim-card',
   templateUrl: './mediclaim-card.component.html',

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { AppService } from 'src/app/services/app.service';
 import { HighchartService } from 'src/app/services/highchart.service';
-import { LiService } from 'src/app/services/li.service';
+import { LifeInsuranceService } from 'src/app/services/collection-services/life-insurance.service';
 
 @Component({
   selector: 'app-sum-assured-detail',
@@ -22,7 +22,7 @@ export class SumAssuredDetailPage implements OnInit {
   barChartOptions;
   constructor(private route: ActivatedRoute,
     private highChartService: HighchartService,
-    private liService: LiService,
+    private liService: LifeInsuranceService,
     private appService: AppService,
     private elementRef: ElementRef,
     private router: Router) {

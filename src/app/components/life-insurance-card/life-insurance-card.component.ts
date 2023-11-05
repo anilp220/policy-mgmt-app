@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, Input, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
-import { LiService } from 'src/app/services/li.service';
+import { LifeInsuranceService } from 'src/app/services/collection-services/life-insurance.service';
 import { Models } from 'src/app/services/models.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class LifeInsuranceCardComponent implements OnInit {
     item: null,
     data: []
   };
-  constructor(private models: Models, private liService: LiService, public appService: AppService) {
+  constructor(private models: Models, private liService: LifeInsuranceService, public appService: AppService) {
   }
 
   ngOnInit() {
