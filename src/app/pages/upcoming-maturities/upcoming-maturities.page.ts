@@ -133,8 +133,22 @@ export class UpcomingMaturitiesPage implements OnInit {
   getMaturities(data: any[], noOfYears: number) {
     const maturities = [];
     data.forEach(element => {
-      if (element.dateOfMaturity || element.maturityDate) {
-        const maturityDate = new Date(element.dateOfMaturity);
+      let maturityDate = element.dateOfMaturity || element.maturityDate;
+      if (maturityDate) {
+        maturityDate = new Date(maturityDate);
+          if(element.productType === ProductType.fixedDeposit && element.payoutDetails?.length){
+            element.payoutDetails.forEach(payout => {
+              const payoutElement = {...element};
+              const payoutMaturityDate = new Date(payout.date);
+              if (this.isDateInRange(payoutMaturityDate, noOfYears)) {
+                payoutElement.maturityYear = new Date(payoutMaturityDate).getFullYear();
+                payoutElement.maturityDate = payoutMaturityDate;
+                payoutElement.maturityValue = payout.amount;
+                payoutElement.returnType = 'Moneyback';
+                maturities.push(payoutElement);
+              }
+            });
+          }
         if (this.isDateInRange(maturityDate, noOfYears)) {
           element.maturityYear = new Date(maturityDate).getFullYear();
           maturities.push(element);
@@ -173,31 +187,36 @@ export class UpcomingMaturitiesPage implements OnInit {
           [item.company, item.doc],
           [item.purchaseDate, item.dateOfMaturity],
           [item.totalInvestment],
-          [item.missing,item.irr]
+          [item.maturityValue,item.irr+'%']
         ];
       case ProductType.mutualFund:
+        item.returnType = 'Maturity';
         return [
           [item.investorName, item.productType],
           [item.company?.name, item.dateOfPurchase],
-          [item.dateOfPurchase, item.missing],
+          [item.returnType, item.returnDate],
           [item.totalInvestment],
-          [item.expectedFundValue,item.missing]
+          [item.expectedFundValue,item.currentReturn+'%']
         ];
       case ProductType.equities:
+        item.returnType = 'Maturity';
         return [
           [item.investorName, item.productType],
           [item.company?.name, item.dateOfPurchase],
-          [item.dateOfIssuance, item.missing],
+          [item.returnType, item.dateOfMaturity],
           [item.amountInvested],
-          [item.missing,item.missing]
+          [item.maturityValue,item.currentReturn+'%']
         ];
       case ProductType.fixedDeposit:
+        if(!item.returnType){
+          item.returnType = 'Maturity';
+        }
         return [
           [item.firstholder, item.productType],
           [item.issuingAuthorityName, item.dateOfIssuance],
-          [item.doc, item.maturityDate],
+          [item.returnType, item.maturityDate],
           [item.totalInvestment],
-          [item.maturityValue,item.missing]
+          [item.maturityValue,item.returnOnInvestment+'%']
         ];
       default:
         break;

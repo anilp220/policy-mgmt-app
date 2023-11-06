@@ -131,8 +131,10 @@ export class UpcomingRenewalsPage implements OnInit {
         const element = allData[key];
         element.forEach(colData => {
           colData.productType = this.convertKeyToName(key);
-          console.log(colData.productType);
-          mergedData.push(colData);
+          if (colData.productType !== ProductType.equities ||
+            colData.productType !== ProductType.fixedDeposit){
+              mergedData.push(colData);
+            }
         });
       }
     }
@@ -170,7 +172,7 @@ export class UpcomingRenewalsPage implements OnInit {
   }
 
   getChartOptions() {
-    const labels = [];
+    let labels = [];
     const data = [];
     this.renewalsArr.forEach(item => {
       if (item.totalSum > 0) {
@@ -179,7 +181,8 @@ export class UpcomingRenewalsPage implements OnInit {
       }
     });
     setTimeout(() => {
-      this.chartOptions = this.highChartService.getAnnualPremiumChart(labels, data);
+      labels =labels.map(cat=>cat.slice(0,3));
+      this.chartOptions = this.highChartService.getBarChart(labels, data,'Renewal Amount');
     }, 0);
   }
 
@@ -217,11 +220,11 @@ export class UpcomingRenewalsPage implements OnInit {
         break;
       case ProductType.loans:
         break;
-      case ProductType.equities:
-        break;
-      case ProductType.fixedDeposit:
-        data = this.fdService.getDetails(item);
-        break;
+      // case ProductType.equities:
+      //   break;
+      // case ProductType.fixedDeposit:
+      //   data = this.fdService.getDetails(item);
+      //   break;
       default:
         break;
     }
@@ -240,22 +243,6 @@ export class UpcomingRenewalsPage implements OnInit {
           [item.purchaseDate, item.policyPeriod],
           [item.renewalDate],
           [item.premium]
-        ];
-      case ProductType.equities:
-        return [
-          [item.productType, item.typeOfPolicy],
-          [item.investorName, item.companyName],
-          [item.dateOfPurchase, item.mode],
-          [item.missing],
-          [item.missing]
-        ];
-      case ProductType.fixedDeposit:
-        return [
-          [item.productType, item.typeOfPolicy],
-          [item.firstholder, item.company],
-          [item.dateOfIssuance, item.mode],
-          [item.missing],
-          [item.missing]
         ];
       case ProductType.lifeInsurance:
         return [
