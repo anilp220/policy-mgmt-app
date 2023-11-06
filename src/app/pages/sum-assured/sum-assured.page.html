@@ -3,9 +3,10 @@
   <div class="ion-padding canvas">
     <div>
       <highcharts-chart
+      *ngIf="chartOptions"
         [Highcharts]="highcharts"
         [options]="chartOptions"
-        style="width: 100%; display: block"
+        style="width: 100%; display: block;"
       ></highcharts-chart>
     </div>
     <div class="disease-table">
@@ -24,7 +25,7 @@
         (click)="onClick(data)"
       >
         <ion-col>{{data.nameOfLifeInsured}}</ion-col>
-        <ion-col>{{data.sumAssured}}</ion-col>
+        <ion-col>{{data.sumAssured ? highChartService.convertAmoutToStr(data.sumAssured) : null}}</ion-col>
       </ion-row>
     </div>
   </div>

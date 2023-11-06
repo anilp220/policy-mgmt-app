@@ -30,10 +30,11 @@ export class SumAssuredPage implements OnInit {
     const holder = {};
     const plotData = [];
     this.liData.forEach((d) => {
-      if (holder.hasOwnProperty(d.nameOfLifeInsured)) {
-        holder[d.nameOfLifeInsured] = holder[d.nameOfLifeInsured] + d.sumAssured;
+      const nameOfLifeInsured = d.nameOfLifeInsured?.toLowerCase();
+      if (holder.hasOwnProperty(nameOfLifeInsured)) {
+        holder[nameOfLifeInsured] = holder[nameOfLifeInsured] + d.sumAssured;
       } else {
-        holder[d.nameOfLifeInsured] = d.sumAssured;
+        holder[nameOfLifeInsured] = d.sumAssured;
       }
     });
     this.mergedData = [];
@@ -47,11 +48,13 @@ export class SumAssuredPage implements OnInit {
       plotData.push(innerItem);
     }
     this.mergedData = this.mergedData.sort((a, b) => b.sumAssured - a.sumAssured);
-    this.chartOptions = this.highChartService.getDonutChart(plotData, true);
+    setTimeout(() => {
+      this.chartOptions = this.highChartService.getDonutChart(plotData, true,null,true);
+    }, 0);
   }
 
   onClick(item) {
-    const foundItems = this.liData.filter(el => el.nameOfLifeInsured === item.nameOfLifeInsured);
+    const foundItems = this.liData.filter(el => el.nameOfLifeInsured.toLowerCase() === item.nameOfLifeInsured.toLowerCase());
     this.navCtrl.navigateForward('tabs/sum-assured-detail', {
       state: {
         item: JSON.stringify(foundItems),

@@ -42,7 +42,9 @@ export class RiderSumAssuredPage implements OnInit {
       const innerItem = [ele.name, ele.diseases.length];
       plotData.push(innerItem);
     }
-    this.chartOptions = this.highChartService.getDonutChart(plotData, true, true);
+    setTimeout(() => {
+      this.chartOptions = this.highChartService.getDonutChart(plotData, true, true);
+    }, 0);
   }
 
   countDiesease(arr): number {

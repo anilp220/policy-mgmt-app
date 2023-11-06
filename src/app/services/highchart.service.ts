@@ -19,20 +19,23 @@ export class HighchartService {
     '#a8e6cf',
   ];
   constructor() { }
-  getDonutChart(data, showSum?, diseases?) {
+  getDonutChart(data, showSum?, diseases?, isAmount?) {
+    console.log(data, isAmount);
+    const _this = this;
     return {
       chart: {
         type: 'pie',
         backgroundColor: 'transparent',
         margin: 0,
+        height: 250
       },
       title: {
         text: ''
       },
       plotOptions: {
         pie: {
-          center: ['50%', '50%']
-        }
+          // center: ['50%', '45%'];
+        },
       },
       tooltip: {
         formatter() {
@@ -41,21 +44,29 @@ export class HighchartService {
       },
       series: [{
         data,
-        size: '60%',
+        // size: '60%',
         innerSize: '60%',
         showInLegend: false,
         type: 'pie',
         dataLabels: {
           enabled: true,
+          // inside:true,
+          // crop: false,
+          //       overflow: 'none',
+
           style: {
-            fontSize: '15',
-            fontWeight: 'bold'
+            // fontSize: '12',
+            // fontWeight: 'bold'
           },
           formatter() {
             // eslint-disable-next-line max-len
-            return showSum ? ('<b>' + this.point.name + '</b> <br>'
-              + this.y + (diseases ? ' Diseases' : '')) :
-              (this.point.name + '<br>' + this.percentage.toFixed() + '%');
+            if (!isAmount) {
+              return showSum ? (_this.getFirstName(this.point.name) + '<br>'
+                + this.y + (diseases ? ' Diseases' : '')) :
+                (this.point.name + '<br>' + this.percentage.toFixed() + '%');
+            } else {
+              return _this.convertAmoutToStr(this.y);
+            }
           }
         },
         colors: this.colors
@@ -71,48 +82,63 @@ export class HighchartService {
     };
   }
 
-  getAnnualPremiumChart(categories: string[],data: string[]){
-    categories =categories.map(cat=>cat.slice(0,3));
+  getFirstName(name: string) {
+    const split = name.split(' ');
+    if (split.length > 1) {
+      if (split[0].toLowerCase() === 'mr.'
+        || split[0].toLowerCase() === 'mr'
+        || split[0].toLowerCase() === 'mrs.'
+        || split[0].toLowerCase() === 'mrs') {
+        return split[1];
+      }
+    }
+    return split[0];
+  }
+
+  getBarChart(categories: string[], data: any[], seriesName: string, yAxisTitle?: string, xAxisTitle?: string, isAmount?: boolean) {
+    console.log(categories, data);
+    // eslint-disable-next-line no-underscore-dangle
+    const _this = this;
     return {
       chart: {
         type: 'bar',
         backgroundColor: 'transparent',
-        height:200,
-        style:{
+        height: 200,
+        style: {
         }
       },
       title: {
         text: ''
       },
       xAxis: {
-        type:'category',
+        type: 'category',
         categories,
         lineWidth: 0,
-   minorGridLineWidth: 0,
-   lineColor: 'transparent',
-   minorTickLength: 0,
-   tickLength: 0,
+        minorGridLineWidth: 0,
+        lineColor: 'transparent',
+        minorTickLength: 0,
+        tickLength: 0,
         title: {
-          text: '',
+          text: xAxisTitle || '',
         },
-        labels:{
+        labels: {
           // overflow: 'justify',
-          enabled:true,
-          style:{
-            fontSize:12,
-            backgroundColor:'red',
-            color:'black',
+          enabled: true,
+          style: {
+            fontSize: 12,
+            backgroundColor: 'red',
+            color: 'black',
           },
         },
-        enabled:true,
+        enabled: true,
       },
       yAxis: {
         min: 0,
         title: {
-          text: '',
+          text: yAxisTitle || '',
         },
         labels: {
-          enabled:false
+          enabled: false
         }
       },
       tooltip: {
@@ -122,14 +148,14 @@ export class HighchartService {
         bar: {
           dataLabels: {
             enabled: true,
-            style:{
-              fontSize:12
+            style: {
+              fontSize: 12
             },
             formatter() {
-              // eslint-disable-next-line eqeqeq
-              if(this.y != 0) {
-                return this.y;
+              if (isAmount) {
+                return _this.convertAmoutToStr(this.y);
               }
+              return this.y;
             }
           }
         },
@@ -139,185 +165,25 @@ export class HighchartService {
         },
       },
       legend: {
-        enabled:false
+        enabled: false
       },
       credits: {
         enabled: false
       },
       series: [
         {
-          name: 'Renewal Amount',
+          name: seriesName,
           data
         }
       ]
     };
   }
 
-  getLifeTimeSumChart(categories: string[],data: string[]){
-    return {
-      chart: {
-        type: 'bar',
-        backgroundColor: 'transparent',
-        style:{
-        }
-      },
-      title: {
-        text: ''
-      },
-      xAxis: {
-        type:'category',
-        categories,
-        title: {
-          text: '',
-        },
-        labels:{
-          // overflow: 'justify',
-          enabled:true,
-          style:{
-            fontSize:12,
-            backgroundColor:'red',
-            color:'black',
-          }
-        },
-        enabled:true,
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: '',
-        },
-        labels: {
-          enabled:false
-        }
-      },
-      tooltip: {
-        valuePrefix: 'Rs. '
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            enabled: true,
-            style:{
-              fontSize:12
-            }
-          }
-        }
-      },
-      legend: {
-        enabled:false
-      },
-      credits: {
-        enabled: false
-      },
-      series: [
-        {
-          name: 'Renewal Amount',
-          data
-        }
-      ]
-    };
+  convertAmoutToStr(y) {
+    const val = Math.abs(y);
+    if (val >= 10000000) { return `${(y / 10000000).toFixed(2)} Crore(s)`; };
+    if (val >= 100000) { return `${(y / 100000).toFixed(2)} Lac(s)`; };
+    if (val >= 1000) { return `${(y / 1000).toFixed(2)} Thousand(s)`; };
+    return y;
   }
-
-  getBarChart(htmlRef) {
-    const option: any = {
-      type: 'horizontalBar',
-      data: {
-        labels: [65, 59, 80, 81, 56, 55, 40],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            backgroundColor: '#6eaee0',
-            fill: true,
-            borderRadius: 15,
-          },
-        ]
-      },
-      options: {
-        indexAxis: 'y',
-        legend: {
-          display: false
-        },
-        elements: {
-          bar: {
-            borderWidth: 1,
-          }
-        },
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Chart.js Horizontal Bar Chart'
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Age',
-          },
-        }]
-      }
-    };
-    return new Chart(htmlRef, option);
-  }
-
-//   getAnnualPremiumChart(htmlRef,labels,data,) {
-//     const option: any = {
-//       type: 'bar',
-//       tooltip: {
-//         enabled: true,
-//         titleColor:'red'
-//     },
-//       data: {
-//         labels,
-//         datasets: [
-//           {
-//             label: 'Premiun',
-//             data,
-//             backgroundColor: '#7BC5FF',
-//             fill: true,
-//             borderRadius: 15,
-//           },
-//         ]
-//       },
-//       options: {
-//         // indexAxis: 'x',
-//         legend: {
-//           display: false
-//         },
-//         // elements: {
-//         //   bar: {
-//         //     borderWidth: 10,
-//         //   }
-//         // },
-//         responsive: true,
-//         plugins: {
-//           // title: {
-//           //   display: true,
-//           // },
-//           tooltip: {
-//             mode: 'index',
-//             intersect: false,
-//             enabled:true
-//           }
-//         }
-//       },
-//       scales: {
-//         // yAxes: [{
-//         //   scaleLabel: {
-//         //     display: false,
-//         //   },
-//         // }],
-//         xAxes: [{
-//           ticks: {
-//             display: false //this will remove only the label
-//         }
-// //this will remove all the x-axis grid lines
-//       }]
-//       }
-//     };
-//     return new Chart(htmlRef, option);
-//   }
 }

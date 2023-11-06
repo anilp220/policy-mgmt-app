@@ -5,9 +5,13 @@ ion-content {
 .canvas{
   margin-top: 50px;
 }
-.investorCard{
-  margin-top: -30px;
-}
 .bar-chart{
   margin-top: 20px;
+}
+.graph-title{
+  text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: calc(18rem / 16);
+    font-family: "Montserrat";
 }

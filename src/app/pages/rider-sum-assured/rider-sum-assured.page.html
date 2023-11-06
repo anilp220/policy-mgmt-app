@@ -3,9 +3,10 @@
   <div class="ion-padding canvas">
     <div>
       <highcharts-chart
+      *ngIf="chartOptions"
         [Highcharts]="highcharts"
         [options]="chartOptions"
-        style="width: 100%; display: block"
+        style="width: 100%; display: block;"
       ></highcharts-chart>
     </div>
     <div class="disease-table">

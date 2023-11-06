@@ -32,14 +32,13 @@ export class SumAssuredDetailPage implements OnInit {
         const data = JSON.parse(navParams.item);
         this.investorName = navParams.title;
         this.buildGenericeTableData(data);
-        this.mapChart(data);
+        this.mapDonutChart(data);
+        this.mapBarChart(data);
       }
     });
   }
 
   ngOnInit() {
-    const htmlRef = this.elementRef.nativeElement.querySelector('#horizontalBar');
-    this.barChartOptions = this.highChartService.getBarChart(htmlRef);//todo update chart
   }
 
   buildGenericeTableData(data) {
@@ -65,13 +64,54 @@ export class SumAssuredDetailPage implements OnInit {
     console.log(this.tableData);
   }
 
-  mapChart(data: any[]) {
+  mapDonutChart(data: any[]) {
     const plotData = [];
     data.forEach(element => {
       plotData.push([element.company, element.sumAssured]);
     });
     console.log(plotData);
-    this.chartOptions = this.highChartService.getDonutChart(plotData);
+    setTimeout(() => {
+      this.chartOptions = this.highChartService.getDonutChart(plotData);
+    }, 0);
+  }
+
+  mapBarChart(data: any[]) {
+      const mydob = new Date(data[0].dobOfLifeInsured);
+      const thisYear = (new Date()).getFullYear();
+      let lastSumAssured = 0;
+      const result = {
+        categories:[],
+        data:[]
+      };
+      for (let year = thisYear; year <= thisYear + 100; year++) {
+        let totalSumAssured = 0;
+        for (const policy of data) {
+          totalSumAssured += this.getSumAssuredForYear(policy, year);
+        }
+        if (lastSumAssured === totalSumAssured) {continue;}
+
+        lastSumAssured = totalSumAssured;
+
+        const ageDiff = year - mydob.getFullYear();
+        console.log(ageDiff, totalSumAssured);
+        result.categories.push(ageDiff);
+        result.data.push(totalSumAssured);
+        if (totalSumAssured === 0) {break;}
+      }
+      setTimeout(() => {
+        this.barChartOptions = this.highChartService.getBarChart(result.categories,result.data,'Sum Assured','Sum Assured','Age',true);
+      }, 0);
+  }
+
+  getSumAssuredForYear(policy, year) {
+    const policyDOC = new Date(policy.doc);
+    const policyMaturityDate = new Date(policy.dateOfMaturity);
+    const policySumAssured = policy.sumAssured;
+
+    if (year >= policyDOC.getFullYear() && year < policyMaturityDate.getFullYear()) {
+        return policySumAssured;
+    }
+    return 0;
   }
 
   gotoDetail(item) {

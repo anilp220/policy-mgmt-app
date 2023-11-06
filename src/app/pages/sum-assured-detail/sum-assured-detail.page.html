@@ -4,6 +4,7 @@
   <div class="ion-padding">
     <div class="canvas">
       <highcharts-chart
+      *ngIf="chartOptions"
         [Highcharts]="highcharts"
         [options]="chartOptions"
         style="width: 100%; display: block"
@@ -19,12 +20,13 @@
           (gotoDetailEvent)="gotoDetail($event)"
         ></generice-portfolio-table>
     </div>
-    <!-- <div class="bar-chart">
-    <highcharts-chart
+    <div class="bar-chart">
+      <div class="graph-title">Life-Time Sum assured</div>
+    <highcharts-chart *ngIf="barChartOptions"
         [Highcharts]="highcharts"
-        [options]="chartOptions"
+        [options]="barChartOptions"
         style="width: 100%; display: block"
       ></highcharts-chart>
-    </div> -->
+    </div>
   </div>
 </ion-content>
