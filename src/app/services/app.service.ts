@@ -51,15 +51,16 @@ export class AppService {
     return this.localStorage.remove(param);
   }
 
-  async showToast(msg: string, duration?: number) {
+  async showToast(msg: string, duration?: number, error?: boolean) {
     let message = msg;
     if (!message || message.length === 0) {
       message = 'Something went wrong';
     }
     const toast = await this.toastCtrl.create({
       message,
-      position: 'bottom',
+      position: 'middle',
       duration: duration ? duration : 2000,
+      cssClass:error ? 'toast-danger':''
     });
     toast.present();
   }

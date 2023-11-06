@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
+import { FixedDepositService } from 'src/app/services/collection-services/fixed-deposit.service';
 
 @Component({
   selector: 'app-fixed-deposit-card',
@@ -18,7 +19,7 @@ export class FixedDepositCardComponent implements OnInit {
     item: null,
     data: []
   };
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private fdService: FixedDepositService) { }
 
   ngOnInit() {
     this.buildGenericeTableData();
@@ -46,86 +47,8 @@ export class FixedDepositCardComponent implements OnInit {
   }
 
   gotoDetail(item) {
-    console.log(item);
-    this.portfolioData[0].data = this.policytDetails(item);
+    this.portfolioData = this.fdService.getDetails(item);
     this.appService.gotoPolicyDetail(this.portfolioData, this.pageTitle, this.investorName, item);
-  }
-
-  policytDetails(item) {
-    return [
-      {
-        key: 'NAME OF 1ST HOLDER',
-        value: item.firstholder
-      },
-      {
-        key: 'ACCOUND HOLDER D.O.B',
-        value: item.dobAccountHolder
-      },
-      {
-        key: 'NAME OF 2ND HOLDER',
-        value: this.getHolderName(item.secondHolders, 0),
-      },
-      {
-        key: 'NAME OF 3RD HOLDER',
-        value: this.getHolderName(item.secondHolders, 1),
-      },
-      {
-        key: 'NOMINEE NAME',
-        value: item.nomineeName
-      },
-      {
-        key: 'NOMINEE D.O.B',
-        value: item.nomineeNameDob
-      },
-      {
-        key: 'ACCOUNT HOLDER BANK DETAILS',
-        value: item.accountHolderBankDetail
-      },
-      {
-        key: 'INVESTMENT DETAILS',
-        value: this.getInvestmentDetail(item),
-      },
-      {
-        key: 'MONEY BACK DETAILS',
-        value: this.getMoneyBackDetail(item)
-      },
-      {
-        key: 'MATURITY DETAILS',
-        value: this.getMaturityDetails(item),
-      },
-      {
-        key: 'RETURN ON INVESTMENT',
-        value: item.returnOnInvestment + '%'
-      },
-      {
-        key: 'TAX BENEFIT',
-        value: item.taxBenefit
-      },
-      {
-        key: 'TAX ON MATURITY',
-        value: item.taxOnMaturity
-      },
-      {
-        key: 'STATUS',
-        value: item.status
-      },
-    ];
-  }
-
-  getHolderName(holders: any[], index: number) {
-    return holders[index]?.name || 'NA';
-  }
-
-  getInvestmentDetail(item) {
-    return [];
-  }
-
-  getMoneyBackDetail(item) {
-    return [];
-  }
-
-  getMaturityDetails(item) {
-    return [];
   }
 
 }

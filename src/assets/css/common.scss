@@ -204,3 +204,7 @@ ion-popover .popover-list-item.selected{
 ion-popover .clicked{
   background: white;
 }
+.toast-danger{
+  --background:red;
+  --color:white;
+}

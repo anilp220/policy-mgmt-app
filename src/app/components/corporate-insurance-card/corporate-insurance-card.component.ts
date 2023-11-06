@@ -31,6 +31,7 @@ export class CorporateInsuranceCardComponent implements OnInit {
       ['PREMIUM'],
       ['POLICY STATUS']
     ];
+    console.log(this.data);
     this.data.forEach(item => {
       this.tableData.item = item;
       this.tableData.data.push([
@@ -55,13 +56,11 @@ export class CorporateInsuranceCardComponent implements OnInit {
         }
         result += temp;
       }
-      console.log(result);
       return result;
     }
   }
 
   gotoDetail(item) {
-    console.log(item);
     const data = this.corporateService.getDetails(item);
     this.appService.gotoPolicyDetail(data, this.pageTitle, this.investorName, item);
   }

@@ -13,6 +13,7 @@ import { HealthInsuranceService } from 'src/app/services/collection-services/hea
 import { CorporateInsuranceService } from 'src/app/services/collection-services/corporate-insurance.service';
 import { MutualFundService } from 'src/app/services/collection-services/mutual-fund.service';
 import { VehicleInsuranceService } from 'src/app/services/collection-services/vehicleInsurance.service';
+import { FixedDepositService } from 'src/app/services/collection-services/fixed-deposit.service';
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
 const noData = require('highcharts/modules/no-data-to-display');
@@ -62,9 +63,10 @@ export class UpcomingRenewalsPage implements OnInit {
     private corporateService: CorporateInsuranceService,
     private mfService: MutualFundService,
     private viService: VehicleInsuranceService,
+    private fdService: FixedDepositService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.tableTitle = [
       ['Product Type', 'Policy Type'],
       ['Investor Name', 'Company'],
@@ -85,7 +87,6 @@ export class UpcomingRenewalsPage implements OnInit {
       }
     }
     this.resetMonthObj(this.months[index].month);
-    this.filterDataByMonth(this.months[index].month);
   }
 
   resetMonthObj(month) {
@@ -109,6 +110,7 @@ export class UpcomingRenewalsPage implements OnInit {
         totalSum: 0
       };
     }
+    this.filterDataByMonth(month);
   }
 
   filterDataByMonth(month: number) {
@@ -139,18 +141,24 @@ export class UpcomingRenewalsPage implements OnInit {
 
   getRenewals(data: any[], month) {
     const renewals = [];
+    const currentYear = new Date().getFullYear();
+    const nextYear = currentYear +1;
     data.forEach(element => {
-      if (element.renewalDate && new Date(element.renewalDate).getFullYear() >= 2023 && new Date(element.renewalDate).getFullYear() <= 2024) {
-        const renewalMonth = new Date(element.renewalDate);
-        if (this.isDateInRange(renewalMonth, month)) {
-          element.renewalMonth = this.getMonthName(renewalMonth.getMonth());
+      if (element.renewalDate && new Date(element.renewalDate).getFullYear() >= currentYear && new Date(element.renewalDate).getFullYear() <= nextYear) {
+        const renewalDate = new Date(element.renewalDate);
+        if (this.isDateInRange(renewalDate, month)) {
+          element.renewalMonth = this.getMonthName(renewalDate.getMonth());
           renewals.push(element);
         }
       }
     });
     renewals.forEach((item) => {
       if (this.renewalsObj[item.renewalMonth]) {
-        this.renewalsObj[item.renewalMonth].totalSum += (item.annualPremium || 0);
+        this.renewalsObj[item.renewalMonth].totalSum += (
+          item.annualPremium ||
+          item.premium ||
+          item.modalPremium ||
+          item.amountInvested || 0);
         this.renewalsObj[item.renewalMonth].tableData.data.push(this.mapCollection(item));
         this.renewalsObj[item.renewalMonth].tableData.item.push(item);
       }
@@ -212,6 +220,7 @@ export class UpcomingRenewalsPage implements OnInit {
       case ProductType.equities:
         break;
       case ProductType.fixedDeposit:
+        data = this.fdService.getDetails(item);
         break;
       default:
         break;

@@ -46,7 +46,7 @@ export class MutualFundCardComponent implements OnInit {
       await this.calculateFundValue(item);
       this.tableData.item = item;
       this.tableData.data.push([
-        [item.company.name],
+        [item.company?.name],
         [item.dateOfPurchase],
         [item.currentInvestedValue],
         [item.currentFundValue],

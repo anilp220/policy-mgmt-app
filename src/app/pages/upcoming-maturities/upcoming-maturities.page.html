@@ -12,7 +12,7 @@
         </ng-template>
       </ion-popover>
     </div>
-    <div *ngFor="let arr of renewalsArr" class="card-container">
+    <div *ngFor="let arr of maturitiesArr" class="card-container">
       <div class="month-title">
         <div class="month">{{arr.year}}</div>
         <div class="amount">RS {{arr.totalSum}}/-</div>
@@ -20,7 +20,7 @@
       <div class="table investorCard">
       <generice-portfolio-table
             [tableTitle]="tableTitle"
-            [tableData]="tableData"
+            [tableData]="arr.tableData"
             (gotoDetailEvent)="gotoDetail($event)"
       ></generice-portfolio-table>
       </div>

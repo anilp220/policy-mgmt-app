@@ -78,7 +78,7 @@ export class LoginPage implements OnInit {
       console.log(err);
       this.appService.hideLoading();
       this.invalidUserError = 'Invalid email id or password!';
-      this.appService.showToast(this.invalidUserError);
+      this.appService.showToast(this.invalidUserError,2000,true);
     });
   }
 
@@ -89,11 +89,11 @@ export class LoginPage implements OnInit {
       this.forgotPassword = !this.forgotPassword;
       this.title = Title.signin;
       this.appService.hideLoading();
-      this.appService.showToast('Link to reset the password has been sent to your email.');
+      this.appService.showToast('Link to reset the password has been sent to your email.',);
     } catch (error) {
       console.log(error.message);
       this.appService.hideLoading();
-      this.appService.showToast('Incorrect email address!');
+      this.appService.showToast('Incorrect email address!',2000,true);
     }
   }
 

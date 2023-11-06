@@ -64,7 +64,7 @@ export class CorporateInsuranceService {
       },
       {
         key: 'INSURED MEMBER  DETAILS',
-        value: this.insuredMemberDetail(item[item.coverageType].insuredMemberDetail),
+        value: this.insuredMemberDetail(item[item.coverageType]?.insuredMemberDetail),
         isAccordian: true
       },
       {
@@ -88,54 +88,56 @@ export class CorporateInsuranceService {
 
   insuredMemberDetail(item: any[]) {
     const arr = [];
-    item.forEach(ele => {
-      const obj = {
-        title: ele.memberInsured,
-        data: [
-          {
-            key: 'DOB',
-            value: ele.dob
-          },
-          {
-            key: 'GENDER',
-            value: ele.dob
-          },
-          {
-            key: 'RELATION',
-            value: ele.relation
-          },
-          {
-            key: 'SUM ASSURED',
-            value: ele.sumAssured
-          },
-          {
-            key: 'NO CLAIM BONUS',
-            value: ele.noClaimBonus
-          },
-          {
-            key: 'NCB SUM ASSURED',
-            value: ele.ncbSumAssured
-          },
-          {
-            key: 'ANY OTHER BONUS',
-            value: ele.otherBonus
-          },
-          {
-            key: 'HEALTH CHECK UP AMOUNT/LINK',
-            value: ele.healthCheckup?.amount
-          },
-          {
-            key: 'HEALTH CHECK UP WAITING PERIOD',
-            value: ele.healthCheckup?.waiting
-          },
-          {
-            key: 'HEALTH CHECK UP WAITING DUE DATE',
-            value: ele.healthCheckup?.dueDate
-          }
-        ]
-      };
-      arr.push(obj);
-    });
+    if (item) {
+      item.forEach(ele => {
+        const obj = {
+          title: ele.memberInsured,
+          data: [
+            {
+              key: 'DOB',
+              value: ele.dob
+            },
+            {
+              key: 'GENDER',
+              value: ele.dob
+            },
+            {
+              key: 'RELATION',
+              value: ele.relation
+            },
+            {
+              key: 'SUM ASSURED',
+              value: ele.sumAssured
+            },
+            {
+              key: 'NO CLAIM BONUS',
+              value: ele.noClaimBonus
+            },
+            {
+              key: 'NCB SUM ASSURED',
+              value: ele.ncbSumAssured
+            },
+            {
+              key: 'ANY OTHER BONUS',
+              value: ele.otherBonus
+            },
+            {
+              key: 'HEALTH CHECK UP AMOUNT/LINK',
+              value: ele.healthCheckup?.amount
+            },
+            {
+              key: 'HEALTH CHECK UP WAITING PERIOD',
+              value: ele.healthCheckup?.waiting
+            },
+            {
+              key: 'HEALTH CHECK UP WAITING DUE DATE',
+              value: ele.healthCheckup?.dueDate
+            }
+          ]
+        };
+        arr.push(obj);
+      });
+    }
     return arr;
   }
 

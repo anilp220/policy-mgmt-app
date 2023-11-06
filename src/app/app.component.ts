@@ -74,7 +74,7 @@ export class AppComponent {
   checkNetwork() {
     this.network.onDisconnect().subscribe({
       next: () => {
-        this.appService.showToast('You are offline now.', 3000);
+        this.appService.showToast('You are offline now.', 3000,true);
         this.appService.isOnline = false;
       },
       error: (error) => {

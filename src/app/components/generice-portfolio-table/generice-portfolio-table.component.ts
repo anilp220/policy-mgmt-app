@@ -15,7 +15,6 @@ export class GenericePortfolioTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.tableTitle, this.tableData);
   }
 
   gotoDetail(data,index?) {
