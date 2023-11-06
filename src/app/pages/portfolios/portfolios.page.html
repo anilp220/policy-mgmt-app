@@ -1,5 +1,6 @@
 <app-header></app-header>
 <ion-content>
+  <div class="header-margin">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -8,7 +9,7 @@
       refreshingText="Refreshing..."
     ></ion-refresher-content>
   </ion-refresher>
-  <ion-row class="header-margin">
+  <ion-row>
     <div>
       <img src="../../../assets/images/banner1.png" alt="" />
     </div>
@@ -33,4 +34,5 @@
       </div>
     </ion-col>
   </ion-row>
+  </div>
 </ion-content>

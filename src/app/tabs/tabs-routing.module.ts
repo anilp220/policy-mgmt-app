@@ -64,6 +64,10 @@ const routes: Routes = [
       {
         path: 'upcoming-maturities',
         loadChildren: () => import('../pages/upcoming-maturities/upcoming-maturities.module').then( m => m.UpcomingMaturitiesPageModule)
+      },
+      {
+        path: 'coming-soon',
+        loadChildren: () => import('../pages/coming-soon/coming-soon.module').then( m => m.ComingSoonPageModule)
       }
     ]
   },

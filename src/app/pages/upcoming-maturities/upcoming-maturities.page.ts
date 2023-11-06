@@ -1,20 +1,33 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-len */
 /* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import * as Highcharts from 'highcharts';
 import { ProductType } from 'src/app/enums/product-type-enum';
 import { AppService } from 'src/app/services/app.service';
 import { FixedDepositService } from 'src/app/services/collection-services/fixed-deposit.service';
 import { LifeInsuranceService } from 'src/app/services/collection-services/life-insurance.service';
 import { MutualFundService } from 'src/app/services/collection-services/mutual-fund.service';
+import { HighchartService } from 'src/app/services/highchart.service';
 import { UserService } from 'src/app/services/user.service';
+declare let require: any;
+const Boost = require('highcharts/modules/boost');
+const noData = require('highcharts/modules/no-data-to-display');
+const More = require('highcharts/highcharts-more');
 
+Boost(Highcharts);
+noData(Highcharts);
+More(Highcharts);
+noData(Highcharts);
+require('highcharts/modules/networkgraph')(Highcharts);
 @Component({
   selector: 'app-upcoming-maturities',
   templateUrl: './upcoming-maturities.page.html',
   styleUrls: ['./upcoming-maturities.page.scss'],
 })
 export class UpcomingMaturitiesPage implements OnInit {
+  highcharts: typeof Highcharts = Highcharts;
 
   tableTitle = [];
   tableData = {
@@ -37,22 +50,25 @@ export class UpcomingMaturitiesPage implements OnInit {
   ];
   selectedYear;
   showSubmenu = false;
-  maturitiesArr: unknown[];
+  maturitiesArr: any[];
   maturitiesObj: any;
+  upcomingMaturitychart: any;
+  lifetimeMaturityChart: any;
   constructor(private popoverController: PopoverController,
     private liService: LifeInsuranceService,
     private mfService: MutualFundService,
     private appService: AppService,
     private fdService: FixedDepositService,
+    private highChartService: HighchartService,
     private userService: UserService) { }
 
   ngOnInit() {
     this.tableTitle = [
-      ['Investor Name','Product Type'],
+      ['Investor Name', 'Product Type'],
       ['Company', 'DOC'],
       ['Return Type', 'Return Date'],
       ['Total Investment'],
-      ['Maturity','IRR']
+      ['Maturity', 'IRR']
     ];
     this.yearSelected(1);
   }
@@ -75,11 +91,61 @@ export class UpcomingMaturitiesPage implements OnInit {
     this.dismissPopover();
   }
 
- async dismissPopover(){
+  async dismissPopover() {
     const popover = await this.popoverController.getTop();
-    if(popover){
+    if (popover) {
       this.popoverController.dismiss();
     }
+  }
+
+  getUpcomingMaturityChartOptions() {
+    const labels = [];
+    const data = [];
+    console.log(this.maturitiesArr);
+    this.maturitiesArr.forEach(item => {
+      if (item.totalSum > 0) {
+        labels.push(item.year);
+        data.push(item.totalSum);
+      }
+    });
+    setTimeout(() => {
+      if (this.selectedYear.split(' ')[0] <= 5) {
+        this.upcomingMaturitychart = this.highChartService.getBarChart(labels, data, 'Upcoming Maturity','','Year',true);
+      }else {
+        this.upcomingMaturitychart = null;
+      }
+    }, 0);
+  }
+
+  getLifetimeMaturityChartOption() {
+    const labels = [];
+    const data = [];
+    const mydob = new Date(this.userService.user.userInfo.dob);
+    const thisYear = (new Date()).getFullYear();
+    for (let year = thisYear; year <= thisYear + 100; year++) {
+      let totalMaturityValue = 0;
+      for (const policy of this.maturitiesArr) {
+        totalMaturityValue += this.getMaturityForYear(policy, year);
+      }
+      if (totalMaturityValue === 0) { continue; };
+      const ageDiff = year - mydob.getFullYear();
+      labels.push(year + ' - ' + (ageDiff - 1));
+      data.push(totalMaturityValue);
+    }
+    setTimeout(() => {
+        this.lifetimeMaturityChart = this.highChartService.getBarChart(labels, data, 'Lifetime Maturity','','Year - Age',true);
+    }, 0);
+  }
+
+  getMaturityForYear(policy, year) {
+    let sum = 0;
+    policy.tableData?.item?.forEach(item => {
+      const maturityDate = item.dateOfPurchase||item.dateOfMaturity||item.maturityDate;
+      const policyMaturityDate = new Date(maturityDate);
+      const maturityValue = item.maturityValue ||item.expectedFundValue;
+      sum += year === policyMaturityDate.getFullYear() ? maturityValue : 0;
+    });
+    return sum;
   }
 
   resetYearObj(noOfYears) {
@@ -88,7 +154,6 @@ export class UpcomingMaturitiesPage implements OnInit {
     for (let i = 0; i < noOfYears; i++) {
       this.maturitiesObj[currentYear + i] = {
         year: currentYear + i,
-        data: [],
         tableData: {
           item: [],
           data: [],
@@ -136,19 +201,19 @@ export class UpcomingMaturitiesPage implements OnInit {
       let maturityDate = element.dateOfMaturity || element.maturityDate;
       if (maturityDate) {
         maturityDate = new Date(maturityDate);
-          if(element.productType === ProductType.fixedDeposit && element.payoutDetails?.length){
-            element.payoutDetails.forEach(payout => {
-              const payoutElement = {...element};
-              const payoutMaturityDate = new Date(payout.date);
-              if (this.isDateInRange(payoutMaturityDate, noOfYears)) {
-                payoutElement.maturityYear = new Date(payoutMaturityDate).getFullYear();
-                payoutElement.maturityDate = payoutMaturityDate;
-                payoutElement.maturityValue = payout.amount;
-                payoutElement.returnType = 'Moneyback';
-                maturities.push(payoutElement);
-              }
-            });
-          }
+        if (element.productType === ProductType.fixedDeposit && element.payoutDetails?.length) {
+          element.payoutDetails.forEach(payout => {
+            const payoutElement = { ...element };
+            const payoutMaturityDate = new Date(payout.date);
+            if (this.isDateInRange(payoutMaturityDate, noOfYears)) {
+              payoutElement.maturityYear = new Date(payoutMaturityDate).getFullYear();
+              payoutElement.maturityDate = payoutMaturityDate;
+              payoutElement.maturityValue = payout.amount;
+              payoutElement.returnType = 'Moneyback';
+              maturities.push(payoutElement);
+            }
+          });
+        }
         if (this.isDateInRange(maturityDate, noOfYears)) {
           element.maturityYear = new Date(maturityDate).getFullYear();
           maturities.push(element);
@@ -161,15 +226,15 @@ export class UpcomingMaturitiesPage implements OnInit {
           item.annualPremium ||
           item.premium ||
           item.modalPremium ||
-          item.amountInvested || 0);
+          item.amountInvested ||
+          item.maturityValue || 0);
         this.maturitiesObj[item.maturityYear].tableData.data.push(this.mapCollection(item));
         this.maturitiesObj[item.maturityYear].tableData.item.push(item);
       }
     });
     this.maturitiesArr = Object.values(this.maturitiesObj);
-    // // this.getChartOptions();
-    // console.log(this.renewalsObj);
-    // console.log(this.renewalsArr);
+    this.getUpcomingMaturityChartOptions();
+    this.getLifetimeMaturityChartOption();
   }
 
   isDateInRange(date, noOfYears) {
@@ -187,7 +252,7 @@ export class UpcomingMaturitiesPage implements OnInit {
           [item.company, item.doc],
           [item.purchaseDate, item.dateOfMaturity],
           [item.totalInvestment],
-          [item.maturityValue,item.irr+'%']
+          [item.maturityValue, item.irr + '%']
         ];
       case ProductType.mutualFund:
         item.returnType = 'Maturity';
@@ -196,7 +261,7 @@ export class UpcomingMaturitiesPage implements OnInit {
           [item.company?.name, item.dateOfPurchase],
           [item.returnType, item.returnDate],
           [item.totalInvestment],
-          [item.expectedFundValue,item.currentReturn+'%']
+          [item.expectedFundValue, item.currentReturn + '%']
         ];
       case ProductType.equities:
         item.returnType = 'Maturity';
@@ -205,10 +270,10 @@ export class UpcomingMaturitiesPage implements OnInit {
           [item.company?.name, item.dateOfPurchase],
           [item.returnType, item.dateOfMaturity],
           [item.amountInvested],
-          [item.maturityValue,item.currentReturn+'%']
+          [item.maturityValue, item.currentReturn + '%']
         ];
       case ProductType.fixedDeposit:
-        if(!item.returnType){
+        if (!item.returnType) {
           item.returnType = 'Maturity';
         }
         return [
@@ -216,7 +281,7 @@ export class UpcomingMaturitiesPage implements OnInit {
           [item.issuingAuthorityName, item.dateOfIssuance],
           [item.returnType, item.maturityDate],
           [item.totalInvestment],
-          [item.maturityValue,item.returnOnInvestment+'%']
+          [item.maturityValue, item.returnOnInvestment + '%']
         ];
       default:
         break;
@@ -242,7 +307,7 @@ export class UpcomingMaturitiesPage implements OnInit {
         break;
     }
     console.log(data);
-    if(data){
+    if (data) {
       this.appService.gotoPolicyDetail(data, item.productType, null, item);
     }
   }

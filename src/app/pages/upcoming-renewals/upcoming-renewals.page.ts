@@ -182,7 +182,9 @@ export class UpcomingRenewalsPage implements OnInit {
     });
     setTimeout(() => {
       labels =labels.map(cat=>cat.slice(0,3));
-      this.chartOptions = this.highChartService.getBarChart(labels, data,'Renewal Amount');
+      if(data.length){
+        this.chartOptions = this.highChartService.getBarChart(labels, data,'Renewal Amount',null,null,true);
+      }else {this.chartOptions = null;}
     }, 0);
   }
 

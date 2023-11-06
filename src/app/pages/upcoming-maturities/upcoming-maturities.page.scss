@@ -3,7 +3,7 @@ ion-content {
   background-color: #fffffffc;
 }
 .month-tabs{
-  margin-top: 80px;
+  margin-top: 15px;
   padding: 10px 0px;
   display: flex;
   .year-btn{
@@ -43,4 +43,7 @@ ion-content {
 }
 .clicked{
   background: white;
+}
+.bar-chart{
+  margin-top: 20px;
 }

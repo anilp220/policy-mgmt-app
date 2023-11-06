@@ -2,7 +2,7 @@
 
 <ion-content>
   <div class="ion-padding">
-    <div class="canvas">
+    <div class="header-margin">
       <highcharts-chart
       *ngIf="chartOptions"
         [Highcharts]="highcharts"
@@ -21,8 +21,8 @@
         ></generice-portfolio-table>
     </div>
     <div class="bar-chart">
-      <div class="graph-title">Life-Time Sum assured</div>
-    <highcharts-chart *ngIf="barChartOptions"
+      <div class="chart-heading">Life-Time Sum assured</div>
+      <highcharts-chart *ngIf="barChartOptions"
         [Highcharts]="highcharts"
         [options]="barChartOptions"
         style="width: 100%; display: block"

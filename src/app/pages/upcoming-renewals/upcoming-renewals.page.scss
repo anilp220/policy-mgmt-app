@@ -3,7 +3,7 @@ ion-content {
   background-color: #fffffffc;
 }
 .month-tabs{
-  margin-top: 80px;
+  margin-top: 10px;
   ion-row{
     ion-col{
       div{
@@ -50,12 +50,4 @@ ion-content {
 .graph-container{
   margin-top: 20px;
 }
-.graph-title{
-  background: var(--title-blue);
-  padding: 12px;
-  font-size: 18px;
-  text-align: center;
-  border-radius: 30px;
-  border: 1px solid #06aeff;
-  margin: auto 40px;
-}
+

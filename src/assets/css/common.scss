@@ -69,7 +69,7 @@ ion-title {
 // }
 
 .header-margin {
-  padding-top: 80px;
+  padding-top: 90px !important;
 }
 
 .noData {
@@ -207,4 +207,18 @@ ion-popover .clicked{
 .toast-danger{
   --background:red;
   --color:white;
+}
+.graph-title{
+  background: var(--title-blue);
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 30px;
+  border: 1px solid #06aeff;
+  margin: auto 40px;
+  margin-bottom: 10px;
+}
+
+.top-margin{
+  margin-top: 90px;
 }

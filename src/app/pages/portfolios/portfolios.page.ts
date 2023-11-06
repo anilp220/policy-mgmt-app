@@ -97,12 +97,21 @@ export class PortfoliosPage implements OnInit {
     console.log(this.segragatedData);
     console.log(this.segragatedData[port.collection]);
     console.log(this.userService.allCollections[port.collection]);
-    this.navCtrl.navigateForward('tabs/generic-portfolio', {
-      state: {
-        item: JSON.stringify(this.segragatedData[port.collection]),
-        title: port.name
-      }
-    });
+    console.log(port.collection);
+    if(port.collection===this.models.collections.equities || port.collection===this.models.collections.loans){
+      this.navCtrl.navigateForward('tabs/coming-soon',{
+        state:{
+          title:port.name
+        }
+      });
+    }else{
+      this.navCtrl.navigateForward('tabs/generic-portfolio', {
+        state: {
+          item: JSON.stringify(this.segragatedData[port.collection]),
+          title: port.name
+        }
+      });
+    }
   }
 
   segragateData(port) {

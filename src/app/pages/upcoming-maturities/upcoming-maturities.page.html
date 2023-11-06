@@ -1,7 +1,7 @@
 <app-header [title]="'Upcoming Maturities'"></app-header>
 <ion-content>
   <div class="padding">
-    <div class="month-tabs">
+    <div class="month-tabs header-margin">
       <div>Check your upcoming maturities in</div>
       <div class="year-btn" id="click-trigger">{{selectedYear}}</div>
       <ion-popover trigger="click-trigger" triggerAction="click">
@@ -24,6 +24,22 @@
             (gotoDetailEvent)="gotoDetail($event)"
       ></generice-portfolio-table>
       </div>
+    </div>
+    <div *ngIf="upcomingMaturitychart" class="bar-chart">
+      <div class="graph-title">Upcoming Maturities</div>
+      <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="upcomingMaturitychart"
+        style="width: 100%; display: block"
+      ></highcharts-chart>
+    </div>
+    <div *ngIf="lifetimeMaturityChart" class="bar-chart">
+      <div class="graph-title">Lifetime maturity</div>
+      <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="lifetimeMaturityChart"
+        style="width: 100%; display: block"
+      ></highcharts-chart>
     </div>
   </div>
 </ion-content>

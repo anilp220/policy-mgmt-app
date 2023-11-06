@@ -1,5 +1,5 @@
+/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
-import { Chart } from 'chart.js';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +56,7 @@ export class HighchartService {
 
           style: {
             // fontSize: '12',
+            fontFamily:'Montserrat',
             // fontWeight: 'bold'
           },
           formatter() {
@@ -120,12 +121,20 @@ export class HighchartService {
         tickLength: 0,
         title: {
           text: xAxisTitle || '',
+          align: 'high',
+          rotation: 0,
+          textAlign: 'left',
+          reserveSpace: false,
+          style:{
+            fontFamily:'Montserrat'
+          }
         },
         labels: {
           // overflow: 'justify',
           enabled: true,
           style: {
             fontSize: 12,
+            fontFamily: 'Montserrat',
             backgroundColor: 'red',
             color: 'black',
           },
@@ -136,6 +145,9 @@ export class HighchartService {
         min: 0,
         title: {
           text: yAxisTitle || '',
+          style:{
+            fontFamily:'Montserrat'
+          }
         },
         labels: {
           enabled: false
@@ -149,7 +161,8 @@ export class HighchartService {
           dataLabels: {
             enabled: true,
             style: {
-              fontSize: 12
+              fontSize: 12,
+              fontFamily: 'Montserrat'
             },
             formatter() {
               if (isAmount) {

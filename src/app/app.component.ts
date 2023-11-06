@@ -58,16 +58,24 @@ export class AppComponent {
   setPlatform() {
     if (this.platform.is('android')) {
       this.statusBar.backgroundColorByHexString('#33000000');
-      this.statusBar.overlaysWebView(true);
+      // this.statusBar.overlaysWebView(true);
       this.statusBar.styleLightContent();
     } else {
       this.statusBar.backgroundColorByHexString('#33000000');
       this.statusBar.styleLightContent();
     }
     this.platform.backButton.subscribe(() => {
+      console.log(this.router.url)
       if (this.router.url === '/tabs/generic-portfolios/equities/equities/0') {
         this.navCtrl.navigateBack('/tabs/home');
-      } else if (this.router.url !== '/tabs/home') { this.navCtrl.back(); }
+      }
+      else if(this.router.url==='/login'){
+        document.addEventListener('backbutton', (event)=> {
+          event.preventDefault();
+          event.stopPropagation();
+        }, false);
+      }
+       else if (this.router.url !== '/tabs/home') { this.navCtrl.back(); }
     });
   }
 

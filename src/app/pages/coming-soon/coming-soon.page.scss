@@ -1,17 +1,15 @@
 ion-content {
   --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
   background-color: #fffffffc;
-}
-.canvas{
-  margin-top: 50px;
-}
-.bar-chart{
-  margin-top: 20px;
-}
-.chart-heading{
-  text-align: center;
-    color: black;
+  div{
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1868b9;
+    font-size: 30px;
     font-weight: bold;
-    font-size: calc(18rem / 16);
     font-family: "Montserrat";
+  }
 }

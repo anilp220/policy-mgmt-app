@@ -1,6 +1,6 @@
 <app-header [title]="'Upcoming Renewals'"></app-header>
 <ion-content>
-  <div class="padding">
+  <div class="padding header-margin">
     <div class="month-tabs">
       <ion-row>
         <ion-col *ngFor="let month of months;let i = index">
@@ -28,20 +28,20 @@
 
     </div>
     <div class="graph-container">
-      <div  class="annual-premium">
+      <div *ngIf="chartOptions" class="annual-premium">
         <div class="graph-title">ANNUAL PREMIUM PAY</div>
-        <highcharts-chart *ngIf="chartOptions"
+        <highcharts-chart
           [Highcharts]="highcharts"
           [options]="chartOptions"
           style="width: 100%; display: block"
         ></highcharts-chart>
       </div>
-      <div class="lifetime-renewal">
-      <div class="graph-title">LIFE TIME RENEWAL</div>
-      <highcharts-chart *ngIf="chartOptions"
-          [Highcharts]="highcharts"
-          [options]="chartOptions"
-          style="width: 100%; display: block"
+      <div *ngIf="chartOptions" class="lifetime-renewal">
+        <div class="graph-title">LIFE TIME RENEWAL</div>
+        <highcharts-chart
+        [Highcharts]="highcharts"
+        [options]="chartOptions"
+        style="width: 100%; display: block"
         ></highcharts-chart>
       </div>
     </div>
