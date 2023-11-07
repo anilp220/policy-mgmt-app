@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpcomingRenewalsPageRoutingModule } from './upcoming-renewals-routing.module';
+import { PrivacyPolicyPageRoutingModule } from './privacy-policy-routing.module';
 
-import { UpcomingRenewalsPage } from './upcoming-renewals.page';
+import { PrivacyPolicyPage } from './privacy-policy.page';
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModuleModule } from 'src/app/modules/shared-module.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpcomingRenewalsPageRoutingModule,
-    SharedModuleModule
+    SharedModuleModule,
+    PrivacyPolicyPageRoutingModule
   ],
-  declarations: [UpcomingRenewalsPage]
+  declarations: [PrivacyPolicyPage]
 })
-export class UpcomingRenewalsPageModule {}
+export class PrivacyPolicyPageModule {}

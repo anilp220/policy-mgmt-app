@@ -1,7 +1,7 @@
 ion-content {
   --background: url(../../../assets/images/bg.png) no-repeat center/cover fixed;
   background-color: #fffffffc;
-  div{
+  .msg{
     height: 100%;
     margin: auto;
     display: flex;
@@ -11,5 +11,30 @@ ion-content {
     font-size: 30px;
     font-weight: bold;
     font-family: "Montserrat";
+  }
+}
+
+.error{
+  margin-top: 20%;
+  .title{
+    color: black;
+    font-size: 1.3rem;
+    font-family: "Montserrat";
+    text-align: center;
+  }
+  img{
+    width: 80%;
+    margin: auto;
+    display: block;
+  }
+  .button{
+    background: #6BB0E9;
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+    padding: 15px;
+    border-radius: 25px;
+    font-family: "Montserrat";
+    font-weight: bold;
   }
 }

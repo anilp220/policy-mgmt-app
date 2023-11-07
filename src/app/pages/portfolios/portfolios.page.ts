@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
@@ -94,14 +95,19 @@ export class PortfoliosPage implements OnInit {
   }
 
   onClick(port) {
-    console.log(this.segragatedData);
-    console.log(this.segragatedData[port.collection]);
-    console.log(this.userService.allCollections[port.collection]);
-    console.log(port.collection);
     if(port.collection===this.models.collections.equities || port.collection===this.models.collections.loans){
       this.navCtrl.navigateForward('tabs/coming-soon',{
         state:{
-          title:port.name
+          title:port.name,
+          message: 1
+        }
+      });
+    }
+    else if(this.userService.allCollections[port.collection].length==0){
+      this.navCtrl.navigateForward('tabs/coming-soon',{
+        state:{
+          title:port.name,
+          message:2
         }
       });
     }else{

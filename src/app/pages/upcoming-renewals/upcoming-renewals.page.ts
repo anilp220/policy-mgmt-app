@@ -3,7 +3,6 @@
 import { Component, ElementRef, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HighchartService } from 'src/app/services/highchart.service';
 import { UserService } from 'src/app/services/user.service';
-import { ChartConfiguration } from 'chart.js';
 
 import * as Highcharts from 'highcharts';
 import { AppService } from 'src/app/services/app.service';

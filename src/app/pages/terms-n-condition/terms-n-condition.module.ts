@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpcomingRenewalsPageRoutingModule } from './upcoming-renewals-routing.module';
+import { TermsNConditionPageRoutingModule } from './terms-n-condition-routing.module';
 
-import { UpcomingRenewalsPage } from './upcoming-renewals.page';
+import { TermsNConditionPage } from './terms-n-condition.page';
 import { SharedModuleModule } from 'src/app/modules/shared-module.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModuleModule } from 'src/app/modules/shared-module.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpcomingRenewalsPageRoutingModule,
+    TermsNConditionPageRoutingModule,
     SharedModuleModule
   ],
-  declarations: [UpcomingRenewalsPage]
+  declarations: [TermsNConditionPage]
 })
-export class UpcomingRenewalsPageModule {}
+export class TermsNConditionPageModule {}

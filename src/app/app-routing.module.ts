@@ -24,6 +24,18 @@ const routes: Routes = [
     path: 'portfolios',
     loadChildren: () => import('./pages/portfolios/portfolios.module').then(m => m.PortfoliosPageModule)
   },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'about-us',
+    loadChildren: () => import('./pages/about-us/about-us.module').then( m => m.AboutUsPageModule)
+  },
+  {
+    path: 'terms-n-condition',
+    loadChildren: () => import('./pages/terms-n-condition/terms-n-condition.module').then( m => m.TermsNConditionPageModule)
+  },
 ];
 @NgModule({
   imports: [

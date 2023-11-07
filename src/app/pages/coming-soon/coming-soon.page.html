@@ -1,7 +1,16 @@
 <app-header [title]="title"></app-header>
 
 <ion-content>
-  <div>
+  <div class="msg" *ngIf="message==1">
     Coming soon...
+  </div>
+  <div *ngIf="message==2">
+  <div class="error header-margin">
+      <div class="title">Not resgistered with <b> MCS!</b></div>
+      <img src="assets/icon/not-registered.png" alt="">
+      <div class="button">
+        let's connect to update
+      </div>
+    </div>
   </div>
 </ion-content>

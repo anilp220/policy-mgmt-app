@@ -10,17 +10,18 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./coming-soon.page.scss'],
 })
 export class ComingSoonPage implements OnInit {
-  title: any;
-
+  title: string;
+  message: string;
   constructor(private route: ActivatedRoute,
     public models: Models, private router: Router) {
     this.route.queryParams.subscribe(_p => {
       const navParams = this.router.getCurrentNavigation().extras.state;
       if (navParams) {
         this.title = navParams.title;
+        this.message = navParams.message;
       }
     });
-   }
+  }
 
   ngOnInit() {
   }
