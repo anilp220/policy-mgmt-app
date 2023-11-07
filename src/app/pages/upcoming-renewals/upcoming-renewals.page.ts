@@ -54,6 +54,7 @@ export class UpcomingRenewalsPage implements OnInit {
   renewalsObj = {};
   renewalsArr = [];
   public annualPremiumPayChart: any;
+  public lifetimeRenewalsChart: any;
   constructor(
     private userService: UserService,
     private highChartService: HighchartService,
@@ -167,6 +168,7 @@ export class UpcomingRenewalsPage implements OnInit {
     });
     this.renewalsArr = Object.values(this.renewalsObj);
     this.getChartOptions();
+    this.getLifetimeMaturityChartOption();
     console.log(this.renewalsObj);
     console.log(this.renewalsArr);
   }
@@ -289,5 +291,36 @@ export class UpcomingRenewalsPage implements OnInit {
       default:
         break;
     }
+  }
+
+  getLifetimeMaturityChartOption() {
+    const labels = [];
+    const data = [];
+    const mydob = new Date(this.userService.user.userInfo.dob);
+    const thisYear = (new Date()).getFullYear();
+    for (let year = thisYear; year <= thisYear + 100; year++) {
+      let totalMaturityValue = 0;
+      for (const policy of this.renewalsArr) {
+        totalMaturityValue += this.getMaturityForYear(policy, year);
+      }
+      if (totalMaturityValue === 0) { continue; };
+      const ageDiff = year - mydob.getFullYear();
+      labels.push(year + ' - ' + (ageDiff - 1));
+      data.push(totalMaturityValue);
+    }
+    setTimeout(() => {
+        this.lifetimeRenewalsChart = this.highChartService.getBarChart(labels, data, 'Lifetime Maturity','','Year - Age',true);
+    }, 0);
+  }
+
+  getMaturityForYear(policy, year) {
+    let sum = 0;
+    policy.tableData?.item?.forEach(item => {
+      const renewalAmount = item.premium||item.modalPremium||item.annualPremium||item.amountInvested;
+      const renewalDate = item.renewalDate;
+      const policyRenewalDate = new Date(renewalDate);
+      sum += year === policyRenewalDate.getFullYear() ? renewalAmount : 0;
+    });
+    return sum;
   }
 }

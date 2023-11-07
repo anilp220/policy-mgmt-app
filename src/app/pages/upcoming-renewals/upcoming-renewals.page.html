@@ -36,11 +36,11 @@
           style="width: 100%; display: block"
         ></highcharts-chart>
       </div>
-      <div *ngIf="chartOptions" class="lifetime-renewal">
+      <div *ngIf="lifetimeRenewalsChart" class="lifetime-renewal">
         <div class="graph-title">LIFE TIME RENEWAL</div>
         <highcharts-chart
         [Highcharts]="highcharts"
-        [options]="chartOptions"
+        [options]="lifetimeRenewalsChart"
         style="width: 100%; display: block"
         ></highcharts-chart>
       </div>

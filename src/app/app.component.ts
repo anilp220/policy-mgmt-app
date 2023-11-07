@@ -65,7 +65,6 @@ export class AppComponent {
       this.statusBar.styleLightContent();
     }
     this.platform.backButton.subscribe(() => {
-      console.log(this.router.url)
       if (this.router.url === '/tabs/generic-portfolios/equities/equities/0') {
         this.navCtrl.navigateBack('/tabs/home');
       }
