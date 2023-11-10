@@ -17,7 +17,7 @@ export class Models {
 
   titles = {
     lifeInsurance: 'Life Insurance',
-    mediclaim: 'Mediclaim',
+    mediclaim: 'Health Insurance',
     mutualFund: 'Mutual Fund',
     equities: 'Equities',
     vehicleInsurance: 'Vehicle Insurance',

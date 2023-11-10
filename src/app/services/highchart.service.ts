@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 
 export class HighchartService {
   colors = [
-    '#ffb3ba',
-    '#ffdfba',
-    '#ffffba',
-    '#baffc9',
-    '#bae1ff',
+    '#78A3D4',
+    '#A6C3E4',
+    '#FFB7B2',
+    '#A6A6A6',
+    '#2C3E57',
     '#ff8b94',
     '#ffaaa5',
     '#ffd3b6',
@@ -170,7 +170,8 @@ export class HighchartService {
               }
               return this.y;
             }
-          }
+          },
+          color: '#77C6FF'
         },
         series: {
           // pointWidth:50,

@@ -5,7 +5,7 @@ ion-content {
 
 .content-container {
   padding: 10px;
-  margin-top: calc(3rem + 10px);
+  margin-top: calc(3rem + 15px);
 }
 
 ion-col:nth-child(odd) {
@@ -39,6 +39,7 @@ ion-col {
     font-size: 15px;
     color: white;
     top: 2px;
+    text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -195,6 +196,7 @@ a {
     width: 100%;
     background: #13133a;
     color: white;
+    text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
     margin: 0 25px;
     border-radius: 10px;
     padding: 5px 10px;
@@ -258,11 +260,13 @@ ion-refresher {
   color: white;
   /* display: table-column-group; */
   font-weight: bold;
+  text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
   border-radius: 5px;
-  height: 41px;
+  height: calc(60rem / 16);
 
   img {
-    width: calc(65rem / 16);
+    width: calc(80rem / 16);
+    width: calc(80rem / 16);
   }
 }
 
@@ -363,12 +367,15 @@ ion-col.ion-activatable.ios.hydrated:not(:first-child) {
 }
 
 .banner-cnt {
-  background: #4aafff;
+  // background: #4aafff;
+  background: linear-gradient(346deg, #53A6E1, #AAD7F8);
   width: 45%;
   display: flex;
   margin: auto;
   text-align: center;
   color: white;
+  text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
+  margin-top: calc(45rem / 16);
   font-weight: bold;
   border-radius: calc(8rem / 16);
   min-height: calc(45rem / 16);

@@ -37,9 +37,10 @@ export class RiderSumAssuredPage implements OnInit {
     for (const prop in holder) {
       this.mergedData.push({ name: prop, diseases: holder[prop] });
     }
+    console.log(this.mergedData);
     for (let i = 0; i < this.mergedData.length; i++) {
       const ele = this.mergedData[i];
-      const innerItem = [ele.name, ele.diseases.length];
+      const innerItem = [ele.name,this.mergeArray(ele.diseases).length  ];
       plotData.push(innerItem);
     }
     setTimeout(() => {
@@ -87,12 +88,12 @@ export class RiderSumAssuredPage implements OnInit {
           }
         }
       }
-      if (holder.hasOwnProperty(d.nameOfLifeInsured)) {
-        holder[d.nameOfLifeInsured].push(diseases);
+      if (holder.hasOwnProperty(d.nameOfLifeInsured?.toLowerCase())) {
+        holder[d.nameOfLifeInsured?.toLowerCase()].push(diseases);
       } else {
-        holder[d.nameOfLifeInsured] = [diseases];
+        holder[d.nameOfLifeInsured?.toLowerCase()] = [diseases];
       }
-      holder[d.nameOfLifeInsured] = holder[d.nameOfLifeInsured].flat();
+      holder[d.nameOfLifeInsured?.toLowerCase()] = holder[d.nameOfLifeInsured?.toLowerCase()].flat();
     });
   }
 
@@ -104,12 +105,12 @@ export class RiderSumAssuredPage implements OnInit {
           diseases.push({ ...disease, item: d, productType: 'Health Insurance' });
         }
       }
-      if (holder.hasOwnProperty(d.proposer)) {
-        holder[d.proposer].push(diseases);
+      if (holder.hasOwnProperty(d.proposer?.toLowerCase())) {
+        holder[d.proposer?.toLowerCase()].push(diseases);
       } else {
-        holder[d.proposer] = [diseases];
+        holder[d.proposer?.toLowerCase()] = [diseases];
       }
-      holder[d.proposer] = holder[d.proposer].flat();
+      holder[d.proposer?.toLowerCase()] = holder[d.proposer?.toLowerCase()].flat();
     });
   }
 

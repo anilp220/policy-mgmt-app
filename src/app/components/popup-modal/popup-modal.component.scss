@@ -1,6 +1,6 @@
 .container{
-      background: #cae7fa;
-      border-radius: 15px;
+      background: #F9F9F9;
+      border-radius: 1rem;
       position: absolute;
       width: 90%;
       top: 50%;
@@ -8,16 +8,17 @@
       transform: translate(-50%, -50%);
       font-family: "Montserrat";
     .header{
-      background: #80bbea;
-      font-size: 20px;
+      background: linear-gradient(359deg, #53A6E1, #AAD7F8);
+      font-size: calc(20rem / 16);
       padding: 10px;
-      border-radius: 15px;
+      border-radius: 1rem;
       position: relative;
     .title{
 
     }
     .close{
       color: white;
+      text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
       margin: auto;
       /* float: right; */
       right: -10px;
@@ -36,6 +37,8 @@
     ion-col{
       padding: 5px;
       border: 1px solid;
+      font-size: 0.8rem;
+      background: linear-gradient(270deg, #FFFFFF, #E3F7FF);
     }
     ion-col:nth-child(1){
       margin-right: 2.5px;

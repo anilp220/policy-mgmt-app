@@ -18,6 +18,7 @@ ion-content {
       .clicked{
         background: rgb(22, 71, 176);
         color: white;
+        text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
       }
     }
   }
@@ -31,7 +32,7 @@ ion-content {
   margin-top: 10px;
 }
 .month-title{
-  background: var(--title-blue);
+  background: linear-gradient(0deg, #53A6E1, #AAD7F8);
   padding: 15px 25px;
   border-radius: 25px;
 }

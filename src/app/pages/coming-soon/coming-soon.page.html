@@ -1,15 +1,15 @@
 <app-header [title]="title"></app-header>
 
 <ion-content>
-  <div class="msg" *ngIf="message==1">
-    Coming soon...
-  </div>
-  <div *ngIf="message==2">
+  <div>
   <div class="error header-margin">
       <div class="title">Not resgistered with <b> MCS!</b></div>
       <img src="assets/icon/not-registered.png" alt="">
       <div class="button">
-        let's connect to update
+        <a href="tel:9926999379">let's connect to update</a>
+      </div>
+      <div *ngIf="message==1" class="button2">
+        <a href="tel:9926999379">OPEN DEMAT ACCOUNT</a>
       </div>
     </div>
   </div>

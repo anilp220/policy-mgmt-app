@@ -6,6 +6,7 @@ ion-content {
   ion-card {
     background: rgb(255 255 255 / 81%);
     margin: 15px;
+    border-radius: 1rem;
 
     ion-card-content {
       padding: 15px;
@@ -14,14 +15,23 @@ ion-content {
         padding: 0;
 
         ion-card-title {
-          color: #0000007d;
+          color: white;
+          text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5803921569);
+          background: linear-gradient(0deg, #53A6E1, #AAD7F8);
+          margin: -15px -15px 10px -15px;
+          padding: 10px;
           font-family: "Montserrat";
-          font-size: 20px;
+          border-radius: 1rem;
+          font-size: 1rem;
+          text-align: center;
         }
 
         ion-card-subtitle {
-          font-size: 12px;
+          font-size: 0.8rem;
           margin: 0;
+          color: black;
+          text-align: center;
+          font-family: "Montserrat";
         }
       }
 

@@ -95,11 +95,19 @@ export class PortfoliosPage implements OnInit {
   }
 
   onClick(port) {
-    if(port.collection===this.models.collections.equities || port.collection===this.models.collections.loans){
+    if(port.collection===this.models.collections.equities){
       this.navCtrl.navigateForward('tabs/coming-soon',{
         state:{
           title:port.name,
           message: 1
+        }
+      });
+    }
+    else if(port.collection===this.models.collections.loans){
+      this.navCtrl.navigateForward('tabs/coming-soon',{
+        state:{
+          title:port.name,
+          message: 2
         }
       });
     }
