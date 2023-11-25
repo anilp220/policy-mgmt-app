@@ -15,7 +15,7 @@ ion-content {
 }
 
 .error{
-  margin-top: 15%;
+  margin-top: 20%;
   .title{
     color: black;
     font-size: 1.3rem;
@@ -23,7 +23,7 @@ ion-content {
     text-align: center;
   }
   img{
-    width: 75%;
+    width: 80%;
     margin: auto;
     display: block;
   }
@@ -36,20 +36,5 @@ ion-content {
     border-radius: 25px;
     font-family: "Montserrat";
     font-weight: bold;
-  }
-  .button2{
-    background: #6BB0E9;
-    text-align: center;
-    width: fit-content;
-    margin: auto;
-    padding: 15px;
-    border-radius: 25px;
-    font-family: "Montserrat";
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  a{
-    color: white;
-    text-decoration: none;
   }
 }

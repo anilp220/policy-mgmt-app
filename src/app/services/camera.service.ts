@@ -131,4 +131,16 @@ export class CameraService {
         }
       });
   }
+  savePdf(blob){
+    const url = window.URL.createObjectURL(
+      new Blob([blob])
+    );
+    const link = window.document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'test.pdf');
+    window.document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+  }
 }

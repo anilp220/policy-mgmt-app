@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { Observable } from 'rxjs';
 import { Models } from './models.service';
 import { environment } from 'src/environments/environment';
+import { CameraService } from './camera.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,7 @@ export class UserService {
     private appService: AppService,
     private http: HttpClient,
     private models: Models,
+    private cameraService: CameraService,
     private firestore: AngularFirestore) { }
 
   async currentUserDetailRef() {
@@ -47,6 +49,10 @@ export class UserService {
       return (await this.firestore.collection('users').doc(this.user.uid).get().toPromise()).data();
     }
     return;
+  }
+
+  async findUserByEmail(email){
+   return this.firestore.collection('users').ref.where('email','==',email).get();
   }
 
   getUserDetail(uid) {
@@ -152,7 +158,7 @@ export class UserService {
     return this.http.get(environment.getScehemeData + id).toPromise();
   }
 
-  fetchRapidApi(identifier?: any): Promise<any> {
+  fetchRapidApi(Identifier?: any): Promise<any> {
     return new Promise((resolve, reject) => {
       const options = {
         headers: {
@@ -160,16 +166,16 @@ export class UserService {
           'X-RapidAPI-Host': 'latest-stock-price.p.rapidapi.com'
         }
       };
-      if (identifier) {
+      if (Identifier) {
         options['params'] = {
-          identifier
+          Identifier
         };
       }
       this.http.get('https://latest-stock-price.p.rapidapi.com/any', options)
         .toPromise()
         .then(result => {
           // console.log('rapid resp', result);
-          if (identifier) {
+          if (Identifier) {
             resolve(result);
           } else {
             this.allEquities = result;
@@ -179,6 +185,21 @@ export class UserService {
           console.log(err);
           reject(err);
         });
+    });
+  }
+
+  download(){
+    return this.http.get(
+      'https://asia-south1-portfolio-management-app-e4dc2.cloudfunctions.net/generatePdf'
+      ,{
+        headers:{
+          Accept:'application/pdf'
+        },
+        responseType:'blob'
+      }).toPromise()
+    .then(result=>{
+      console.log(result);
+      this.cameraService.savePdf(result);
     });
   }
 }

@@ -142,7 +142,7 @@ export class UpcomingMaturitiesPage implements OnInit {
     policy.tableData?.item?.forEach(item => {
       const maturityDate = item.dateOfPurchase||item.dateOfMaturity||item.maturityDate;
       const policyMaturityDate = new Date(maturityDate);
-      const maturityValue = item.maturityValue ||item.expectedFundValue;
+      const maturityValue = Number(item.maturityValue) ||Number(item.expectedFundValue) || 0;
       sum += year === policyMaturityDate.getFullYear() ? maturityValue : 0;
     });
     return sum;
@@ -223,11 +223,12 @@ export class UpcomingMaturitiesPage implements OnInit {
     maturities.forEach((item) => {
       if (this.maturitiesObj[item.maturityYear]) {
         this.maturitiesObj[item.maturityYear].totalSum += (
-          item.annualPremium ||
-          item.premium ||
-          item.modalPremium ||
-          item.amountInvested ||
-          item.maturityValue || 0);
+          Number(item.annualPremium) ||
+          Number(item.premium) ||
+          Number(item.modalPremium) ||
+          Number(item.amountInvested) ||
+          Number(item.maturityValue) || 0);
+          console.log(this.maturitiesObj[item.maturityYear].totalSum);
         this.maturitiesObj[item.maturityYear].tableData.data.push(this.mapCollection(item));
         this.maturitiesObj[item.maturityYear].tableData.item.push(item);
       }

@@ -54,6 +54,7 @@ export class MutualFundCardComponent implements OnInit {
       ]);
     }
     this.cdr.detectChanges();
+    await this.appService.hideLoading();
   }
 
   gotoDetail(item) {
@@ -81,7 +82,6 @@ export class MutualFundCardComponent implements OnInit {
 
   async getCurrentNav(item) {
     const result = await this.userService.fetchSelectedScheme(item.company.id);
-    await this.appService.hideLoading();
     return result.nav;
   }
 }

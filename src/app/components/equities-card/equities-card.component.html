@@ -1,35 +1,12 @@
 <div class="investorCard">
   <ion-grid>
-    <ion-row>
+    <ion-row class="title">
       <ion-col>INVESTOR- {{ investorName.toUpperCase() }}</ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="2.4">COMPANY</ion-col>
-      <ion-col size="2.4">DATE OF PURCHASE</ion-col>
-      <ion-col size="2.4">CURRENT SHARES + CURRENT SHARE PRICE</ion-col>
-      <ion-col size="2.4">INVESTED AMOUNT + CURRENT FUND VALUE</ion-col>
-      <ion-col size="2.4">CURRENT RETURN</ion-col>
-    </ion-row>
-    <ion-row
-      *ngFor="let item of data"
-      (click)="appService.gotoPolicyDetail(item, title)"
-    >
-      <div class="ion-activatable ripple">
-        <ion-ripple-effect></ion-ripple-effect>
-      </div>
-      <ion-col size="2.4">{{ item.company.symbol }}</ion-col>
-      <ion-col size="2.4">
-        {{ item.dateOfPurchase | date : "dd-MMM-yyyy" }}
-      </ion-col>
-      <ion-col size="2.4">
-        {{ item.currentShares }} - {{ item.currentSharePrice }}
-      </ion-col>
-      <ion-col size="2.4">
-        {{ item.amountInvested }} - {{ item.currentFundValue }}
-      </ion-col>
-      <ion-col size="2.4" [ngClass]="item.currentReturn < 0 ? 'red' : 'green'">
-        {{ item.currentReturn }}%
-      </ion-col>
-    </ion-row>
+    <generice-portfolio-table
+      [tableTitle]="tableTitle"
+      [tableData]="tableData"
+      (gotoDetailEvent)="gotoDetail($event)"
+    ></generice-portfolio-table>
   </ion-grid>
 </div>

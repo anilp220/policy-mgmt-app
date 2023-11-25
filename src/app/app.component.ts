@@ -47,9 +47,8 @@ export class AppComponent {
       this.userService.fetchAllSchemes();
       this.userService.fetchRapidApi();
       this.setPlatform();
-      this.getCurrentUser();
       this.checkNetwork();
-      this.pushService.fcmSetup();
+      this.getCurrentUser();
     }).catch(err => {
       console.log('error platform', err);
     });
@@ -110,6 +109,7 @@ export class AppComponent {
           this.userService.user.uid = res.uid;
           const data = await this.userService.getUserDetail(res.uid);
           this.userService.user.userInfo = data.data();
+          this.pushService.fcmSetup();
           await this.userService.getAllCollection();
           this.appService.hideLoading();
           console.log(this.userService.user);

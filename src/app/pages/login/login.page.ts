@@ -1,10 +1,11 @@
 import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { PushService } from 'src/app/services/push.service';
+import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic';
 import { UserService } from 'src/app/services/user.service';
 enum Title {
   signin = 'Sign In',
@@ -29,6 +30,7 @@ export class LoginPage implements OnInit {
   constructor(private authService: AuthService,
     private appService: AppService,
     private router: Router,
+    private platform:Platform,
     private pushService: PushService,
     private userService: UserService) {
     // const data = this.appService.getDataFromLocal()
@@ -58,9 +60,13 @@ export class LoginPage implements OnInit {
       this.userService.currentUserDetailRef().then(async (currentUserDetail) => {
         const user: any = currentUserDetail;
         this.userService.user.userInfo = currentUserDetail;
-        const token = await this.pushService.getToken();
-        console.log(token);
-        await this.userService.updateUser({ registrationId: 'token' }, success.user.uid);
+        this.userService.user.uid = success.user.uid;
+        await this.pushService.updateToken();
+        // if(this.platform.is('android') || this.platform.is('ios')){
+        //   const token = await FCM?.getToken();
+        //   console.log(token);
+        //   await this.userService.updateUser({ registrationId: token || '' }, success.user.uid);
+        // }
         console.log(user);
         if (user && user.role === 'client' && user.isActive) {
           this.appService.setDataToLocal('userInfo', user).then(async () => {

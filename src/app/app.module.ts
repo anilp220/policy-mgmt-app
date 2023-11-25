@@ -23,6 +23,7 @@ import { FCM } from '@awesome-cordova-plugins/fcm/ngx';
 import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -36,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireStorageModule,
     AngularFirestoreModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     {
@@ -50,7 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     File,
     FCM,
     Network,
-    LocalNotifications
+    SpeechRecognition,
+    LocalNotifications,
   ],
   bootstrap: [AppComponent],
 })

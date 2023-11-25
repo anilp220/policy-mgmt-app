@@ -85,16 +85,20 @@ export class PushService {
   // }
 
   async fcmSetup() {
-    // FCM.onNotification().subscribe(async (data) => {
-    //   console.log(data);
-    //   if (data.wasTapped) {
-    //     console.log('Received in background');
-    //   } else {
-    //     console.log('Received in foreground');
-    //     this.showLocalNotification(data);
-    //   };
-    // });
-    // console.log('has permission', await FCM.hasPermission());
+    FCM.onNotification().subscribe(async (data) => {
+      console.log(data);
+      if (data.wasTapped) {
+        console.log('Received in background');
+      } else {
+        console.log('Received in foreground');
+        this.showLocalNotification(data);
+      };
+    });
+    console.log('has permission', await FCM.hasPermission());
+    if(await FCM.hasPermission()){
+     await  FCM.requestPushPermission();
+    }
+    this.updateToken();
     // FCM.onTokenRefresh().subscribe(token => {
     //   console.log('FCM token', token);
     //   // Register your new token in your back-end if you want
@@ -105,6 +109,19 @@ export class PushService {
   getToken() {
     // return FCM.getToken();
     return;
+  }
+
+  async updateToken(){
+    console.log(this.platform.is('mobileweb'))
+    if(!this.platform.is('mobileweb')){
+    const token = await FCM.getToken();
+    console.log(token);
+    console.log('asd',this.userService.user.uid);
+    this.userService
+    .updateUser({
+      registrationId: token,
+    }, this.userService.user.uid)
+    .then((val) => { });}
   }
 
   showLocalNotification(data) {

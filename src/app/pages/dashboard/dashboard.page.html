@@ -1,6 +1,28 @@
 <app-header></app-header>
 <ion-content>
   <div class="content-container">
+    <div class="list-position-relative">
+    <div class="search-container">
+      <ion-icon (click)="startListening()" name="mic-outline"></ion-icon>
+      <ion-searchbar
+      [debounce]="100"
+        placeholder="Enter policy/company name"
+        (ionChange)="handleInput($event)"
+        [(ngModel)]="searchStr">
+      </ion-searchbar>
+      <!-- <ion-button fill="clear"> -->
+        <ion-icon (click)="handleInput()" name="Search"></ion-icon>
+      <!-- </ion-button> -->
+    </div>
+    <ion-list lines="none" *ngIf="filteredArr.length" class="search-list">
+      <ion-item *ngFor="let result of filteredArr" (click)="gotoPolicy(result)">
+        <ion-label>{{ result.searchKey }}</ion-label>
+      </ion-item>
+    </ion-list>
+    </div>
+  <!-- <button ion-button full (click)="startListening()">Start Listening</button> -->
+  <!-- <button ion-button full (click)="stopListening()" *ngIf="isIos()">Stop Listening</button> -->
+
     <ion-row class="categories-item">
       <ion-col (click)="onClick('portfolios')" class="ion-activatable">
         <a>

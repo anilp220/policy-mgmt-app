@@ -20,7 +20,7 @@ export class FixedDepositService {
         value: item.firstholder
       },
       {
-        key: 'ACCOUND HOLDER D.O.B',
+        key: 'ACCOUNT HOLDER D.O.B',
         value: item.dobAccountHolder
       },
       {

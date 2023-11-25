@@ -9,7 +9,7 @@ import { GenericePortfolioTableComponent } from '../components/generice-portfoli
   imports: [
     CommonModule,
     IonicModule,
-    HighchartsChartModule
+    HighchartsChartModule,
   ],
   exports: [HeaderComponent, HighchartsChartModule, GenericePortfolioTableComponent]
 })

@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: 'terms-n-condition',
     loadChildren: () => import('./pages/terms-n-condition/terms-n-condition.module').then( m => m.TermsNConditionPageModule)
-  },
+  }
 ];
 @NgModule({
   imports: [

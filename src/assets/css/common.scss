@@ -75,8 +75,8 @@ ion-title {
 // }
 
 .header-margin {
-  // padding-top: 90px !important;
-  padding-top: calc(60rem / 11) !important;
+  padding-top: 4rem !important;
+  margin-top: calc(1rem + 10px);
 }
 
 .noData {

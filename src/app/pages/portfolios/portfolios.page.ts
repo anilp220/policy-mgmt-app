@@ -95,15 +95,8 @@ export class PortfoliosPage implements OnInit {
   }
 
   onClick(port) {
-    if(port.collection===this.models.collections.equities){
-      this.navCtrl.navigateForward('tabs/coming-soon',{
-        state:{
-          title:port.name,
-          message: 1
-        }
-      });
-    }
-    else if(port.collection===this.models.collections.loans){
+    console.log(port);
+    if(port.collection===this.models.collections.loans){
       this.navCtrl.navigateForward('tabs/coming-soon',{
         state:{
           title:port.name,
@@ -170,5 +163,10 @@ export class PortfoliosPage implements OnInit {
     } else {
       this.segragatedData[port.collection][keyName] = [element];
     }
+  }
+
+  downloadStatment(){
+    // this.userService.download();
+    // this.navCtrl.navigateForward('/tabs/download-statement');
   }
 }
