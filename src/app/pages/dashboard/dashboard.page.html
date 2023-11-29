@@ -16,7 +16,12 @@
     </div>
     <ion-list lines="none" *ngIf="filteredArr.length" class="search-list">
       <ion-item *ngFor="let result of filteredArr" (click)="gotoPolicy(result)">
-        <ion-label>{{ result.searchKey }}</ion-label>
+        <ion-label>{{ result.searchCompany }} - {{ result.searchPolicyNo }}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list lines="none" *ngIf="showNotFound" class="search-list">
+      <ion-item>
+        <ion-label style="text-align:center;">Not found</ion-label>
       </ion-item>
     </ion-list>
     </div>

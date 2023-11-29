@@ -28,6 +28,7 @@ export class DashboardPage implements OnInit {
   searchKey = '';
   matches: string[];
   isRecording: boolean;
+  showNotFound = false;
   constructor(
     private navCtrl: NavController,
     private ci: CorporateInsuranceService,
@@ -83,9 +84,19 @@ export class DashboardPage implements OnInit {
       let companyName = item.company?.name || item.company?.identifier || item.companyName || item.insuranceCompany || item.company;
       companyName = companyName?.toLowerCase();
       const policyNo = item.policyNo || item.policyNumber;
-      item.searchKey = companyName || policyNo;
+      item.searchCompany = companyName;
+      item.searchPolicyNo =  policyNo;
       return companyName?.indexOf(searchStr) > -1 || policyNo?.indexOf(searchStr) > -1;
     });
+    if(this.filteredArr.length == 0){
+      this.showNotFound = true;
+      setTimeout(()=>{
+        this.showNotFound = false;
+      },2000);
+    }else{
+      this.showNotFound = false;
+      console.log(this.filteredArr);
+    }
   }
 
   getSearchName(item) {

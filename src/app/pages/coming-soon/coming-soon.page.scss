@@ -31,10 +31,14 @@ ion-content {
     background: #6BB0E9;
     text-align: center;
     width: fit-content;
-    margin: auto;
+    margin: 10px auto;
     padding: 15px;
     border-radius: 25px;
     font-family: "Montserrat";
     font-weight: bold;
+    a{
+      color:white;
+      text-decoration: none;
+    }
   }
 }
