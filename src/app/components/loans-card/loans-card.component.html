@@ -1,0 +1,12 @@
+<div class="investorCard">
+  <ion-grid>
+    <ion-row class="title">
+      <ion-col>LENDER- {{ investorName.toUpperCase() }}</ion-col>
+    </ion-row>
+    <generice-portfolio-table
+      [tableTitle]="tableTitle"
+      [tableData]="tableData"
+      (gotoDetailEvent)="gotoDetail($event)"
+    ></generice-portfolio-table>
+  </ion-grid>
+</div>

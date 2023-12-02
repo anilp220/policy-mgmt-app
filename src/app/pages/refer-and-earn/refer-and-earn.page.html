@@ -1,0 +1,44 @@
+<app-header [title]="'WELCOME'"></app-header>
+
+<ion-content>
+  <ion-row class="header">
+    <ion-col>
+      <div>REFER & EARN</div>
+    </ion-col>
+  </ion-row>
+  <ion-row class="sub-header">
+    <ion-col>
+      <div>INVITE YOUR FRIENDS AND FAMILY</div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <div class="formDiv">
+        <form #formData="ngForm" (ngSubmit)="onSubmit(formData)" class="formStyle1">
+
+          <ion-item>
+            <ion-input placeholder="FULL NAME*" name="name" [(ngModel)]="name" required></ion-input>
+          </ion-item>
+
+          <ion-input type="hidden" name="uid" [(ngModel)]="uid" [value]="'uid'" required></ion-input>
+          <ion-input type="hidden" name="clientId" [(ngModel)]="clientId" [value]="'clientId'" required></ion-input>
+
+          <ion-item>
+            <ion-input placeholder="MOBILE NUMBER*" type="number" name="mobile" [(ngModel)]="mobile" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="EMAIL ADDRESS*" type="email" name="address" [(ngModel)]="address" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-textarea [autoGrow]="true" placeholder="COMMENT" name="comment" [(ngModel)]="comment" required></ion-textarea>
+          </ion-item>
+
+          <div class="button-area">
+            <ion-button class="cirFullBlue registerButton" type="submit">SUBMIT</ion-button>
+          </div>
+        </form>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

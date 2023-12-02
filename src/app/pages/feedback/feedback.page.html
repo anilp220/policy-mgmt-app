@@ -1,0 +1,50 @@
+<app-header [title]="'Feedback'"></app-header>
+
+<ion-content>
+    <ion-row class="feedback-header">
+        <ion-col>
+            <div>👋HELP US IMPROVE</div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <div class="formDiv">
+                <form #formData="ngForm" (ngSubmit)="onSubmit(formData)" class="formStyle1">
+                    <div class="row">
+                        <ion-lable class="question">HOW OFTEN DO YOU USE OUR APP?</ion-lable>
+                        <ion-input class="answer" type="text" placeholder="EVERYDAY/ONCE A WEEK/BI-WEEKLY"
+                            fill="outline" shape="round" [(ngModel)]="frequency" name="frequency" required>
+                        </ion-input>
+                    </div>
+
+                    <ion-input type="hidden" name="uid" [(ngModel)]="uid" [value]="'uid'"></ion-input>
+                    <ion-input type="hidden" name="clientId" [(ngModel)]="clientId" [value]="'clientId'"></ion-input>
+
+                    <div class="row">
+                        <ion-lable class="question">WHAT IS YOUR MOST USED FEATURE?</ion-lable>
+                        <ion-input class="answer" type="text" placeholder="START TYPING..." [(ngModel)]="bestFeature"
+                            name="bestFeature" required>
+                        </ion-input>
+                    </div>
+                    <div class="row">
+                        <ion-lable class="question">WHAT WOULD YOU LIKE TO SEE IMPROVED THE MOST?</ion-lable>
+                        <ion-input class="answer" type="text" placeholder="EVERYDAY/ONCE A WEEK/BI-WEEKLY"
+                            [(ngModel)]="recommendation" name="recommendation" required>
+                        </ion-input>
+                    </div>
+                    <div class="row">
+                        <ion-lable class="question">MESSAGE</ion-lable>
+                        <ion-textarea class="answer" type="text" placeholder="ENTER YOUR MESSAGE" [(ngModel)]="message"
+                            name="message" [autoGrow]="true" required>
+                        </ion-textarea>
+                    </div>
+
+                    <div class="button-area">
+                        <ion-button class="cirFullBlue registerButton" type="submit">SUBMIT</ion-button>
+                    </div>
+                </form>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-content>

@@ -187,7 +187,6 @@ export class UserService {
         });
     });
   }
-
   downloadPdf() {
     console.log(this.allCollections[this.models.collections.mutualFund]);
     return this.mapCurrentNavToMF()
@@ -262,5 +261,13 @@ export class UserService {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  sendFeedback(feedback: any) {
+    return this.firestore.collection('feedbacks').ref.add(feedback);
+  }
+
+  sendReferAndEarn(data: any) {
+    return this.firestore.collection('refer-and-earn').ref.add(data);
   }
 }
