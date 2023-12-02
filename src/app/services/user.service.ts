@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 import { Models } from './models.service';
 import { environment } from 'src/environments/environment';
 import { CameraService } from './camera.service';
-
+import { SipType } from '../enums/sip-type-enum';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +34,7 @@ export class UserService {
   };
   allSchemes: any;
   allEquities: any;
+  sipType = SipType;
   constructor(private firebaseAuth: AngularFireAuth,
     private fireStorage: AngularFireStorage,
     private appService: AppService,
@@ -51,8 +53,8 @@ export class UserService {
     return;
   }
 
-  async findUserByEmail(email){
-   return this.firestore.collection('users').ref.where('email','==',email).get();
+  async findUserByEmail(email) {
+    return this.firestore.collection('users').ref.where('email', '==', email).get();
   }
 
   getUserDetail(uid) {
@@ -142,20 +144,19 @@ export class UserService {
     return Promise.all(promise);
   }
 
-  async fetchAllSchemes() {
-    const localData = await this.appService.getDataFromLocal('allSchemes');
-    if (localData) {
-      // console.log('data from local', localData);
-      this.allSchemes = JSON.parse(localData);
-      return;
-    }
-    this.allSchemes = await this.http.get(environment.getAllScheme).toPromise();
-    await this.appService.setDataToLocal('allSchemes', JSON.stringify(this.allSchemes));
-    console.log(this.allSchemes);
-  }
+  // async fetchAllSchemes() {
+  //   const localData = await this.appService.getDataFromLocal('allSchemes');
+  //   if (localData) {
+  //     // console.log('data from local', localData);
+  //     return JSON.parse(localData);
+  //   }
+  //   const allSchemes = await this.http.get(environment.getAllScheme).toPromise();
+  //   await this.appService.setDataToLocal('allSchemes', JSON.stringify(allSchemes));
+  //   return allSchemes;
+  // }
 
-  fetchSelectedScheme(id): any {
-    return this.http.get(environment.getScehemeData + id).toPromise();
+  getMFPriceById(id){
+    return this.firestore.collection('mutualfundnav').doc(id).get().toPromise();
   }
 
   fetchRapidApi(Identifier?: any): Promise<any> {
@@ -174,7 +175,6 @@ export class UserService {
       this.http.get('https://latest-stock-price.p.rapidapi.com/any', options)
         .toPromise()
         .then(result => {
-          // console.log('rapid resp', result);
           if (Identifier) {
             resolve(result);
           } else {
@@ -188,18 +188,79 @@ export class UserService {
     });
   }
 
-  download(){
-    return this.http.get(
-      'https://asia-south1-portfolio-management-app-e4dc2.cloudfunctions.net/generatePdf'
-      ,{
-        headers:{
-          Accept:'application/pdf'
+  downloadPdf() {
+    console.log(this.allCollections[this.models.collections.mutualFund]);
+    return this.mapCurrentNavToMF()
+      .then(()=>this.mapEquityCurrentPrice())
+      .then(() => {
+      const body = {
+        userInfo: this.user.userInfo,
+        ...this.allCollections
+      };
+      console.log(body);
+      return this.http.post(
+        environment.cloufFuncBaseUrl + '/generatePdf',
+        body, {
+        headers: {
+          Accept: 'application/pdf'
         },
-        responseType:'blob'
-      }).toPromise()
-    .then(result=>{
-      console.log(result);
-      this.cameraService.savePdf(result);
+        responseType: 'blob'
+      }
+      ).toPromise()
+        .then(result => {
+          console.log(result);
+          this.cameraService.savePdf(result);
+        });
+    }).catch(error => {
+      throw error;
     });
+  }
+
+  async mapCurrentNavToMF() {
+    try {
+      const mfData = this.allCollections[this.models.collections.mutualFund];
+      for (const data of mfData) {
+        if (data.company?.id) {
+          const result = await this.getMFPriceById(data.company.id);
+          data.currentNav = result;
+          if (data.currentUnits && data.currentNav) {
+            data.currentFundValue = (data.currentUnits * data.currentNav).toFixed(4);
+          }
+          if ((data.modeOfInvestment === this.sipType.SIP ||
+            data.modeOfInvestment === this.sipType.LUMPSUMSIP) && data.currentFundValue && data.currentInvestedValue) {
+              data.currentReturn = Math.abs(((data.currentFundValue - data.currentInvestedValue) / data.currentInvestedValue) * 100).toFixed(4);
+          }
+          if (data.modeOfInvestment === this.sipType.LUMPSUM && data.currentFundValue && data.amountInvested) {
+            data.currentReturn = Math.abs(((data.currentFundValue - data.amountInvested) / data.amountInvested) * 100).toFixed(4);
+          }
+        }
+      }
+      return;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async mapEquityCurrentPrice(){
+    try {
+      const equityData = this.allCollections[this.models.collections.equities];
+      for (const data of equityData) {
+        if(data.company?.identifier){
+          const result = await this.fetchRapidApi(data.company.identifier);
+          if(result?.length){
+            data.currentSharePrice = result[0].lastPrice;
+            data.currentFundValue = (data.currentShares * data.currentSharePrice).toFixed(2);
+            data.currentReturn = (((data.currentFundValue - data.amountInvested) / data.amountInvested) * 100).toFixed(2);
+            return data;
+          }else{
+            throw new Error();
+          }
+        }else{
+          throw new Error();
+        }
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

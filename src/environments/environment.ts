@@ -21,7 +21,8 @@ export const environment = {
     // measurementId: "G-7YGYZFY1KM"
   },
   getAllScheme: 'https://api.moneycare.co.in/mfapi/get-all-scheme',
-  getScehemeData: 'https://api.moneycare.co.in/mfapi/get-scheme-data/'
+  getScehemeData: 'https://api.moneycare.co.in/mfapi/get-scheme-data/',
+  cloufFuncBaseUrl:'https://asia-south1-portfolio-management-app-e4dc2.cloudfunctions.net'
   // androidBannerAd: 'ca-app-pub-3984102337736404/3718736001',
   // iosBannerAd: 'ca-app-pub-3984102337736404/9901000975'
 };

@@ -73,15 +73,20 @@ export class MutualFundCardComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  async calculateFundValue(item): Promise<any> {
+  async calculateFundValue(item): Promise<void> {
+    item.currentNav = await this.getCurrentNav(item.company?.id);
     if (item.currentUnits && item.currentNav) {
-      item.currentFundValue = (item.currentUnits * await this.getCurrentNav(item)).toFixed(4);
+      item.currentFundValue = (item.currentUnits * item.currentNav).toFixed(4);
       this.calcCurrentReturn(item);
     }
   }
 
-  async getCurrentNav(item) {
-    const result = await this.userService.fetchSelectedScheme(item.company.id);
-    return result.nav;
+  async getCurrentNav(id) {
+    if(id){
+      const result =  await this.userService.getMFPriceById(id);
+      const data: any= result.data();
+      return data.nav;
+    }
+    return 1;
   }
 }

@@ -96,22 +96,22 @@ export class PortfoliosPage implements OnInit {
 
   onClick(port) {
     console.log(port);
-    if(port.collection===this.models.collections.loans){
-      this.navCtrl.navigateForward('tabs/coming-soon',{
-        state:{
-          title:port.name,
+    if (port.collection === this.models.collections.loans) {
+      this.navCtrl.navigateForward('tabs/coming-soon', {
+        state: {
+          title: port.name,
           message: 2
         }
       });
     }
-    else if(this.userService.allCollections[port.collection].length==0){
-      this.navCtrl.navigateForward('tabs/coming-soon',{
-        state:{
-          title:port.name,
-          message:2
+    else if (this.userService.allCollections[port.collection].length == 0) {
+      this.navCtrl.navigateForward('tabs/coming-soon', {
+        state: {
+          title: port.name,
+          message: 2
         }
       });
-    }else{
+    } else {
       this.navCtrl.navigateForward('tabs/generic-portfolio', {
         state: {
           item: JSON.stringify(this.segragatedData[port.collection]),
@@ -165,8 +165,15 @@ export class PortfoliosPage implements OnInit {
     }
   }
 
-  downloadStatment(){
-    // this.userService.download();
-    // this.navCtrl.navigateForward('/tabs/download-statement');
+  downloadStatment() {
+    this.appService.presentLoading('Preparing Statement...');
+    this.userService.downloadPdf()
+      .then(() => {
+        this.appService.hideLoading();
+        this.appService.showToast('PDF has been sent to your registered email id.');
+      }).catch(err => {
+        this.appService.hideLoading();
+        this.appService.showToast('Some error occured try after sometime');
+      });
   }
 }
